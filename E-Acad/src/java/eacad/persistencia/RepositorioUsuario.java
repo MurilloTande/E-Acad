@@ -8,7 +8,9 @@ import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.UsuarioInexistenteException;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Local;
 
+@Local
 public interface RepositorioUsuario extends Serializable{
     public void adicionar(Usuario usuario) throws ErroInternoException;
     public List<Usuario> listar() throws ErroInternoException;

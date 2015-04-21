@@ -7,12 +7,13 @@ import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.UsuarioInexistenteException;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+@Stateless
 public class RepositorioUsuarioJPA implements RepositorioUsuario{
 
     @PersistenceContext(unitName = "E-acad_PU")// O NOME TÁ LÁ EM PERSISTENCE

@@ -8,11 +8,13 @@ import eacad.exceptions.UsuarioInexistenteException;
 import eacad.negocio.CadastroUsuario;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
 /**
  * @author Tande
  */
 
+@Stateless
 public class FachadaSistema {
     
     @EJB

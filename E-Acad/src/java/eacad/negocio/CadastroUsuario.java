@@ -11,7 +11,10 @@ import eacad.persistencia.RepositorioUsuario;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
+
+@Stateless
 public class CadastroUsuario implements Serializable {
 
     @EJB
