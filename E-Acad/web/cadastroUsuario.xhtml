@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastrar usuario</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="105">
+                    <h1><center><h:outputText value="E-acad" /></center></h1>
+                    
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <center><h:outputText value="Semana Universitária" /></center>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="245">
+                    <p:menu>
+                        <p:submenu label="Opções do Sistema">
+                            <p:menuitem value="Página Principal" url="paginaPrincipal.xhtml" icon="ui-icon-home"/>
+                        </p:submenu>
+                    </p:menu>
+                   
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <p:panel header = "Cadastro Usuário">
+                        <h:panelGrid columns = "2"> 
+                            <h:outputText value="CPF"/>
+                            <p:inputMask mask="999.999.999-99" value="#{beanUsuario.usuario.cpf}" id="cpf"/>
+                            <h:outputText value = "Nome" />
+                            <p:inputText value = "#{beanUsuario.usuario.nome}" id = "nome" />
+                            <h:outputText value="Email"/>
+                            <p:inputText value="#{beanUsuario.usuario.email}" id="email"/>
+                            <h:outputText value = "Senha" />
+                            <p:password required = "true" requiredMessage = "Senha Obrigatória"
+                                        value = "#{beanUsuario.usuario.senha}" id = "senha"
+                                        feedback = "true" strongLabel = "Forte" weakLabel = "Fraco"
+                                        goodLabel = "Boa" promptLabel = "Digite sua senha"
+                                        match = "confirmacaoSenha" validatorMessage = " As senhas não conferem" />
+                            <h:outputText value = "Confirmação de Senha" />
+                            <p:password required = "true" requiredMessage = "Senha Obrigatória"
+                                        value = "#{beanUsuario.usuario.senha}" id = "confirmacaoSenha"
+                                        promptLabel = "Digite sua senha" validatorMessage = "As senhas não conferem" />
+                            <p:commandButton value = "Cadastrar" action = "#{beanUsuario.cadastrarUsuario()}" ajax = "false" />
+                        </h:panelGrid>
+                        <p:messages />
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+    </h:body>
+</html>
