@@ -16,6 +16,7 @@ public interface RepositorioUsuario extends Serializable{
     public List<Usuario> listar() throws ErroInternoException;
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException;
     public List<Usuario> buscarNome(String nome) throws ErroInternoException, UsuarioInexistenteException;
-    public Usuario buscar(String email) throws ErroInternoException, UsuarioInexistenteException;
+    public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException;
+    public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException;
     public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException;
 }

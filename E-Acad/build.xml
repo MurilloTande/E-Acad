@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="E-Acad" default="default" basedir=".">
-    <description>Builds, tests, and runs the project E-Acad.</description>
+<project name="Eacad" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Eacad.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

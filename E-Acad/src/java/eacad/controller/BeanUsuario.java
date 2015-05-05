@@ -91,17 +91,19 @@ public class BeanUsuario implements Serializable {
                     new FacesMessage("Usuario Existente no sistema."));
             return null;
         }
-        return "homePage.xhtml"/*Falta criar*/;
+        return "PaginaInicial.xhtml"/*Falta criar home page*/;
 
     }
 
     public String logar() {
-
+        
+        
         try {
-            Usuario u = this.fachada.buscar(this.login);
-            if (u.getSenha().equals(this.senha)) {
+            Usuario u = this.fachada.buscarEmail(this.login);
+            
+            if (this.senha.equals(u.getSenha())) {
                 usuarioLogado = u;
-                return "gerenciaConta.xhtml"/*falta*/;
+                return "PaginaInicial.xhtml"/*falta*/;
             } else {
                 FacesContext.getCurrentInstance().addMessage(null,
                         new FacesMessage("Senha inválida!"));
@@ -109,7 +111,7 @@ public class BeanUsuario implements Serializable {
             }
         } catch (UsuarioInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Usuario inexistente no sistema."));
+                    new FacesMessage("Aqui."));
             return null;
         } catch (ErroInternoException e) {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -177,6 +179,6 @@ public class BeanUsuario implements Serializable {
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + ex1.getMessage()));
         usuarioLogado = null;
         }
-        return "paginaPrincipal.xhtml"/*falta*/;
+        return "";/*Aqui vai ficar a pagina inicial*/
     }
 }

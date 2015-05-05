@@ -21,10 +21,10 @@ and open the template in the editor.
                 <p:layoutUnit position="south" size="50">
                     <center><h:outputText value="Semana Universitária" /></center>
                 </p:layoutUnit>
-                <p:layoutUnit position="west" size="246">
+                <p:layoutUnit position="west" size="245">
                     <p:menu>
                         <p:submenu label="Opções do Sistema">
-                            <p:menuitem value="Página Principal" url="paginaPrincipal.xhtml" icon="ui-icon-home"/>
+                            <p:menuitem value="Página Principal" url="PaginaInicil.xhtml" icon="ui-icon-home"/>
                         </p:submenu>
                     </p:menu>
                    
@@ -49,6 +49,7 @@ and open the template in the editor.
                                         value = "#{beanUsuario.usuario.senha}" id = "confirmacaoSenha"
                                         promptLabel = "Digite sua senha" validatorMessage = "As senhas não conferem" />
                             <p:commandButton value = "Cadastrar" action = "#{beanUsuario.cadastrarUsuario()}" ajax = "false" />
+                            
                         </h:panelGrid>
                         <p:messages />
                     </p:panel>

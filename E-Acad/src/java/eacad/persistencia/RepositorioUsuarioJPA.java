@@ -16,7 +16,7 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class RepositorioUsuarioJPA implements RepositorioUsuario{
 
-    @PersistenceContext(unitName = "E-acad_PU")// O NOME TÁ LÁ EM PERSISTENCE
+    @PersistenceContext(unitName = "EacadPU")// O NOME TÁ LÁ EM PERSISTENCE
     private EntityManager em;
     
     @Override
@@ -68,11 +68,25 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario{
     }
 
     @Override
-    public Usuario buscar(String email) throws ErroInternoException, UsuarioInexistenteException {
+    public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
+       try {
+           TypedQuery<Usuario> consulta = this.em.createQuery("select u from Usuario u where u.cpf like :cpf", Usuario.class);
+           consulta.setParameter("cpf", "%" + cpf + "%");
+            return consulta.getSingleResult();
+           
+        }catch(NoResultException es){
+                 throw new UsuarioInexistenteException();  
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
+        }
+    
+    }
+    
+      public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
        try {
            TypedQuery<Usuario> consulta = this.em.createQuery("select u from Usuario u where u.email like :email", Usuario.class);
            consulta.setParameter("email", "%" + email + "%");
-           return consulta.getSingleResult();
+            return consulta.getSingleResult();
            
         }catch(NoResultException es){
                  throw new UsuarioInexistenteException();  

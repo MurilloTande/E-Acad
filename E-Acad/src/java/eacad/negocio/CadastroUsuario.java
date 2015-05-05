@@ -30,8 +30,8 @@ public class CadastroUsuario implements Serializable {
 
     public void adicionarUsuario(Usuario usuario) throws ErroInternoException, UsuarioExistenteException, UsuarioInexistenteException {
         try {
-            Usuario u = this.repUsuario.buscar(usuario.getEmail());
-            if (usuario == u  ) {
+            Usuario u = this.repUsuario.buscar(usuario.getCpf());
+            if ( u!=null   ) {
                 throw new UsuarioExistenteException();
             } 
         } catch (UsuarioInexistenteException ui) {
@@ -58,9 +58,19 @@ public class CadastroUsuario implements Serializable {
         return u;
     }
     
-    public Usuario buscar(String email) throws ErroInternoException, UsuarioInexistenteException {
+    public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
 
-        Usuario u = this.repUsuario.buscar(email);
+        Usuario u = this.repUsuario.buscar(cpf);
+
+        if (u == null) {
+            throw new UsuarioInexistenteException();
+        }
+        return u;
+    }
+    
+    public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
+
+        Usuario u = this.repUsuario.buscarEmail(email);
 
         if (u == null) {
             throw new UsuarioInexistenteException();

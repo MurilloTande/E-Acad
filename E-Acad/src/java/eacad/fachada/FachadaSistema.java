@@ -38,8 +38,11 @@ public class FachadaSistema {
         return this.usuarios.buscarNome(nome);
     }
 
-    public Usuario buscar(String email) throws ErroInternoException, UsuarioInexistenteException {
-        return this.usuarios.buscar(email);
+    public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
+        return this.usuarios.buscar(cpf);
+    }
+    public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
+        return this.usuarios.buscarEmail(email);
     }
     
     public void remover(String email) throws ErroInternoException, UsuarioInexistenteException{
