@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <f:facet name="first">
+            <title>Alterar senha - Pregaum Online</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        
+        <h:form rendered="#{beanUsuario.logado}">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="105">
+                    <h1><center><h:outputText value="E-Acad" /></center></h1>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2015.1" /></center>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="220">
+                    <p:panelMenu style="width: 200px">
+                        <p:submenu label="Perfil">
+                            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="AtualizarUsuario.xhtml" />
+                            <p:menuitem value="Alterar senha" icon="ui-icon-pencil" url="AlterarSenha.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Sistema">
+                            <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    <p:separator />
+                    <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
+
+                </p:layoutUnit>
+                <p:layoutUnit position="center">      
+
+                    <p:panel header="Aletrar senha">
+                        <h:outputText value="Senha: " /><br />
+                        <p:password required="true" requiredMessage="Senha Obrigatória" value="#{beanUsuario.senha}"
+                                    id="senha" promptLabel="Digite sua senha" /><br /><br />
+                        <h:outputText value = "Nova senha" /><br />
+                        <p:password required = "true" requiredMessage = "Senha Obrigatória"
+                                    value = "#{beanUsuario.novaSenha}" id = "novaSenha"
+                                    feedback = "true" strongLabel = "Forte" weakLabel = "Fraco"
+                                    goodLabel = "Boa" promptLabel = "Digite sua senha"
+                                    match = "confirmacaoSenha" validatorMessage = " As senhas não conferem" /><br /><br />
+                        <h:outputText value = "Confirmação de nova senha" /><br />
+                        <p:password required = "true" requiredMessage = "Senha Obrigatória"
+                                    value = "#{beanUsuario.novaSenha}" id = "confirmacaoSenha"
+                                    promptLabel = "Digite sua senha" validatorMessage = "As senhas não conferem" /><br /><br />
+
+                        <p:commandButton value = "Alterar" action = "#{beanUsuario.alterarSenha()}" ajax = "false" />
+                        <p:messages />
+                    </p:panel>
+
+
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+        <h:form rendered="#{not beanUsuario.logado}">
+            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+        </h:form>
+        
+        
+    </h:body>/body>
+</html>

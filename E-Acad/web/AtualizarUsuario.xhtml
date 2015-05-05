@@ -11,7 +11,7 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <f:facet name="first">
-            <title>Editar perfil - Pregaum Online</title>
+            <title>Editar perfil - E-Acad</title>
         </f:facet>
     </h:head>
     <h:body>
@@ -21,13 +21,13 @@ and open the template in the editor.
                     <h1><center><h:outputText value="E-Acad" /></center></h1>
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="50">
-                    <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2014.2" /></center>
+                    <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2015.1" /></center>
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="220">
                     <p:panelMenu style="width: 200px">
                         <p:submenu label="Perfil">
-                            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="atualizarUsuario.xhtml" />
-                            <p:menuitem value="Alterar senha" icon="ui-icon-pencil" url="alterarSenha.xhtml" />
+                            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="AtualizarUsuario.xhtml" />
+                            <p:menuitem value="Alterar senha" icon="ui-icon-pencil" url="AlterarSenha.xhtml" />
                         </p:submenu>
                         <p:submenu label="Sistema">
                             <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />
@@ -43,9 +43,10 @@ and open the template in the editor.
                         <h:outputText value = "Nome " /><br />
                         <p:inputText value = "#{beanUsuario.usuarioLogado.nome}" id = "nome" /><br /><br />
 
-                        <h:outputText value = "Data de Nascimento " /><br />
-                        <p:calendar value = "#{beanUsuario.usuarioLogado.dataNascimento}" navigator = "true"
-                                    pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/><br /><br />
+                        <h:outputText value = "Email" /><br />
+                        <p:inputText value = "#{beanUsuario.usuarioLogado.email}" id = "email" /><br /><br />
+                                
+                        
                         <p:commandButton value = "Alterar" action = "#{beanUsuario.atualizarUsuario()}" ajax = "false" />
 
                         <p:messages />
