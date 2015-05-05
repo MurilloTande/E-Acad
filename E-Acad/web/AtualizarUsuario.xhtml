@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <f:facet name="first">
+            <title>Editar perfil - Pregaum Online</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <h:form rendered="#{beanUsuario.logado}">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="105">
+                    <h1><center><h:outputText value="E-Acad" /></center></h1>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2014.2" /></center>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="220">
+                    <p:panelMenu style="width: 200px">
+                        <p:submenu label="Perfil">
+                            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="atualizarUsuario.xhtml" />
+                            <p:menuitem value="Alterar senha" icon="ui-icon-pencil" url="alterarSenha.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Sistema">
+                            <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    <p:separator />
+                    <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
+
+                </p:layoutUnit>
+                <p:layoutUnit position="center">      
+
+                    <p:panel header = "Editar perfil">
+                        <h:outputText value = "Nome " /><br />
+                        <p:inputText value = "#{beanUsuario.usuarioLogado.nome}" id = "nome" /><br /><br />
+
+                        <h:outputText value = "Data de Nascimento " /><br />
+                        <p:calendar value = "#{beanUsuario.usuarioLogado.dataNascimento}" navigator = "true"
+                                    pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/><br /><br />
+                        <p:commandButton value = "Alterar" action = "#{beanUsuario.atualizarUsuario()}" ajax = "false" />
+
+                        <p:messages />
+                    </p:panel>
+
+                    <p:panel header="Excluir perfil">
+
+                        <center>
+                            <p:commandButton value="Excluir perfil" actionListener="#{beanUsuario.removerUsuario()}"
+                                             action="#{beanUsuario.dislog()}">
+                                <p:confirm header="Confirmação" message="Deseja mesmo excluir essa conta?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+                        </center>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                        <p:messages />
+
+                    </p:panel>
+
+
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+        <h:form rendered="#{not beanUsuario.logado}">
+            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+        </h:form>
+    </h:body>
+</html>

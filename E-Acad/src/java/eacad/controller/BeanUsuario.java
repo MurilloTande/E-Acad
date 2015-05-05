@@ -72,7 +72,7 @@ public class BeanUsuario implements Serializable {
         return usuarioLogado;
     }
 
-    public void setusuarioLogado(Usuario usuarioLogado) {
+    public void setUsuarioLogado(Usuario usuarioLogado) {
         BeanUsuario.usuarioLogado = usuarioLogado;
     }
     
@@ -128,7 +128,7 @@ public class BeanUsuario implements Serializable {
 
     public String dislog() {
         usuarioLogado = null;
-        return "paginaPrincipal.xhtml";
+        return "PaginaInicial.xhtml";
     }
 
     public String atualizarUsuario() throws ErroInternoException, UsuarioInexistenteException {
