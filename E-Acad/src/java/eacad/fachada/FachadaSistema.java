@@ -45,8 +45,8 @@ public class FachadaSistema {
         return this.usuarios.buscarEmail(email);
     }
     
-    public void remover(String email) throws ErroInternoException, UsuarioInexistenteException{
-        this.usuarios.remover(email);
+    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException{
+        this.usuarios.remover(cpf);
     }
     
 }

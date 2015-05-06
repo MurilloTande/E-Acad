@@ -111,7 +111,7 @@ public class BeanUsuario implements Serializable {
             }
         } catch (UsuarioInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Aqui."));
+                    new FacesMessage("Usuario Inexistente"));
             return null;
         } catch (ErroInternoException e) {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -134,6 +134,8 @@ public class BeanUsuario implements Serializable {
     public String atualizarUsuario() throws ErroInternoException, UsuarioInexistenteException {
         try {
             this.fachada.atualizar(usuarioLogado);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Cadastro Atualizado com sucesso!"));
         } catch (UsuarioInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Usuario Inexistente no sistema."));
@@ -168,7 +170,7 @@ public class BeanUsuario implements Serializable {
     public String removerUsuario() {
 
         try {
-            this.fachada.remover(usuario.getEmail());
+            this.fachada.remover(usuarioLogado.getCpf());
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Registro excluído!"));
         } catch (ErroInternoException ex) {

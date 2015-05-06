@@ -43,9 +43,9 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario{
     
     @Override
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException {
-        Usuario u = buscar(usuario.getEmail());
+        Usuario u = buscar(usuario.getCpf());
         u.setNome(usuario.getNome());
-        u.setCpf(usuario.getCpf());
+        u.setSenha(usuario.getSenha());
         u.setEmail(usuario.getEmail());
         
         try {
@@ -97,10 +97,10 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario{
     }
     
      @Override
-    public void remover(String email) throws  ErroInternoException,UsuarioInexistenteException{
+    public void remover(String cpf) throws  ErroInternoException,UsuarioInexistenteException{
         try{
-         Usuario u = buscar(email);
-        this.em.remove(email);
+         Usuario u = buscar(cpf);
+        this.em.remove(u);
         }catch(IllegalArgumentException e ){
             throw new ErroInternoException(e);
         }

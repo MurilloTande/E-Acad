@@ -78,8 +78,8 @@ public class CadastroUsuario implements Serializable {
         return u;
     }
     
-    public void remover(String email) throws ErroInternoException, UsuarioInexistenteException{
-        this.repUsuario.remover(email);
+    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException{
+        this.repUsuario.remover(cpf);
     }
 
 }
