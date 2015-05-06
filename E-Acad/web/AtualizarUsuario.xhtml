@@ -27,7 +27,8 @@ and open the template in the editor.
                     <p:panelMenu style="width: 200px">
                         <p:submenu label="Perfil">
                             <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="AtualizarUsuario.xhtml" />
-                            <p:menuitem value="Alterar senha" icon="ui-icon-pencil" url="AlterarSenha.xhtml" />
+                            <p:menuitem value="Alterar Senha" icon="ui-icon-pencil" url="AlterarSenha.xhtml" />
+                            <p:menuitem value="Excluir Perfil" icon="ui-icon-pencil" url="ExcluirPerfil.xhtml" />
                         </p:submenu>
                         <p:submenu label="Sistema">
                             <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />
@@ -51,25 +52,7 @@ and open the template in the editor.
 
                         <p:messages />
                     </p:panel>
-
-                    <p:panel header="Excluir perfil">
-
-                        <center>
-                            <p:commandButton value="Excluir perfil" actionListener="#{beanUsuario.removerUsuario()}"
-                                             action="#{beanUsuario.dislog()}">
-                                <p:confirm header="Confirmação" message="Deseja mesmo excluir essa conta?" icon="ui-icon-alert"/>
-                            </p:commandButton>
-                        </center>
-
-                        <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                        </p:confirmDialog>
-                        <p:messages />
-
-                    </p:panel>
-
-
+                    
                 </p:layoutUnit>
             </p:layout>
         </h:form>
