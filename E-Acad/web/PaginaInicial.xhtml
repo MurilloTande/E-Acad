@@ -26,6 +26,7 @@
                             <p:menuitem value="Cadastrar-se" url="cadastroUsuario.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-plus" />
                             <p:menuitem value="Gerenciar Conta" url="AtualizarUsuario.xhtml" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" />
                             <p:menuitem value="Logout" actionListener="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" ajax="false"/>
+                            <p:menuitem value="Criar Evento" url="AtualizarUsuario.xhtml" rendered="#{beanUsuario.logado}" icon="ui-icon-erench" ajax="false"/>
                         </p:submenu>
                     </p:menu>
                 </p:layoutUnit>

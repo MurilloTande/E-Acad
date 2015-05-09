@@ -27,7 +27,8 @@ public class BeanUsuario implements Serializable {
     private String senha;
     private String novaSenha;
     private static Usuario usuarioLogado;
-
+    
+    
     public BeanUsuario() {
         this.usuario = new Usuario();
     }
