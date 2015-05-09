@@ -16,11 +16,11 @@ import java.util.List;
 @Local
 public interface RepositorioEvento extends Serializable{
 
-    public void adicionar(Evento e) throws ErroInternoException, EventoExistenteException;
+    public void adicionar(Evento e) throws ErroInternoException;
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoExistenteException;
     public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException;
     public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException;
-    public Evento buscarCodigo(String codigo) throws ErroInternoException, EventoInexistenteException;
+    public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException;
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException;
     public void remover(long codigo) throws ErroInternoException, EventoInexistenteException;
     
