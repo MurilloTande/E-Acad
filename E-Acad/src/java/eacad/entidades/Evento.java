@@ -7,11 +7,13 @@ package eacad.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.sql.Time;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Evento implements Serializable{
@@ -21,38 +23,33 @@ public class Evento implements Serializable{
     private String descricao;
     private Date data_inicio;
     private Date data_final;
-    private Time hora_inicial;
-    private Time hora_final;
-    private String Local;
+    private String localidade;
     private String endereco;
     private String cidade;
     private String estado;
     private int total_vagas;
-    private List<Participantes> participante;
-    private List<Evento> evento;
+    private Usuario usuario;
+
 
     public Evento() {
     }
 
-    public Evento(long codigo, String nome, String descricao, Date data_inicio, Date data_final, Time hora_inicial, Time hora_final, String Local, String endereco, String cidade, String estado, int total_vagas, List<Participantes> participante, List<Evento> evento) {
+    public Evento(long codigo, String nome, String descricao, Date data_inicio, Date data_final, String localidade, String endereco, String cidade, String estado, int total_vagas, Usuario usuario) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.data_inicio = data_inicio;
         this.data_final = data_final;
-        this.hora_inicial = hora_inicial;
-        this.hora_final = hora_final;
-        this.Local = Local;
+        this.localidade = localidade;
         this.endereco = endereco;
         this.cidade = cidade;
         this.estado = estado;
         this.total_vagas = total_vagas;
-        this.participante = participante;
-        this.evento = evento;
+        this.usuario = usuario;
     }
     
     @Id
-    @Column (unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getCodigo() {
         return codigo;
     }
@@ -78,6 +75,7 @@ public class Evento implements Serializable{
         this.descricao = descricao;
     }
 
+    @Temporal(TemporalType.DATE)
     public Date getData_inicio() {
         return data_inicio;
     }
@@ -86,6 +84,7 @@ public class Evento implements Serializable{
         this.data_inicio = data_inicio;
     }
 
+    @Temporal(TemporalType.DATE)
     public Date getData_final() {
         return data_final;
     }
@@ -93,29 +92,13 @@ public class Evento implements Serializable{
     public void setData_final(Date data_final) {
         this.data_final = data_final;
     }
-
-    public Time getHora_inicial() {
-        return hora_inicial;
+    
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setHora_inicial(Time hora_inicial) {
-        this.hora_inicial = hora_inicial;
-    }
-
-    public Time getHora_final() {
-        return hora_final;
-    }
-
-    public void setHora_final(Time hora_final) {
-        this.hora_final = hora_final;
-    }
-
-    public String getLocal() {
-        return Local;
-    }
-
-    public void setLocal(String Local) {
-        this.Local = Local;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
     public String getEndereco() {
@@ -149,21 +132,13 @@ public class Evento implements Serializable{
     public void setTotal_vagas(int total_vagas) {
         this.total_vagas = total_vagas;
     }
-
-    public List<Participantes> getParticipante() {
-        return participante;
+    
+    public Usuario getusuario(){
+    return usuario;
     }
-
-    public void setParticipante(List<Participantes> participante) {
-        this.participante = participante;
-    }
-
-    public List<Evento> getEvento() {
-        return evento;
-    }
-
-    public void setEvento(List<Evento> evento) {
-        this.evento = evento;
+    
+    public void setUsuario(Usuario usuario){
+        this.usuario=usuario;
     }
     
     

@@ -20,13 +20,15 @@
                     <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2015.1" /></center>
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="245">
-                    <p:menu>
+                    <p:menu style="width: 200px">
+                        <p:submenu label="Evento" rendered="#{beanUsuario.logado}">
+                            <p:menuitem value="Criar Evento" icon="ui-icon-pencil" url="criarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
+                        </p:submenu>
                         <p:submenu label="Opções do Sistema">
                             <p:menuitem value="Login" url="Login.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-person"/>
                             <p:menuitem value="Cadastrar-se" url="cadastroUsuario.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-plus" />
                             <p:menuitem value="Gerenciar Conta" url="AtualizarUsuario.xhtml" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" />
                             <p:menuitem value="Logout" actionListener="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" ajax="false"/>
-                            <p:menuitem value="Criar Evento" url="AtualizarUsuario.xhtml" rendered="#{beanUsuario.logado}" icon="ui-icon-erench" ajax="false"/>
                         </p:submenu>
                     </p:menu>
                 </p:layoutUnit>

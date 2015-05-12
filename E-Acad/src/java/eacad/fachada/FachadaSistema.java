@@ -54,8 +54,8 @@ public class FachadaSistema {
         this.usuarios.remover(cpf);
     }
     
-    //EVENTO
-     public void adicionar(Evento e) throws ErroInternoException, EventoExistenteException{
+    //---------------------------Evento---------------------------
+     public void adicionarEvento(Evento e) throws ErroInternoException, EventoExistenteException{
      this.evento.adicionar(e);
      }
      
@@ -63,7 +63,7 @@ public class FachadaSistema {
     return this.evento.listarTudoEvento();
     }
     
-    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
+    public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException{
     this.evento.atualizar(e);
     }
     
@@ -71,7 +71,7 @@ public class FachadaSistema {
     return this.buscarNomeListEvento(nome);
     }
     
-    public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException{
+    public Evento buscarCodigoEvento(long codigo) throws ErroInternoException, EventoInexistenteException{
     return this.evento.buscarCodigo(codigo);
     }
     
@@ -79,7 +79,7 @@ public class FachadaSistema {
     return this.buscarNomeEvento(nome);
     }
     
-    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException{
+    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException{
     this.evento.remover(codigo);
     }
     

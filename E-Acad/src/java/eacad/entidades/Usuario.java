@@ -4,9 +4,11 @@
 package eacad.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Usuario implements Serializable{
@@ -15,6 +17,7 @@ public class Usuario implements Serializable{
     private String nome;
     private String email;
     private String senha;
+    private List<Evento> eventosDoUsuario;
  
     public Usuario(String cpf, String nome, String email, String senha) {
         this.cpf = cpf;
@@ -61,5 +64,13 @@ public class Usuario implements Serializable{
         this.senha = senha;
     }
     
+    @OneToMany
+    public List<Evento> getEventosDoUsuario() {
+        return this.eventosDoUsuario;
+    }
+
+    public void setEventosDoUsuario(List<Evento> eventoDoUsuario) {
+        this.eventosDoUsuario = eventoDoUsuario;
+    }
     
 }

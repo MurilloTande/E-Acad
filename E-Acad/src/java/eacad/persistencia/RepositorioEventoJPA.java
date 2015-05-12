@@ -6,11 +6,9 @@
 package eacad.persistencia;
 
 import eacad.entidades.Evento;
-import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
-import eacad.exceptions.UsuarioInexistenteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -24,6 +22,7 @@ public class RepositorioEventoJPA implements RepositorioEvento{
     @PersistenceContext(unitName = "EacadPU")
     private EntityManager em;
     
+    @Override
      public void adicionar(Evento e) throws ErroInternoException{
       try {
             this.em.persist(e);
@@ -32,8 +31,7 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         }
      }
      
-     
-     
+    @Override
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoExistenteException{
         try {
         TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e", Evento.class);
@@ -42,6 +40,8 @@ public class RepositorioEventoJPA implements RepositorioEvento{
             throw new ErroInternoException(e);
         }
 }
+    
+    @Override
     public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
     
         Evento ev = buscarCodigo(e.getCodigo());
@@ -50,14 +50,10 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         e.setData_final(ev.getData_final());
         e.setData_inicio(ev.getData_inicio());
         e.setDescricao(ev.getDescricao());
-        e.setEndereco(ev.getEndereco());
-        e.setHora_final(ev.getHora_final());
+        e.setEndereco(ev.getEndereco()); 
         e.setTotal_vagas(ev.getTotal_vagas());
-        e.setParticipante(ev.getParticipante());
-        e.setLocal(ev.getLocal());
+        e.setLocalidade(ev.getLocalidade());
         e.setEstado(ev.getEstado());
-        e.setHora_inicial(ev.getHora_inicial());
-        e.setEvento(ev.getEvento());
         try {
             this.em.merge(e);
         } catch (Exception es) {
@@ -65,6 +61,8 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         }
         
     }
+    
+    @Override
     public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException{
           try {
            TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e where e.nome like :nome", Evento.class);
@@ -78,6 +76,8 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         }
         
 }
+    
+    @Override
     public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException{
         try {
            TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e where e.codigo like :codigo", Evento.class);
@@ -91,6 +91,8 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         }
     
 }
+    
+    @Override
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
         
          try {
@@ -104,6 +106,8 @@ public class RepositorioEventoJPA implements RepositorioEvento{
             throw new ErroInternoException(e);
         }
 }
+    
+    @Override
     public void remover(long codigo) throws ErroInternoException, EventoInexistenteException{
     try{
          Evento e = buscarCodigo(codigo);
