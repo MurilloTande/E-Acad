@@ -30,9 +30,10 @@ and open the template in the editor.
                             <p:menuitem value="Criar Evento" icon="ui-icon-pencil" url="criarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
                         </p:submenu>
                         <p:submenu label="Perfil">
-                            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="AtualizarUsuario.xhtml" />
-                            <p:menuitem value="Alterar senha" icon="ui-icon-pencil" url="AlterarSenha.xhtml" />
-                            <p:menuitem value="Excluir Perfil" icon="ui-icon-pencil" url="ExcluirPerfil.xhtml" />
+                            <p:menuitem value="Login" url="Login.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-person"/>
+                            <p:menuitem value="Cadastrar-se" url="cadastroUsuario.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-plus" />
+                            <p:menuitem value="Gerenciar Conta" url="AtualizarUsuario.xhtml" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" />
+                            <p:menuitem value="Logout" actionListener="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" ajax="false"/>
                         </p:submenu>
                         <p:submenu label="Sistema">
                             <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />

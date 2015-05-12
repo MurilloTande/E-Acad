@@ -25,8 +25,11 @@ and open the template in the editor.
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="220">
                     <p:panelMenu style="width: 200px">
+                        <p:submenu label="Evento" rendered="#{beanUsuario.logado}">
+                            <p:menuitem value="Criar Evento" icon="ui-icon-pencil" url="criarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
+                        </p:submenu>
                         <p:submenu label="Perfil">
-                            <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="AtualizarUsuario.xhtml" />
+                           <p:menuitem value="Editar Perfil" icon="ui-icon-pencil" url="AtualizarUsuario.xhtml" />
                             <p:menuitem value="Alterar Senha" icon="ui-icon-pencil" url="AlterarSenha.xhtml" />
                             <p:menuitem value="Excluir Perfil" icon="ui-icon-pencil" url="ExcluirPerfil.xhtml" />
                         </p:submenu>
