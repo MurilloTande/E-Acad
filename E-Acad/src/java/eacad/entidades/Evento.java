@@ -52,6 +52,7 @@ public class Evento implements Serializable{
     }
     
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getCodigo() {
         return codigo;
     }

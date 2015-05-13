@@ -30,12 +30,9 @@ public class CadastroEvento implements Serializable{
     
      public void adicionar(Evento e) throws ErroInternoException, EventoExistenteException{
           try {
-            Evento ev = this.repEvento.buscarCodigo(e.getCodigo());
-            if ( ev!=null) {
-                throw new EventoExistenteException();
-            } 
-        } catch (EventoInexistenteException ui) {
             this.repEvento.adicionar(e);
+        } catch (ErroInternoException ui) {
+            throw new ErroInternoException(ui);
         }
      }
      
