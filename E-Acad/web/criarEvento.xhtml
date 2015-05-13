@@ -53,7 +53,7 @@ and open the template in the editor.
                             <h:outputText value = "Nome" />
                             <p:inputText value = "#{beanEvento.evento.nome}" id = "nome" />
                             <h:outputText value = "Descrição:" />
-                            <p:inputText value = "#{beanEvento.evento.descricao}" id = "descricao" type="" size="200"/>
+                            <p:inputTextarea value = "#{beanEvento.evento.descricao}" id = "descricao" cols="20" rows="5"/>
                             <h:outputText value = "Data de Inicio" />
                             <p:calendar value = "#{beanEvento.evento.data_inicio}" navigator = "true"
                                         pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
@@ -81,7 +81,7 @@ and open the template in the editor.
             </p:layout>
         </h:form>
         <h:form rendered="#{not beanUsuario.logado}">
-            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+            Vá para <h:commandLink value="login" action="PaginaInicial.xhtml"/>
         </h:form>
         
         

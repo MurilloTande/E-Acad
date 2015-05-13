@@ -14,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -30,6 +31,7 @@ public class Evento implements Serializable{
     private String cidade;
     private String estado;
     private int total_vagas;
+    private Usuario criador;
     
 
 
@@ -46,8 +48,7 @@ public class Evento implements Serializable{
         this.endereco = endereco;
         this.cidade = cidade;
         this.estado = estado;
-        this.total_vagas = total_vagas;
-        
+        this.total_vagas = total_vagas;  
     }
     
     @Id
@@ -134,6 +135,15 @@ public class Evento implements Serializable{
         this.total_vagas = total_vagas;
     }
     
+   
+    @ManyToOne
+    public Usuario getCriador(){
+        return this.criador;
+    }
+    
+    public void setCriador(Usuario criador){
+    this.criador = criador;
+    }
     
 
     @Override

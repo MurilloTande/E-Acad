@@ -64,12 +64,12 @@ public class Usuario implements Serializable{
         this.senha = senha;
     }
     
-    @OneToMany
+    @OneToMany(mappedBy = "criador")
     public List<Evento> getEventosDoUsuario() {
         return this.eventosDoUsuario;
     }
 
-    public void setEventosDoUsuario(List<Evento> eventoDoUsuario) {
+    public void setEventosDoUsuario(List<Evento> eventoDoUsuario) {  
         this.eventosDoUsuario = eventoDoUsuario;
     }
     

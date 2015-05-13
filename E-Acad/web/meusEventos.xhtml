@@ -50,8 +50,11 @@ and open the template in the editor.
                          <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
                                 <p:column headerText="Código">
                                     <h:outputText value="#{p.codigo}"/>
-                                
                                 </p:column>
+                                <p:column headerText="Criador">
+                                    <h:outputText value="#{p.criador.nome}"/>
+                                </p:column>
+                            
                             </p:dataTable>
 </p:tab>
 

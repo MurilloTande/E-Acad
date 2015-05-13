@@ -8,6 +8,7 @@ import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -39,8 +40,11 @@ public class BeanEvento implements Serializable{
     
        public String CadastrarEvento() throws ErroInternoException, EventoExistenteException, EventoInexistenteException {
         try {
+            evento.setCriador(BeanUsuario.getInstancia());
+            
             this.fachada.adicionarEvento(evento);
             evento = new Evento();
+            
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Cadastro efetuado com sucesso!"));
         } catch (ErroInternoException e) {
