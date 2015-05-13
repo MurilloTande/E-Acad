@@ -31,7 +31,7 @@ public class CadastroEvento implements Serializable{
      public void adicionar(Evento e) throws ErroInternoException, EventoExistenteException{
           try {
             Evento ev = this.repEvento.buscarCodigo(e.getCodigo());
-            if ( ev!=null   ) {
+            if ( ev!=null) {
                 throw new EventoExistenteException();
             } 
         } catch (EventoInexistenteException ui) {
@@ -39,7 +39,7 @@ public class CadastroEvento implements Serializable{
         }
      }
      
-    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoExistenteException{
+    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
     
         List<Evento> e = this.repEvento.listarTudoEvento();
         return e;

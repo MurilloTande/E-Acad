@@ -59,7 +59,7 @@ public class FachadaSistema {
      this.evento.adicionar(e);
      }
      
-    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoExistenteException{
+    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
     return this.evento.listarTudoEvento();
     }
     

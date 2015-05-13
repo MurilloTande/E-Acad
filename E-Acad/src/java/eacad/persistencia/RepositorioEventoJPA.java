@@ -32,7 +32,7 @@ public class RepositorioEventoJPA implements RepositorioEvento{
      }
      
     @Override
-    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoExistenteException{
+    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
         try {
         TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e", Evento.class);
         return  consulta.getResultList();
@@ -40,6 +40,8 @@ public class RepositorioEventoJPA implements RepositorioEvento{
             throw new ErroInternoException(e);
         }
 }
+ 
+   
     
     @Override
     public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
@@ -79,16 +81,19 @@ public class RepositorioEventoJPA implements RepositorioEvento{
     
     @Override
     public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException{
+        Evento p = null;
+
         try {
-           TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e where e.codigo like :codigo", Evento.class);
-           consulta.setParameter("codigo", "%" + codigo + "%");
-            return consulta.getSingleResult();
-           
-        }catch(NoResultException es){
-                 throw new EventoInexistenteException();  
+            p = this.em.find(Evento.class, codigo);
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
+
+        if (p == null) {
+            throw new EventoInexistenteException();
+        }
+
+        return p;
     
 }
     

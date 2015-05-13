@@ -8,6 +8,7 @@ import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -36,18 +37,33 @@ public class BeanEvento implements Serializable{
         this.evento = evento;
     }
     
-    public String CadastrarEvento() throws ErroInternoException, EventoExistenteException{
+       public String CadastrarEvento() throws ErroInternoException, EventoExistenteException, EventoInexistenteException {
         try {
-            this.evento.setUsuario(BeanUsuario.getInstancia());
-            
             this.fachada.adicionarEvento(evento);
-            
-        } catch (ErroInternoException e){
+            evento = new Evento();
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Cadastro efetuado com sucesso!"));
+        } catch (ErroInternoException e) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
+            return null;
+        } catch (EventoExistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Usuario Existente no sistema."));
+            return null;
         }
-        
-        return "PaginaInicial.xhtml";
+        return "PaginaInicial.xhtml"/*Falta criar home page*/;
+
     }
        
+    public List<Evento> listarTudoEvento() throws EventoExistenteException, EventoInexistenteException {
+        try {
+            List<Evento> eventos = this.fachada.listarTudoEvento();
+            return eventos;
+        } catch (ErroInternoException ex ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return null;
+        }
+    }
+    
 }

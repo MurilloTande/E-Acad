@@ -7,11 +7,13 @@ package eacad.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,13 +30,13 @@ public class Evento implements Serializable{
     private String cidade;
     private String estado;
     private int total_vagas;
-    private Usuario usuario;
+    
 
 
     public Evento() {
     }
 
-    public Evento(long codigo, String nome, String descricao, Date data_inicio, Date data_final, String localidade, String endereco, String cidade, String estado, int total_vagas, Usuario usuario) {
+    public Evento(long codigo, String nome, String descricao, Date data_inicio, Date data_final, String localidade, String endereco, String cidade, String estado, int total_vagas) {
         this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
@@ -45,11 +47,10 @@ public class Evento implements Serializable{
         this.cidade = cidade;
         this.estado = estado;
         this.total_vagas = total_vagas;
-        this.usuario = usuario;
+        
     }
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public long getCodigo() {
         return codigo;
     }
@@ -133,13 +134,69 @@ public class Evento implements Serializable{
         this.total_vagas = total_vagas;
     }
     
-    public Usuario getusuario(){
-    return usuario;
-    }
     
-    public void setUsuario(Usuario usuario){
-        this.usuario=usuario;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + Objects.hashCode(this.descricao);
+        hash = 79 * hash + Objects.hashCode(this.data_inicio);
+        hash = 79 * hash + Objects.hashCode(this.data_final);
+        hash = 79 * hash + Objects.hashCode(this.localidade);
+        hash = 79 * hash + Objects.hashCode(this.endereco);
+        hash = 79 * hash + Objects.hashCode(this.cidade);
+        hash = 79 * hash + Objects.hashCode(this.estado);
+        hash = 79 * hash + this.total_vagas;
+       
+        return hash;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Evento other = (Evento) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.data_inicio, other.data_inicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.data_final, other.data_final)) {
+            return false;
+        }
+        if (!Objects.equals(this.localidade, other.localidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.estado, other.estado)) {
+            return false;
+        }
+        if (this.total_vagas != other.total_vagas) {
+            return false;
+        }
+        
+        return true;
+    }
+
+ 
     
     
     
