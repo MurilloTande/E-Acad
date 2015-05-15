@@ -44,37 +44,34 @@ and open the template in the editor.
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
 
                 </p:layoutUnit>
-                <p:layoutUnit position="center">      
-
-                    <p:panel header = "Cadastro Evento">
-                        <h:panelGrid columns = "2">   
+                <p:layoutUnit position="center">   
+          
+                    <p:panel header = "Cadastro SubEvento">
                          
+                        <h:panelGrid columns = "2">   
+                            
                             <h:outputText value = "Nome" />
-                            <p:inputText value = "#{beanEvento.evento.nome}" id = "nome" />
+                            <p:inputText value = "#{beanSubEvento.subEvento.nome}" id = "nome" />
                             <h:outputText value = "Descrição:" />
-                            <p:inputTextarea value = "#{beanEvento.evento.descricao}" id = "descricao" cols="20" rows="5"/>
+                            <p:inputTextarea value = "#{beanSubEvento.subEvento.descricao}" id = "descricao" cols="20" rows="5"/>
                             <h:outputText value = "Data de Inicio" />
-                            <p:calendar value = "#{beanEvento.evento.data_inicio}" navigator = "true"
+                            <p:calendar value = "#{beanSubEvento.subEvento.data_inicio}" navigator = "true"
                                         pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
                             <h:outputText value = "Data de Termino" />
-                            <p:calendar value = "#{beanEvento.evento.data_final}" navigator = "true"
+                            <p:calendar value = "#{beanSubEvento.subEvento.data_final}" navigator = "true"
                                         pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
-                            <h:outputText value="Local"/>
-                            <p:inputText value="#{beanEvento.evento.localidade}" id ="local"/>
-                            <h:outputText value="Endereço"/>
-                            <p:inputText value="#{beanEvento.evento.endereco}" id ="endereço"/>
-                            <h:outputText value="Cidade"/>
-                            <p:inputText value="#{beanEvento.evento.cidade}" id ="cidade"/>
-                            <h:outputText value="Estado"/>
-                            <p:inputText value="#{beanEvento.evento.estado}" id ="estado"/>
+                            <h:outputText value="Apresentador"/>
+                            <p:inputText value="#{beanSubEvento.subEvento.apresentador}" id ="apresentador"/>
+                            <h:outputText value="Tipo"/>
+                            <p:inputText value="#{beanSubEvento.subEvento.tipo}" id ="tipo"/>
                             <h:outputText value = "Quantidade de Vagas" />
-                            <p:inputText value = "#{beanEvento.evento.total_vagas}" id = "quantVagas" />
-                            <p:commandButton value = "Cadastrar" action = "#{beanEvento.CadastrarEvento}" ajax = "false" />
-                        </h:panelGrid>
-                        <p:messages />       
+                            <p:inputText value = "#{beanSubEvento.subEvento.total_vagas}" id = "quantVagas" />
+                            <p:commandButton value = "Cadastrar SubEvento" action = "criarEvento.xhtml" ajax = "false" />
+
+			</h:panelGrid>
+                        <p:messages />
                     </p:panel>
 
-                    <p:commandButton value = "Cadastrar SubEvento" action = "criarSubEvento.xhtml" ajax = "false" />
 
                 </p:layoutUnit>
             </p:layout>

@@ -2,13 +2,17 @@
 package eacad.fachada;
 
 import eacad.entidades.Evento;
+import eacad.entidades.SubEvento;
 import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.SubEventoExistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
 import eacad.negocio.CadastroEvento;
+import eacad.negocio.CadastroSubEvento;
 import eacad.negocio.CadastroUsuario;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,8 +27,10 @@ public class FachadaSistema {
     
     @EJB
     private CadastroUsuario usuarios;
-     @EJB
+    @EJB
     private CadastroEvento evento;
+    @EJB
+    private CadastroSubEvento subEvento;
     
     //---------------------------Usuario---------------------------
     public void adicionarUsuario(Usuario usuario) throws ErroInternoException, UsuarioExistenteException, UsuarioInexistenteException {
@@ -81,6 +87,35 @@ public class FachadaSistema {
     
     public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException{
     this.evento.remover(codigo);
+    }
+    
+    //---------------------------SubEvento---------------------------
+    public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException{
+     this.subEvento.adicionar(e);
+     }
+     
+    public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException{
+    return this.subEvento.listarTudoSubEvento();
+    }
+    
+    public void atualizarSubEvento(SubEvento e) throws ErroInternoException, SubEventoInexistenteException{
+    this.subEvento.atualizar(e);
+    }
+    
+    public List<SubEvento> buscarNomeListSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
+    return this.buscarNomeListSubEvento(nome);
+    }
+    
+    public SubEvento buscarCodigoSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{
+    return this.subEvento.buscarCodigo(codigo);
+    }
+    
+    public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
+    return this.buscarNomeSubEvento(nome);
+    }
+    
+    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{
+    this.subEvento.remover(codigo);
     }
     
 }

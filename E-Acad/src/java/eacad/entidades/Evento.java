@@ -7,6 +7,7 @@ package eacad.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,6 +33,7 @@ public class Evento implements Serializable{
     private String estado;
     private int total_vagas;
     private Usuario criador;
+    private List<SubEvento> subEventos;
     
 
 
@@ -60,6 +62,7 @@ public class Evento implements Serializable{
     public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
+    
     
     @Column (unique = true, nullable = false)
     public String getNome() {
@@ -136,7 +139,6 @@ public class Evento implements Serializable{
         this.total_vagas = total_vagas;
     }
     
-   
     @ManyToOne
     public Usuario getCriador(){
         return this.criador;
@@ -145,6 +147,18 @@ public class Evento implements Serializable{
     public void setCriador(Usuario criador){
     this.criador = criador;
     }
+
+    
+ 
+    @OneToMany(mappedBy = "eventoPai")
+    public List<SubEvento> getSubEventos() {
+        return subEventos;
+    }
+
+    public void setSubEventos(List<SubEvento> subEventos) {
+        this.subEventos = subEventos;
+    }
+    
     
 
     @Override

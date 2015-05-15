@@ -39,13 +39,17 @@
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
 
                 </p:layoutUnit>
+     
                 <p:layoutUnit position="center">
 
                     <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
                     <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>
+                    
+                    
+                    
                     <br /><br /><br /><br /><br /><br /><br />
                     <h1><center><h:outputText value="O que você procura?" /></center></h1>
-
+                    
                     <br />
                     <center>
                         <p:inputText value=" " id="pesquisa" size="20"/>

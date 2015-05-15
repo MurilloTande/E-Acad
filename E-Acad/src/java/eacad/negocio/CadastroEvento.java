@@ -17,11 +17,11 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class CadastroEvento implements Serializable{
+    
     @EJB
    private RepositorioEvento repEvento;
 
     public CadastroEvento() {
-        
     }
 
     public CadastroEvento(RepositorioEvento repEvento) {
@@ -30,7 +30,7 @@ public class CadastroEvento implements Serializable{
     
      public void adicionar(Evento e) throws ErroInternoException, EventoExistenteException{
           try {
-            this.repEvento.adicionar(e);
+            this.repEvento.adicionar(e);        
         } catch (ErroInternoException ui) {
             throw new ErroInternoException(ui);
         }

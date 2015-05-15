@@ -1,11 +1,15 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package eacad.controller;
 
-import eacad.entidades.Evento;
+
 import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
-import eacad.exceptions.EventoExistenteException;
-import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.SubEventoExistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.List;
@@ -17,26 +21,15 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class BeanEvento implements Serializable{
-  
-    private Evento evento;
+public class BeanSubEvento implements Serializable{
+    
     private SubEvento subEvento;
     
-    
-       @EJB
+     @EJB
     private FachadaSistema fachada;
-       
-    public BeanEvento(){
-    this.evento=new Evento();
-    this.subEvento=new SubEvento();
-    }
-    
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
+     
+     public BeanSubEvento(){
+    this.subEvento = new SubEvento();
     }
 
     public SubEvento getSubEvento() {
@@ -46,14 +39,14 @@ public class BeanEvento implements Serializable{
     public void setSubEvento(SubEvento subEvento) {
         this.subEvento = subEvento;
     }
+
     
-    
-       public String CadastrarEvento() throws ErroInternoException, EventoExistenteException, EventoInexistenteException {
+    public String CadastrarSubEvento() throws ErroInternoException, SubEventoExistenteException, SubEventoInexistenteException {
         try {
-            evento.setCriador(BeanUsuario.getInstancia());
-            this.fachada.adicionarEvento(evento); 
             
-            evento = new Evento();
+            this.fachada.adicionarSubEvento(subEvento);
+            
+            subEvento = new SubEvento();
             
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Cadastro efetuado com sucesso!"));
@@ -61,24 +54,28 @@ public class BeanEvento implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
             return null;
-        } catch (EventoExistenteException ex) {
+        } catch (SubEventoExistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Evento Existente no sistema."));
+                    new FacesMessage("SubEvento Existente no sistema."));
             return null;
         }
-        return "PaginaInicial.xhtml";
-
+        return "criarEvento.xhtml";
     }
-       
-    public List<Evento> listarTudoEvento() throws EventoExistenteException, EventoInexistenteException {
+    
+    public List<SubEvento> listarTudoSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
         try {
-            List<Evento> eventos = this.fachada.listarTudoEvento();
-            return eventos;
+            List<SubEvento> subEventos = this.fachada.listarTudoSubEvento();
+            return subEventos;
         } catch (ErroInternoException ex ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
     }
+
+    void CadastrarSubEvento(SubEvento a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
-    
+     
+     
 }

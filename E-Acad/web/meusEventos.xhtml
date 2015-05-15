@@ -45,7 +45,6 @@ and open the template in the editor.
 
                 </p:layoutUnit>
                 <p:layoutUnit position="center">      
-
                      <p:tab title="Meus Eventos">
                          <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
                                 <p:column headerText="Código">
@@ -54,9 +53,8 @@ and open the template in the editor.
                                 <p:column headerText="Criador">
                                     <h:outputText value="#{p.criador.nome}"/>
                                 </p:column>
-                            
                             </p:dataTable>
-</p:tab>
+                        </p:tab>
 
                 </p:layoutUnit>
             </p:layout>

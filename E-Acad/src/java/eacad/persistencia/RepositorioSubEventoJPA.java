@@ -5,9 +5,10 @@
  */
 package eacad.persistencia;
 
-import eacad.entidades.Evento;
+
+import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
-import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,14 +16,16 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+
 @Stateless
-public class RepositorioEventoJPA implements RepositorioEvento{
+public class RepositorioSubEventoJPA implements RepositorioSubEvento{
     
     @PersistenceContext(unitName = "EacadPU")
     private EntityManager em;
     
+    
     @Override
-     public void adicionar(Evento e) throws ErroInternoException{
+     public void adicionar(SubEvento e) throws ErroInternoException{
       try {
             this.em.persist(e);
         } catch (Exception r) {
@@ -31,9 +34,9 @@ public class RepositorioEventoJPA implements RepositorioEvento{
      }
      
     @Override
-    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
+    public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException{
         try {
-        TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e", Evento.class);
+        TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e", SubEvento.class);
         return  consulta.getResultList();
         } catch (Exception e) {
             throw new ErroInternoException(e);
@@ -42,19 +45,17 @@ public class RepositorioEventoJPA implements RepositorioEvento{
  
    
     
-    @Override
-    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
     
-        Evento ev = buscarCodigo(e.getCodigo());
+    @Override
+    public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException{
+    
+        SubEvento ev = buscarCodigo(e.getCodigo());
         e.setNome(ev.getNome());
-        e.setCidade(ev.getCidade());
         e.setData_final(ev.getData_final());
         e.setData_inicio(ev.getData_inicio());
         e.setDescricao(ev.getDescricao());
-        e.setEndereco(ev.getEndereco()); 
         e.setTotal_vagas(ev.getTotal_vagas());
-        e.setLocalidade(ev.getLocalidade());
-        e.setEstado(ev.getEstado());
+        
         try {
             this.em.merge(e);
         } catch (Exception es) {
@@ -63,58 +64,61 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         
     }
     
+  
     @Override
-    public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException{
+    public List<SubEvento> buscarNomeListSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
           try {
-           TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e where e.nome like :nome", Evento.class);
+           TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e where e.nome like :nome", SubEvento.class);
            consulta.setParameter("nome", "%" + nome + "%");
             return consulta.getResultList();
            
         }catch(NoResultException es){
-                 throw new EventoInexistenteException();  
+                 throw new SubEventoInexistenteException();  
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
         
 }
     
+   
     @Override
-    public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException{
-        Evento p = null;
+    public SubEvento buscarCodigo(long codigo) throws ErroInternoException, SubEventoInexistenteException{
+        SubEvento p = null;
 
         try {
-            p = this.em.find(Evento.class, codigo);
+            p = this.em.find(SubEvento.class, codigo);
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
 
         if (p == null) {
-            throw new EventoInexistenteException();
+            throw new SubEventoInexistenteException();
         }
 
         return p;
     
 }
     
+ 
     @Override
-    public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
+    public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
         
          try {
-           TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e where e.nome like :nome", Evento.class);
+           TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e where e.nome like :nome", SubEvento.class);
            consulta.setParameter("nome", "%" + nome + "%");
             return consulta.getSingleResult();
            
         }catch(NoResultException es){
-                 throw new EventoInexistenteException();  
+                 throw new SubEventoInexistenteException();  
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
 }
     
     @Override
-    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException{
+    public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException{
     try{
-         Evento e = buscarCodigo(codigo);
+         SubEvento e = buscarCodigo(codigo);
         this.em.remove(e);
         }catch(IllegalArgumentException e ){
             throw new ErroInternoException(e);
