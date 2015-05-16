@@ -40,6 +40,15 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         }
 }
  
+      public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException{
+        try {
+        TypedQuery<Evento> consulta = this.em.createQuery("select e from Evento e where e.criador.cpf like :cpf", Evento.class);
+       consulta.setParameter("cpf", "%" + cpf + "%");
+        return  consulta.getResultList();
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
+        }
+}
    
     
     @Override

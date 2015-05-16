@@ -68,6 +68,9 @@ public class FachadaSistema {
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
     return this.evento.listarTudoEvento();
     }
+     public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException{
+     return this.evento.EventosUsuario(cpf);
+     }
     
     public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException{
     this.evento.atualizar(e);

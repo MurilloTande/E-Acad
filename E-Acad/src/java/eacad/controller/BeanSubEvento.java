@@ -6,6 +6,7 @@
 package eacad.controller;
 
 
+import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.SubEventoExistenteException;
@@ -24,6 +25,18 @@ import javax.faces.context.FacesContext;
 public class BeanSubEvento implements Serializable{
     
     private SubEvento subEvento;
+    private Evento evento;
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
+    
+    
+    
     
      @EJB
     private FachadaSistema fachada;
@@ -43,7 +56,7 @@ public class BeanSubEvento implements Serializable{
     
     public String CadastrarSubEvento() throws ErroInternoException, SubEventoExistenteException, SubEventoInexistenteException {
         try {
-            
+            this.subEvento.setEventoPai(evento);
             this.fachada.adicionarSubEvento(subEvento);
             
             subEvento = new SubEvento();

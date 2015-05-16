@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class BeanEvento implements Serializable{
   
+    
     private Evento evento;
     private SubEvento subEvento;
     private Evento eventoSelecionado;
@@ -30,6 +31,10 @@ public class BeanEvento implements Serializable{
     public void setEventoSelecionado(Evento eventoSelecionado) {
         this.eventoSelecionado = eventoSelecionado;
     }
+
+    
+
+   
     
     
        @EJB
@@ -59,6 +64,7 @@ public class BeanEvento implements Serializable{
     
        public String CadastrarEvento() throws ErroInternoException, EventoExistenteException, EventoInexistenteException {
         try {
+            
             evento.setCriador(BeanUsuario.getInstancia());
             this.fachada.adicionarEvento(evento); 
             
@@ -75,7 +81,7 @@ public class BeanEvento implements Serializable{
                     new FacesMessage("Evento Existente no sistema."));
             return null;
         }
-        return "PaginaInicial.xhtml";
+        return "meusEventos.xhtml";
 
     }
        
@@ -89,5 +95,14 @@ public class BeanEvento implements Serializable{
         }
     }
     
+    public List<Evento> eventosUsuario() throws EventoExistenteException, EventoInexistenteException {
+        try {
+            List<Evento> eventos = this.fachada.EventosUsuario(BeanUsuario.getInstancia().getCpf());
+            return eventos;
+        } catch (ErroInternoException ex ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return null;
+        }
+    }
     
 }

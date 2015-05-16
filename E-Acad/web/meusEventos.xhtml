@@ -16,7 +16,7 @@ and open the template in the editor.
     </h:head>
     <h:body>
         
-        <h:form rendered="#{beanUsuario.logado}">
+        <h:form id="formID" rendered="#{beanUsuario.logado}">
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="105">
                     <h1><center><h:outputText value="E-Acad" /></center></h1>
@@ -45,16 +45,57 @@ and open the template in the editor.
 
                 </p:layoutUnit>
                 <p:layoutUnit position="center">      
-                     <p:tab title="Meus Eventos">
-                         <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
-                                <p:column headerText="Código">
-                                    <h:outputText value="#{p.codigo}"/>
-                                </p:column>
-                                <p:column headerText="Criador">
-                                    <h:outputText value="#{p.criador.nome}"/>
-                                </p:column>
-                            </p:dataTable>
-                        </p:tab>
+                    <p:dataGrid var="eve" value="#{beanEvento.eventosUsuario()}" columns="3"
+        rows="12" paginator="true" id="eve"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+            Meus Eventos
+        </f:facet>
+ 
+                        <p:panel header="#{eve.codigo}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                
+ 
+                <h:outputText value="#{eve.nome}" />
+ 
+                <p:commandLink update=":formID:eveDetail" oncomplete="PF('eveDialog').show()"  title="Informações de Evento">
+                    <h:outputText value="INFO" styleClass="INFO" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{eve}" target="#{beanSubEvento.evento}" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+    <p:dialog header="Informações de Evento" widgetVar="eveDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="eveDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{ not empty beanEvento.evento}" columnClasses="label,value">
+               
+ 
+                  <h:outputText value = "Nome" />
+                            <p:inputText value = "#{beanSubEvento.subEvento.nome}" id = "nome" />
+                            <h:outputText value = "Descrição:" />
+                            <p:inputTextarea value = "#{beanSubEvento.subEvento.descricao}" id = "descricao" cols="20" rows="5"/>
+                            <h:outputText value = "Data de Inicio" />
+                            <p:calendar value = "#{beanSubEvento.subEvento.data_inicio}" navigator = "true"
+                                        pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
+                            <h:outputText value = "Data de Termino" />
+                            <p:calendar value = "#{beanSubEvento.subEvento.data_final}" navigator = "true"
+                                        pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
+                            <h:outputText value="Apresentador"/>
+                            <p:inputText value="#{beanSubEvento.subEvento.apresentador}" id ="apresentador"/>
+                            <h:outputText value="Tipo"/>
+                            <p:inputText value="#{beanSubEvento.subEvento.tipo}" id ="tipo"/>
+                            <h:outputText value = "Quantidade de Vagas" />
+                            <p:inputText value = "#{beanSubEvento.subEvento.total_vagas}" id = "quantVagas" />
+                            <p:commandButton value = "Cadastrar SubEvento" action = "#{beanSubEvento.cadastrarSubEvento}" ajax = "false" />
+ 
+               
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
 
                 </p:layoutUnit>
             </p:layout>

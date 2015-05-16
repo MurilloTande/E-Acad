@@ -23,5 +23,5 @@ public interface RepositorioEvento extends Serializable{
     public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException;
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException;
     public void remover(long codigo) throws ErroInternoException, EventoInexistenteException;
-    
+    public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException;
 }
