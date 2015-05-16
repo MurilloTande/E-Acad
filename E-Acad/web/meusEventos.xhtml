@@ -90,7 +90,7 @@ and open the template in the editor.
                             <p:inputText value="#{beanSubEvento.subEvento.tipo}" id ="tipo"/>
                             <h:outputText value = "Quantidade de Vagas" />
                             <p:inputText value = "#{beanSubEvento.subEvento.total_vagas}" id = "quantVagas" />
-                            <p:commandButton value = "Cadastrar SubEvento" action = "#{beanSubEvento.cadastrarSubEvento}" ajax = "false" />
+                            <p:commandButton value = "Cadastrar SubEvento" action = "#{beanSubEvento.CadastrarSubEvento()}" ajax = "false" />
  
                
             </p:panelGrid>
