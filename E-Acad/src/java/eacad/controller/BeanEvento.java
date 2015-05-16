@@ -21,6 +21,15 @@ public class BeanEvento implements Serializable{
   
     private Evento evento;
     private SubEvento subEvento;
+    private Evento eventoSelecionado;
+
+    public Evento getEventoSelecionado() {
+        return eventoSelecionado;
+    }
+
+    public void setEventoSelecionado(Evento eventoSelecionado) {
+        this.eventoSelecionado = eventoSelecionado;
+    }
     
     
        @EJB

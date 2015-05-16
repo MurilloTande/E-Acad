@@ -10,8 +10,8 @@
         </f:facet>
     </h:head>
     <h:body>
-        <h:form>
-            <p:layout fullPage="true">
+        <h:form id="formID">
+            <p:layout fullPage="false">
                 <p:layoutUnit position="north" size="105">
                     <h1><center><h:outputText value="E-Acad" /></center></h1>
 
@@ -45,19 +45,58 @@
                     <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
                     <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>
                     
+                  
+                      <p:dataGrid var="eve" value="#{beanEvento.listarTudoEvento()}" columns="3"
+        rows="12" paginator="true" id="eve"
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+ 
+        <f:facet name="header">
+            Eventos do Sistema
+        </f:facet>
+ 
+        <p:panel header="#{eve.codigo}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                
+ 
+                <h:outputText value="#{eve.nome}" />
+ 
+                <p:commandLink update=":formID:eveDetail" oncomplete="PF('eveDialog').show()"  title="Informações de Evento">
+                    <h:outputText value="INFO" styleClass="INFO" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{eve}" target="#{beanEvento.eventoSelecionado}" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+    <p:dialog header="Informações de Evento" widgetVar="eveDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="eveDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{ not empty beanEvento.eventoSelecionado}" columnClasses="label,value">
+               
+ 
+                <h:outputText value="Codigo:" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.codigo}" />
+ 
+                <h:outputText value="Year" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.nome}" />
+ 
+                <h:outputText value="Color:" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.localidade}"/>
+ 
+               
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+                              
                     
-                    
-                    <br /><br /><br /><br /><br /><br /><br />
-                    <h1><center><h:outputText value="O que você procura?" /></center></h1>
-                    
-                    <br />
-                    <center>
-                        <p:inputText value=" " id="pesquisa" size="20"/>
-                        <p:commandButton value="Pesquisar" icon="ui-icon-search" action=" " ajax="false" />
-                    </center>
-                </p:layoutUnit>
+                    </p:layoutUnit>
+                   
             </p:layout>
-        </h:form>
+                   
+              
+ </h:form>
     </h:body>
 </html>
-
+  
+            
