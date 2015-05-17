@@ -63,7 +63,7 @@ public class BeanEvento implements Serializable{
     }
     
     
-       public String CadastrarEvento() throws ErroInternoException,DatasIncorretas {
+       public String CadastrarEvento() throws ErroInternoException,DatasIncorretas, EventoExistenteException {
         try {
             
             evento.setCriador(BeanUsuario.getInstancia());

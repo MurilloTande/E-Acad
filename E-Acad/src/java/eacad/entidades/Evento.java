@@ -33,6 +33,7 @@ public class Evento implements Serializable{
     private String estado;
     private int total_vagas;
     private Usuario criador;
+    private List<Participante> participantes;
     private List<SubEvento> subEventos;
     
 
@@ -147,9 +148,7 @@ public class Evento implements Serializable{
     public void setCriador(Usuario criador){
     this.criador = criador;
     }
-
     
- 
     @OneToMany(mappedBy = "eventoPai")
     public List<SubEvento> getSubEventos() {
         return subEventos;
@@ -159,6 +158,14 @@ public class Evento implements Serializable{
         this.subEventos = subEventos;
     }
     
+    @OneToMany(mappedBy = "evento")
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
+    }
     
 
     @Override

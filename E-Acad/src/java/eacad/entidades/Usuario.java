@@ -17,6 +17,7 @@ public class Usuario implements Serializable{
     private String nome;
     private String email;
     private String senha;
+    private List<Participante> participantes;
     private List<Evento> eventosDoUsuario;
  
     public Usuario(String cpf, String nome, String email, String senha) {

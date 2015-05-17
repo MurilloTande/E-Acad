@@ -36,9 +36,6 @@ public class BeanSubEvento implements Serializable{
         this.evento = evento;
     }
     
-    
-    
-    
      @EJB
     private FachadaSistema fachada;
      
@@ -55,7 +52,7 @@ public class BeanSubEvento implements Serializable{
     }
 
     
-    public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas {
+    public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas, SubEventoExistenteException {
         try {
             this.subEvento.setEventoPai(evento);
             this.fachada.adicionarSubEvento(subEvento);

@@ -7,11 +7,14 @@ package eacad.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -29,6 +32,7 @@ public class SubEvento implements Serializable{
     private Date data_final;
     private int total_vagas;
     private Evento eventoPai;
+    private List<Participante> participantes;
     
     public SubEvento() {
     }
@@ -120,5 +124,17 @@ public class SubEvento implements Serializable{
     public void setEventoPai(Evento eventoPai) {
         this.eventoPai = eventoPai;
     } 
+    
+    
+    @ManyToMany
+    public List<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
+    }
+    
+    
     
 }
