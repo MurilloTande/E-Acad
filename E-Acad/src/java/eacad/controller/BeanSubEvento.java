@@ -8,6 +8,7 @@ package eacad.controller;
 
 import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
+import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
@@ -54,7 +55,7 @@ public class BeanSubEvento implements Serializable{
     }
 
     
-    public String CadastrarSubEvento() throws ErroInternoException, SubEventoExistenteException, SubEventoInexistenteException {
+    public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas {
         try {
             this.subEvento.setEventoPai(evento);
             this.fachada.adicionarSubEvento(subEvento);
@@ -67,12 +68,12 @@ public class BeanSubEvento implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
             return null;
-        } catch (SubEventoExistenteException ex) {
+        } catch (DatasIncorretas ex) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("SubEvento Existente no sistema."));
+                    new FacesMessage("Datas Incorretas."));
             return null;
         }
-        return "criarEvento.xhtml";
+        return "meusEventos.xhtml";
     }
     
     public List<SubEvento> listarTudoSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {

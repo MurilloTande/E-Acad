@@ -62,8 +62,13 @@ and open the template in the editor.
                                         pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
                             <h:outputText value="Apresentador"/>
                             <p:inputText value="#{beanSubEvento.subEvento.apresentador}" id ="apresentador"/>
-                            <h:outputText value="Tipo"/>
-                            <p:inputText value="#{beanSubEvento.subEvento.tipo}" id ="tipo"/>
+                            <h:outputText value = "Tipo" />
+                            <p:selectOneRadio value="#{beanSubEvento.subEvento.tipo}">
+                            <f:selectItem itemLabel="Palestra" itemValue="Palestra" />
+                            <f:selectItem itemLabel="Oficina" itemValue="Oficina" />
+                            <f:selectItem itemLabel="Workshop" itemValue="Workshop" />
+                            </p:selectOneRadio>
+
                             <h:outputText value = "Quantidade de Vagas" />
                             <p:inputText value = "#{beanSubEvento.subEvento.total_vagas}" id = "quantVagas" />
                             <p:commandButton value = "Cadastrar SubEvento" action = "criarEvento.xhtml" ajax = "false" />

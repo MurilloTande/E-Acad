@@ -4,6 +4,7 @@ package eacad.fachada;
 import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
 import eacad.entidades.Usuario;
+import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
@@ -61,7 +62,7 @@ public class FachadaSistema {
     }
     
     //---------------------------Evento---------------------------
-     public void adicionarEvento(Evento e) throws ErroInternoException, EventoExistenteException{
+     public void adicionarEvento(Evento e) throws ErroInternoException,DatasIncorretas{
      this.evento.adicionar(e);
      }
      
@@ -93,7 +94,7 @@ public class FachadaSistema {
     }
     
     //---------------------------SubEvento---------------------------
-    public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException{
+    public void adicionarSubEvento(SubEvento e) throws ErroInternoException, DatasIncorretas{
      this.subEvento.adicionar(e);
      }
      

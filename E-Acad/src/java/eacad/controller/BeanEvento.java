@@ -3,6 +3,7 @@ package eacad.controller;
 
 import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
+import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
@@ -62,7 +63,7 @@ public class BeanEvento implements Serializable{
     }
     
     
-       public String CadastrarEvento() throws ErroInternoException, EventoExistenteException, EventoInexistenteException {
+       public String CadastrarEvento() throws ErroInternoException,DatasIncorretas {
         try {
             
             evento.setCriador(BeanUsuario.getInstancia());
@@ -76,9 +77,9 @@ public class BeanEvento implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
             return null;
-        } catch (EventoExistenteException ex) {
+        } catch (DatasIncorretas e) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Evento Existente no sistema."));
+                    new FacesMessage("Data Final menor que data inicial"));
             return null;
         }
         return "meusEventos.xhtml";

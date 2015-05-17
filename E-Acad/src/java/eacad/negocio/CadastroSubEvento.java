@@ -6,6 +6,7 @@
 package eacad.negocio;
 
 import eacad.entidades.SubEvento;
+import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
@@ -27,12 +28,20 @@ public class CadastroSubEvento implements Serializable{
     public CadastroSubEvento() {
     }
     
-    public void adicionar(SubEvento e) throws ErroInternoException, SubEventoExistenteException{
-          try {  
+    public void adicionar(SubEvento e) throws ErroInternoException,DatasIncorretas{
+        if((e.getData_final().after(e.getData_inicio()) || e.getData_final().equals(e.getData_inicio())) & 
+               ((e.getData_inicio().after(e.getEventoPai().getData_inicio()) || e.getData_inicio().equals(e.getEventoPai().getData_inicio())  )
+                & (e.getData_inicio().before(e.getEventoPai().getData_final())) || e.getData_inicio().equals(e.getEventoPai().getData_final()) )
+                
+                
+                & ((e.getData_final().before(e.getEventoPai().getData_final()))|| e.getData_final().equals(e.getEventoPai().getData_final()))){  
+        try {  
             this.repSubEvento.adicionar(e);        
         } catch (ErroInternoException ui) {
             throw new ErroInternoException(ui);
-        }
+        }}else{
+                 throw new DatasIncorretas(); 
+     }
      }
      
     public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException{
