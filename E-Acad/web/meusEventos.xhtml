@@ -58,8 +58,8 @@ and open the template in the editor.
             <h:panelGrid columns="1" style="width:100%">
                 
  
-                <h:outputText value="#{eve.localidade}" />
-                <h:outputText value="#{eve.data_inicio}" />
+                <h:outputText value="Local: #{eve.localidade}" />
+                <h:outputText value="Data de Inicio: #{eve.data_inicio.date}/#{eve.data_inicio.month}/#{eve.data_inicio.year}" />
  
                 <p:commandLink update=":formID:eveDetail" oncomplete="PF('eveDialog').show()"  title="+SUBEVENTO">
                     <h:outputText value="+SUBEVENTO" styleClass="INFO" style="margin:0 auto;" />
