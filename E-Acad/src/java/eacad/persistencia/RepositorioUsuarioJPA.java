@@ -82,6 +82,7 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario{
     
     }
     
+    @Override
       public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
        try {
            TypedQuery<Usuario> consulta = this.em.createQuery("select u from Usuario u where u.email like :email", Usuario.class);

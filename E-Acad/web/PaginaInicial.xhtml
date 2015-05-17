@@ -65,25 +65,54 @@
                     <h:outputText value="INFO" styleClass="INFO" style="margin:0 auto;" />
                     <f:setPropertyActionListener value="#{eve}" target="#{beanEvento.eventoSelecionado}" />
                 </p:commandLink>
+                 <p:commandLink update=":formID:parEve" oncomplete="PF('partiDia').show()"  title="Participar de Evento">
+                    <h:outputText value="+PARTICIPAR" styleClass="INFO" style="margin:0 auto;" />
+                    <f:setPropertyActionListener value="#{eve}" target="#{beanParticipante.evento}" />
+                </p:commandLink>
+                
             </h:panelGrid>
         </p:panel>
  
     </p:dataGrid>
- 
+
     <p:dialog header="Informações de Evento" widgetVar="eveDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
         <p:outputPanel id="eveDetail" style="text-align:center;">
             <p:panelGrid  columns="2" rendered="#{ not empty beanEvento.eventoSelecionado}" columnClasses="label,value">
-               
- 
-                <h:outputText value="Codigo:" />
-                <h:outputText value="#{beanEvento.eventoSelecionado.codigo}" />
- 
-                <h:outputText value="Year" />
+                            
+                <h:outputText value="Nome:" />
                 <h:outputText value="#{beanEvento.eventoSelecionado.nome}" />
  
-                <h:outputText value="Color:" />
-                <h:outputText value="#{beanEvento.eventoSelecionado.localidade}"/>
+                <h:outputText value="Local" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.localidade}" />
  
+                <h:outputText value="Cidade" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.cidade}"/>
+                
+                 <h:outputText value="Descrição" />
+                 <h:outputText value="#{beanEvento.eventoSelecionado.descricao}"/>
+ 
+                            
+ 
+               
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+                    <p:dialog header="Participar de Evento" widgetVar="partiDia" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="parEve" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{ not empty beanParticipante.evento}" columnClasses="label,value">
+               
+                <h:outputText value = "Nome" />
+                            <p:inputText value = "#{beanParticipante.participante.primeiroNome}" id = "nome" />
+                           <h:outputText value = "Sobrenome" />
+                           <p:inputText value = "#{beanParticipante.participante.sobreNome}" id = "sobrenome" />
+                          
+                           <h:outputText value="CPF"/>
+                           <p:inputMask mask="999.999.999-99" value="#{beanParticipante.participante.cpf}" id="cpf"/>
+                           <h:outputText value = "Email" />
+                           <p:inputText value = "#{beanParticipante.participante.email}" id = "email" />
+                           <p:commandButton value = "Cadastrar-se em Evento" action = "#{beanParticipante.CadastrarParticipante()}" ajax = "false" />
+               
+                
                
             </p:panelGrid>
         </p:outputPanel>

@@ -64,7 +64,7 @@ public class BeanParticipante implements Serializable{
     
     public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
         try {
-            
+            this.participante.setEvento(Evento);
             this.fachada.adicionarParticipante(participante); 
             
             participante = new Participante();
