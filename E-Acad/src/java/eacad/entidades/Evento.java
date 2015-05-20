@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -157,8 +158,8 @@ public class Evento implements Serializable{
     public void setSubEventos(List<SubEvento> subEventos) {
         this.subEventos = subEventos;
     }
-    
-    @OneToMany(mappedBy = "evento")
+
+    @ManyToMany(mappedBy = "evento")
     public List<Participante> getParticipantes() {
         return participantes;
     }
@@ -166,6 +167,8 @@ public class Evento implements Serializable{
     public void setParticipantes(List<Participante> participantes) {
         this.participantes = participantes;
     }
+    
+    
     
 
     @Override

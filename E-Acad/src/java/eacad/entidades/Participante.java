@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -16,8 +15,7 @@ public class Participante implements Serializable{
     private String primeiroNome;
     private String sobreNome;
     private String email;
-    private Evento evento;
-    private List<SubEvento> subEvento;
+    private List<Evento> Evento;
 
     public Participante(String cpf, String primeiroNome, String sobreNome, String email) {
         this.cpf = cpf;
@@ -62,23 +60,16 @@ public class Participante implements Serializable{
         this.email = email;
     }
 
-    @ManyToMany(mappedBy = "participantes")
-    public List<SubEvento> getSubEvento() {
-        return subEvento;
+    @ManyToMany
+    public List<Evento> getEvento() {
+        return Evento;
     }
 
-    public void setSubEvento(List<SubEvento> subEvento) {
-        this.subEvento = subEvento;
+    public void setEvento(List<Evento> Evento) {
+        this.Evento = Evento;
     }
 
-    @ManyToOne
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
-    }
+    
     
     
     
