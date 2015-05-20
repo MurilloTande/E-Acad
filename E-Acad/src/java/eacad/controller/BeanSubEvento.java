@@ -27,14 +27,6 @@ public class BeanSubEvento implements Serializable{
     
     private SubEvento subEvento;
     private Evento evento;
-
-    public Evento getEvento() {
-        return evento;
-    }
-
-    public void setEvento(Evento evento) {
-        this.evento = evento;
-    }
     
      @EJB
     private FachadaSistema fachada;
@@ -51,6 +43,13 @@ public class BeanSubEvento implements Serializable{
         this.subEvento = subEvento;
     }
 
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public void setEvento(Evento evento) {
+        this.evento = evento;
+    }
     
     public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas, SubEventoExistenteException {
         try {
@@ -83,10 +82,30 @@ public class BeanSubEvento implements Serializable{
         }
     }
 
-    void CadastrarSubEvento(SubEvento a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String apagarSubEvento(SubEvento subEvento) {
+        try {
+            this.fachada.removerSubEvento(subEvento.getCodigo());
+            
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("SubEvento removido!"));
+        } catch (ErroInternoException | SubEventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "PaginaInicial.xhtml";
     }
+
+    public String atualizarSubEvento() throws SubEventoInexistenteException {
+        try {
+            this.fachada.atualizarSubEvento(subEvento);
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Produto Atualizado!"));
+        } catch (ErroInternoException | SubEventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "PaginaInicial.xhtml";
+    }
+
     
-     
-     
 }

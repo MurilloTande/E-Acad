@@ -60,9 +60,6 @@ public class BeanParticipante implements Serializable{
     public void setPart_eventos(List<Evento> part_eventos) {
         this.part_eventos = part_eventos;
     }
-
-    
-
     
     public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
         try {
