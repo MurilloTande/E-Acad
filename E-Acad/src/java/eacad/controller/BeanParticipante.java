@@ -7,7 +7,6 @@ package eacad.controller;
 
 import eacad.entidades.Evento;
 import eacad.entidades.Participante;
-import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
@@ -26,16 +25,16 @@ import javax.faces.context.FacesContext;
 public class BeanParticipante implements Serializable{
     
     private Participante participante;
-    private Evento Evento;
-    private List<SubEvento> subEvento;
+    private Evento evento;
+    private List<Evento> part_eventos;
     
     @EJB
     private FachadaSistema fachada;
 
     public BeanParticipante() {
         this.participante = new Participante();
-        this.Evento = new Evento();
-        this.subEvento = new ArrayList<>();
+        this.evento = new Evento();
+        this.part_eventos = new ArrayList<>();
     }
 
     public Participante getParticipante() {
@@ -47,23 +46,27 @@ public class BeanParticipante implements Serializable{
     }
 
     public Evento getEvento() {
-        return Evento;
+        return evento;
     }
 
-    public void setEvento(Evento Evento) {
-        this.Evento = Evento;
+    public void setEvento(Evento evento) {
+        this.evento = evento;
     }
 
-    public List<SubEvento> getSubEvento() {
-        return subEvento;
+    public List<Evento> getPart_eventos() {
+        return part_eventos;
     }
 
-    public void setSubEvento(List<SubEvento> subEvento) {
-        this.subEvento = subEvento;
+    public void setPart_eventos(List<Evento> part_eventos) {
+        this.part_eventos = part_eventos;
     }
+
+    
+
     
     public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
         try {
+            
             
             this.fachada.adicionarParticipante(participante); 
             

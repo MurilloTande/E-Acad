@@ -159,7 +159,8 @@ public class Evento implements Serializable{
         this.subEventos = subEventos;
     }
 
-    @ManyToMany(mappedBy = "evento")
+   
+    @OneToMany(mappedBy = "evento")
     public List<Participante> getParticipantes() {
         return participantes;
     }
