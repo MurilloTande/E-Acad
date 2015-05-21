@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <f:facet name="first">
+            <title>Meus Eventos - Pregaum Online</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        
+        <h:form id="formID" rendered="#{beanUsuario.logado}">
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="105">
+                    <h1><center><h:outputText value="E-Acad" /></center></h1>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2015.1" /></center>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="220">
+                    <p:panelMenu style="width: 200px">
+                        <p:submenu label="Evento">
+                            <p:menuitem value="Criar Evento" icon="ui-icon-pencil" url="criarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
+                            <p:menuitem value="Meus Eventos" icon="ui-icon-pencil" url="meusEventos.xhtml" rendered="#{beanUsuario.logado}"  />         
+                        </p:submenu>
+                        <p:submenu label="Perfil">
+                            <p:menuitem value="Login" url="Login.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-person"/>
+                            <p:menuitem value="Cadastrar-se" url="cadastroUsuario.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-plus" />
+                            <p:menuitem value="Gerenciar Conta" url="AtualizarUsuario.xhtml" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" />
+                            <p:menuitem value="Logout" actionListener="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" icon="ui-icon-wrench" ajax="false"/>
+                        </p:submenu>
+                        <p:submenu label="Sistema">
+                            <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />
+                        </p:submenu>
+                    </p:panelMenu>
+                    <p:separator />
+                    <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
+
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <p:panel header="Seus Eventos Cadastrados">
+                        <p:dataTable value="#{beanSubEvento.buscarListSubEvento()}" var="p" paginator="true" rows="5">
+                            <p:column headerText="Código">
+                                <h:outputText value="#{p.codigo}"/>
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{p.nome}"/>
+                            </p:column>
+
+                            <p:column headerText="Descrição">
+                                <h:outputText value="#{p.descricao}"/>
+                            </p:column>
+
+                            <p:column headerText="Criador">
+                                <h:outputText value="#{p.eventoPai.nome}"/>
+                            </p:column>
+
+                            <p:column>
+                                <p:button outcome="editarSubEvento" icon="ui-icon-pencil" title="Editar">
+                                    <f:param name="evento" value="#{beanSubEvento.setSubEvento(p)}" />
+                                </p:button>
+                                <p:commandButton icon="ui-icon-circle-close" title="Excluir"
+                                                 actionListener="#{beanSubEvento.apagarSubEvento(p.codigo)}"
+                                                 update="@form" ajax="false"/>
+                            </p:column>
+                        </p:dataTable>
+                    </p:panel>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+        <h:form rendered="#{not beanUsuario.logado}">
+            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+        </h:form>
+        
+        
+    </h:body>/body>
+</html>

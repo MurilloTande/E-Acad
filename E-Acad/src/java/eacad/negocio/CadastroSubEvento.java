@@ -5,6 +5,7 @@
  */
 package eacad.negocio;
 
+import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
@@ -55,9 +56,9 @@ public class CadastroSubEvento implements Serializable{
     this.repSubEvento.atualizar(e);    
     }
     
-    public List<SubEvento> buscarNomeListSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
-    List<SubEvento> e = this.repSubEvento.buscarNomeListSubEvento(nome);
-        if ((e.isEmpty())) {
+    public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException{
+    List<SubEvento> e = this.repSubEvento.buscarListSubEvento(evento);
+        if (e.isEmpty()) {
             throw new SubEventoInexistenteException();
         }
         return e;

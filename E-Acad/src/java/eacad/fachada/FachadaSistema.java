@@ -114,8 +114,8 @@ public class FachadaSistema {
     this.subEvento.atualizar(e);
     }
     
-    public List<SubEvento> buscarNomeListSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
-    return this.buscarNomeListSubEvento(nome);
+    public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException{
+    return this.buscarListSubEvento(evento);
     }
     
     public SubEvento buscarCodigoSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{

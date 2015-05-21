@@ -32,10 +32,6 @@ public class BeanEvento implements Serializable{
     public void setEventoSelecionado(Evento eventoSelecionado) {
         this.eventoSelecionado = eventoSelecionado;
     }
-
-    
-
-   
     
     
        @EJB
@@ -104,6 +100,32 @@ public class BeanEvento implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
+    }
+    
+    public String atualizarEvento() {
+        try {
+            this.fachada.atualizarEvento(eventoSelecionado);
+            
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Evento Atualizado!"));
+        } catch (ErroInternoException | EventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "PaginaInicial.xhtml";
+    }
+    
+    public String apagarEvento(long codigo) throws EventoInexistenteException {
+        try {
+            this.fachada.removerEvento(codigo);
+            
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Evento Removido!"));
+        } catch (ErroInternoException | EventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "paginaProdutos.xhtml";
     }
     
 }

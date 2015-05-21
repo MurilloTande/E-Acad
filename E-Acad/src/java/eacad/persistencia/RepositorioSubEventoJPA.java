@@ -6,6 +6,7 @@
 package eacad.persistencia;
 
 
+import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.SubEventoInexistenteException;
@@ -66,16 +67,16 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento{
     
   
     @Override
-    public List<SubEvento> buscarNomeListSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
+    public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException{
           try {
-           TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e where e.nome like :nome", SubEvento.class);
-           consulta.setParameter("nome", "%" + nome + "%");
+           TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e where e.eventoPai.codigo = :codigoEvento", SubEvento.class);
+           consulta.setParameter("codigoEvento", evento.getCodigo());
             return consulta.getResultList();
            
         }catch(NoResultException es){
-                 throw new SubEventoInexistenteException();  
+                 throw new SubEventoInexistenteException(es);  
         } catch (Exception e) {
-            throw new ErroInternoException(e);
+                throw new ErroInternoException(e);
         }
         
 }
