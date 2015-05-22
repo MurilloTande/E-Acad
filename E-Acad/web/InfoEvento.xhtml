@@ -48,38 +48,44 @@
                     <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
                     <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>
                 </p:layoutUnit>
-                     <p:layoutUnit position="center">
-                    <p:panel header="Eventos Cadastrados no Sistema">
-                        <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
-                            <p:column headerText="Código">
-                                <h:outputText value="#{p.codigo}"/>
-                            </p:column>
-
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{p.nome}"/>
-                            </p:column>
-
-                            <p:column headerText="Descrição">
-                                <h:outputText value="#{p.descricao}"/>
-                            </p:column>
-                            <p:column>
-                                <p:button  value="+Info" outcome="InfoEvento" icon="ui-icon-pencil" title="+Info">
-                                    <f:param name="evento" value="#{beanEvento.setEventoSelecionado(p)}" />
-                                </p:button>
-                            </p:column>
-                        </p:dataTable>
+                
+                
+                
+             <p:layoutUnit position="center">
+                    <p:panel header="Informações de Evento">
+                        <p:panelGrid columns="2">
+                            <h:outputText value="Nome:" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.nome}" />
+ 
+                <h:outputText value="Local" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.localidade}" />
+ 
+                <h:outputText value="Cidade" />
+                <h:outputText value="#{beanEvento.eventoSelecionado.cidade}"/>
+                
+                 <h:outputText value="Descrição" />
+                 <h:outputText value="#{beanEvento.eventoSelecionado.descricao}"/>
+  <h:outputText value="Endereço" />
+  <h:outputText value="#{beanEvento.eventoSelecionado.endereco}"/>
+    <h:outputText value="Estado" />
+    <h:outputText value="#{beanEvento.eventoSelecionado.estado}"/>
+      <h:outputText value="Total de Vagas" />
+      <h:outputText value="#{beanEvento.eventoSelecionado.total_vagas}"/>
+        <h:outputText value="Data de Inicio" />
+        <h:outputText value="#{beanEvento.eventoSelecionado.data_inicio.date}/#{beanEvento.eventoSelecionado.data_inicio.month}/#{beanEvento.eventoSelecionado.data_inicio.year}"/>
+        <h:outputText value="Data de Inicio" />
+        <h:outputText value="#{beanEvento.eventoSelecionado.data_final.date}/#{beanEvento.eventoSelecionado.data_final.month}/#{beanEvento.eventoSelecionado.data_final.year}"/>
+        </p:panelGrid>
                     </p:panel>
-                         </p:layoutUnit>
-                 </p:layout>
-                  
-                    
-                    
-                    
-                    
-                   
-              
- </h:form>
-    </h:body>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+        
+        
+        <h:form rendered="#{not beanUsuario.logado}">
+            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+        </h:form>
+        
+        
+    </h:body>/body>
 </html>
-  
-            
