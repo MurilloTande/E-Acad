@@ -112,7 +112,7 @@ public class BeanEvento implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
         }
 
-        return "PaginaInicial.xhtml";
+        return "meusEventos.xhtml";
     }
     
     public String apagarEvento(long codigo) throws EventoInexistenteException {

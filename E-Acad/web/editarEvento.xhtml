@@ -53,9 +53,9 @@ and open the template in the editor.
                             <h:outputText value="Código: " />
                             <p:inputText value="#{beanEvento.eventoSelecionado.codigo}" disabled="true" id="codigo"/>
                             <h:outputText value="Nome: "/>
-                            <p:inputText value="#{beanEvento.eventoSelecionado.nome}" id="descricao" />
-                            <h:outputText value="Descrição: "/>
-                            <p:inputText value="#{beanEvento.eventoSelecionado.descricao}" id="descricao" />
+                            <p:inputText value="#{beanEvento.eventoSelecionado.nome}" id="nome" />
+                            <h:outputText value = "Descrição:" />
+                            <p:inputTextarea value = "#{beanEvento.eventoSelecionado.descricao}" id = "descricao" cols="20" rows="5"/>
                             <h:outputText value = "Data de Inicio" />
                             <p:calendar value = "#{beanEvento.eventoSelecionado.data_inicio}" navigator = "true"
                                         pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
@@ -65,7 +65,7 @@ and open the template in the editor.
                             <h:outputText value="Local"/>
                             <p:inputText value="#{beanEvento.eventoSelecionado.localidade}" id ="local"/>
                             <h:outputText value="Endereço"/>
-                            <p:inputText value="#{beanEvento.eventoSelecionado.endereco}" id ="endereço"/>
+                            <p:inputText value="#{beanEvento.eventoSelecionado.endereco}" id ="endereco"/>
                             <h:outputText value="Cidade"/>
                             <p:inputText value="#{beanEvento.eventoSelecionado.cidade}" id ="cidade"/>
                             <h:outputText value="Estado"/>

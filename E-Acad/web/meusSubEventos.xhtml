@@ -45,7 +45,8 @@ and open the template in the editor.
 
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
-                    <p:panel header="Seus Eventos Cadastrados">
+                    
+                    <p:panel header="Seus SubEventos Cadastrados">
                         <p:dataTable value="#{beanSubEvento.buscarListSubEvento()}" var="p" paginator="true" rows="5">
                             <p:column headerText="Código">
                                 <h:outputText value="#{p.codigo}"/>
@@ -59,18 +60,18 @@ and open the template in the editor.
                                 <h:outputText value="#{p.descricao}"/>
                             </p:column>
 
-                            <p:column headerText="Criador">
-                                <h:outputText value="#{p.eventoPai.nome}"/>
+                            <p:column headerText="Nome do Criador">
+                                <h:outputText value="#{p.eventoPai.criador.nome}"/>
                             </p:column>
-
-                            <p:column>
+<p:column>
                                 <p:button outcome="editarSubEvento" icon="ui-icon-pencil" title="Editar">
-                                    <f:param name="evento" value="#{beanSubEvento.setSubEvento(p)}" />
+                                    <f:param name="evento" value="#{beanSubEvento.setSubEventoSelecionado(p)}" />
                                 </p:button>
                                 <p:commandButton icon="ui-icon-circle-close" title="Excluir"
                                                  actionListener="#{beanSubEvento.apagarSubEvento(p.codigo)}"
                                                  update="@form" ajax="false"/>
                             </p:column>
+                            
                         </p:dataTable>
                     </p:panel>
                 </p:layoutUnit>

@@ -115,7 +115,7 @@ public class FachadaSistema {
     }
     
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException{
-    return this.buscarListSubEvento(evento);
+    return this.subEvento.buscarListSubEvento(evento);
     }
     
     public SubEvento buscarCodigoSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{
@@ -123,7 +123,7 @@ public class FachadaSistema {
     }
     
     public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
-    return this.buscarNomeSubEvento(nome);
+    return this.subEvento.buscarNomeSubEvento(nome);
     }
     
     public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{

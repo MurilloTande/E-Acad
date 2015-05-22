@@ -48,9 +48,9 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento{
     
     
     @Override
-    public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException{
+    public void atualizar(SubEvento ev) throws ErroInternoException, SubEventoInexistenteException{
     
-        SubEvento ev = buscarCodigo(e.getCodigo());
+        SubEvento e = buscarCodigo(ev.getCodigo());
         e.setNome(ev.getNome());
         e.setData_final(ev.getData_final());
         e.setData_inicio(ev.getData_inicio());
@@ -69,8 +69,8 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento{
     @Override
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException{
           try {
-           TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e where e.eventoPai.codigo = :codigoEvento", SubEvento.class);
-           consulta.setParameter("codigoEvento", evento.getCodigo());
+           TypedQuery<SubEvento> consulta = this.em.createQuery("select s from SubEvento s where s.eventoPai.codigo = :codigo", SubEvento.class);
+           consulta.setParameter("codigo",evento.getCodigo());
             return consulta.getResultList();
            
         }catch(NoResultException es){

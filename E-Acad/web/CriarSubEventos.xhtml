@@ -11,12 +11,12 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <f:facet name="first">
-            <title>Meus Eventos - Pregaum Online</title>
+            <title>Criar Evento - E-acad</title>
         </f:facet>
     </h:head>
     <h:body>
         
-        <h:form id="formID" rendered="#{beanUsuario.logado}">
+        <h:form rendered="#{beanUsuario.logado}">
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="105">
                     <h1><center><h:outputText value="E-Acad" /></center></h1>
@@ -29,7 +29,6 @@ and open the template in the editor.
                         <p:submenu label="Evento">
                             <p:menuitem value="Criar Evento" icon="ui-icon-pencil" url="criarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
                             <p:menuitem value="Meus Eventos" icon="ui-icon-pencil" url="meusEventos.xhtml" rendered="#{beanUsuario.logado}"  />
-                            <p:menuitem value="Editar Evento" icon="ui-icon-pencil" url="editarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
                         </p:submenu>
                         <p:submenu label="Perfil">
                             <p:menuitem value="Login" url="Login.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-person"/>
@@ -45,43 +44,46 @@ and open the template in the editor.
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
 
                 </p:layoutUnit>
-                <p:layoutUnit position="center">
-                    <p:panel header="Seus Eventos Cadastrados">
-                        <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
-                            <p:column headerText="Código">
-                                <h:outputText value="#{p.codigo}"/>
-                            </p:column>
+                <p:layoutUnit position="center">      
 
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{p.nome}"/>
-                            </p:column>
+                    <p:panel header = "Cadastro de SubEvento">
+                        <h:panelGrid columns = "2">   
+                         
+                             <h:outputText value = "Nome" />
+                             <p:inputText value = "#{beanSubEvento.subEvento.nome}" id = "nome" />
+                            <h:outputText value = "Descrição:" />
+                            <p:inputTextarea value = "#{beanSubEvento.subEvento.descricao}" id = "descricao" cols="20" rows="5"/>
+                            <h:outputText value = "Data de Inicio" />
+                            <p:calendar value = "#{beanSubEvento.subEvento.data_inicio}" navigator = "true"
+                                        pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
+                            <h:outputText value = "Data de Termino" />
+                            <p:calendar value = "#{beanSubEvento.subEvento.data_final}" navigator = "true"
+                                        pattern = "dd/MM/yyyy" mindate = "01/01/1940" maxdate = "01/01/2020"/>
+                            <h:outputText value="Apresentador"/>
+                            <p:inputText value="#{beanSubEvento.subEvento.apresentador}" id ="apresentador"/>
+                            <h:outputText value = "Tipo" />
+                            <p:selectOneRadio value="#{beanSubEvento.subEvento.tipo}">
+                            <f:selectItem itemLabel="Palestra" itemValue="Palestra" />
+                            <f:selectItem itemLabel="Oficina" itemValue="Oficina" />
+                            <f:selectItem itemLabel="Workshop" itemValue="Workshop" />
+                            </p:selectOneRadio>
 
-                            <p:column headerText="Descrição">
-                                <h:outputText value="#{p.descricao}"/>
-                            </p:column>
-
-                            <p:column headerText="Criador">
-                                <h:outputText value="#{p.descricao}"/>
-                            </p:column>
-
-                            <p:column>
-                                <p:button outcome="editarEvento" icon="ui-icon-pencil" title="Editar">
-                                    <f:param name="evento" value="#{beanEvento.setEventoSelecionado(p)}" />
-                                </p:button>
-                                <p:commandButton icon="ui-icon-circle-close" title="Excluir"
-                                                 actionListener="#{beanEvento.apagarEvento(p.codigo)}"
-                                                 update="@form" ajax="false"/>
-                                <p:button outcome="meusSubEventos" icon="ui-icon-pencil" title="SubEventos">
-                                    <f:param name="subEventos" value="#{beanSubEvento.setEvento(p)}" />
-                                </p:button>
-                            </p:column>
-                        </p:dataTable>
+                            <h:outputText value = "Quantidade de Vagas" />
+                            <p:inputText value = "#{beanSubEvento.subEvento.total_vagas}" id = "quantVagas" />
+                            
+                            
+                            <p:commandButton value = "Cadastrar SubEvento" action = "#{beanSubEvento.CadastrarSubEvento}" ajax = "false" />
+                        </h:panelGrid>
+                        <p:messages />       
                     </p:panel>
+
+                    
+
                 </p:layoutUnit>
             </p:layout>
         </h:form>
         <h:form rendered="#{not beanUsuario.logado}">
-            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+            Vá para <h:commandLink value="login" action="PaginaInicial.xhtml"/>
         </h:form>
         
         

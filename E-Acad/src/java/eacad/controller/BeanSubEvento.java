@@ -96,16 +96,18 @@ public class BeanSubEvento implements Serializable{
     public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
         try {
             List<SubEvento> subEventos = this.fachada.buscarListSubEvento(evento);
+           
             return subEventos;
+            
         } catch (ErroInternoException ex ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
     }
 
-    public String apagarSubEvento(SubEvento subEvento) {
+    public String apagarSubEvento(long codigo) {
         try {
-            this.fachada.removerSubEvento(subEvento.getCodigo());
+            this.fachada.removerSubEvento(codigo);
             
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("SubEvento removido!"));
@@ -126,21 +128,10 @@ public class BeanSubEvento implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
         }
 
-        return "PaginaInicial.xhtml";
+        return "meusSubEventos.xhtml";
     }
     
-    public String apagarSubEvento(long codigo) throws SubEventoInexistenteException {
-        try {
-            this.fachada.removerSubEvento(codigo);
-            
-            FacesContext aviso = FacesContext.getCurrentInstance();
-            aviso.addMessage(null, new FacesMessage("SubEvento Removido!"));
-        } catch (ErroInternoException | SubEventoInexistenteException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
-        }
-
-        return "PaginaInicial.xhtml";
-    }
+   
 
     
 }

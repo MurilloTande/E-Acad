@@ -53,9 +53,9 @@ public class RepositorioEventoJPA implements RepositorioEvento{
    
     
     @Override
-    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
+    public void atualizar(Evento ev) throws ErroInternoException, EventoInexistenteException{
     
-        Evento ev = buscarCodigo(e.getCodigo());
+        Evento e = buscarCodigo(ev.getCodigo());
         e.setNome(ev.getNome());
         e.setCidade(ev.getCidade());
         e.setData_final(ev.getData_final());
