@@ -39,7 +39,6 @@ public class BeanEvento implements Serializable{
        
     public BeanEvento(){
     this.evento=new Evento();
-    this.subEvento=new SubEvento();
     }
     
     public Evento getEvento() {

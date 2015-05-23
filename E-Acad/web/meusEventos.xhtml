@@ -47,7 +47,7 @@ and open the template in the editor.
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     <p:panel header="Seus Eventos Cadastrados">
-                        <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
+                        <p:dataTable value="#{beanEvento.eventosUsuario()}" var="p" paginator="true" rows="5">
                             <p:column headerText="Código">
                                 <h:outputText value="#{p.codigo}"/>
                             </p:column>

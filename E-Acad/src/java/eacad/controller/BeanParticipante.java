@@ -7,6 +7,7 @@ package eacad.controller;
 
 import eacad.entidades.Evento;
 import eacad.entidades.Participante;
+import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
@@ -25,16 +26,18 @@ import javax.faces.context.FacesContext;
 public class BeanParticipante implements Serializable{
     
     private Participante participante;
-    private Evento evento;
+    private Evento eventoSelecionado;
+    private SubEvento subEventoSelecionado;
     private List<Evento> part_eventos;
+    private List<SubEvento> part_subEvento;
     
     @EJB
     private FachadaSistema fachada;
 
     public BeanParticipante() {
         this.participante = new Participante();
-        this.evento = new Evento();
         this.part_eventos = new ArrayList<>();
+        this.part_subEvento = new ArrayList<>();
     }
 
     public Participante getParticipante() {
@@ -45,29 +48,49 @@ public class BeanParticipante implements Serializable{
         this.participante = participante;
     }
 
-    public Evento getEvento() {
-        return evento;
+    public Evento getEventoSelecionado() {
+        return eventoSelecionado;
     }
 
-    public void setEvento(Evento evento) {
-        this.evento = evento;
+    public void setEventoSelecionado(Evento eventoSelecionado) {
+        this.eventoSelecionado = eventoSelecionado;
+    }
+
+    public SubEvento getSubEventoSelecionado() {
+        return subEventoSelecionado;
+    }
+
+    public void setSubEventoSelecionado(SubEvento subEventoSelecionado) {
+        this.subEventoSelecionado = subEventoSelecionado;
     }
 
     public List<Evento> getPart_eventos() {
         return part_eventos;
     }
 
-    public void setPart_eventos(List<Evento> part_eventos) {
-        this.part_eventos = part_eventos;
+    public void setPart_eventos(Evento part_eventos) {
+        this.part_eventos.add(part_eventos);
     }
+
+    public List<SubEvento> getPart_subEvento() {
+        return part_subEvento;
+    }
+
+    public void setPart_subEvento(SubEvento part_subEvento) {
+        this.part_subEvento.add(part_subEvento);
+    }
+
+    
     
     public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
         try {
             
+            this.participante.setEvento(part_eventos);
+            this.participante.setSubEvento(part_subEvento);
+            this.fachada.adicionarParticipante(participante);
             
-            this.fachada.adicionarParticipante(participante); 
             
-            participante = new Participante();
+            this.participante = new Participante();
             
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Inscrição efetuado com sucesso!"));

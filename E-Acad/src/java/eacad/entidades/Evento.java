@@ -161,6 +161,7 @@ public class Evento implements Serializable{
 
    
     @OneToMany(mappedBy = "evento")
+    @ManyToMany
     public List<Participante> getParticipantes() {
         return participantes;
     }

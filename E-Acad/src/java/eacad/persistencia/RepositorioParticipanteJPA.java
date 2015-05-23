@@ -37,7 +37,7 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
             return consulta.getSingleResult();
            
         }catch(NoResultException es){
-                 throw new ParticipanteInexistenteException();  
+                 throw new ParticipanteInexistenteException(es);  
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }

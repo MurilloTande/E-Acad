@@ -2,9 +2,10 @@
 package eacad.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -14,7 +15,8 @@ public class Participante implements Serializable{
     private String primeiroNome;
     private String sobreNome;
     private String email;
-    private Evento evento;
+    private List<Evento> evento;
+    private List<SubEvento> subEvento;
 
     public Participante(String cpf, String primeiroNome, String sobreNome, String email) {
         this.cpf = cpf;
@@ -59,14 +61,24 @@ public class Participante implements Serializable{
         this.email = email;
     }
 
-    @ManyToOne
-    public Evento getEvento() {
+    @ManyToMany
+    public List<Evento> getEvento() {
         return evento;
     }
 
-    public void setEvento(Evento evento) {
+    public void setEvento(List<Evento> evento) {
         this.evento = evento;
     }
+
+    public List<SubEvento> getSubEvento() {
+        return subEvento;
+    }
+
+    public void setSubEvento(List<SubEvento> subEvento) {
+        this.subEvento = subEvento;
+    }
+
+    
     
    
 }

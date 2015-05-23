@@ -63,11 +63,11 @@ and open the template in the editor.
                             <p:column headerText="Nome do Criador">
                                 <h:outputText value="#{p.eventoPai.criador.nome}"/>
                             </p:column>
-<p:column>
-    <p:button value="Editar" outcome="editarSubEvento" icon="ui-icon-pencil" title="Editar">
-                                    <f:param name="evento" value="#{beanSubEvento.setSubEventoSelecionado(p)}" />
-                                </p:button>
-    <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
+                            <p:column>
+                            <p:button value="Editar" outcome="editarSubEvento" icon="ui-icon-pencil" title="Editar">
+                            <f:param name="evento" value="#{beanSubEvento.setSubEventoSelecionado(p)}" />
+                            </p:button>
+                            <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
                                                  actionListener="#{beanSubEvento.apagarSubEvento(p.codigo)}"
                                                  update="@form" ajax="false"/>
                             </p:column>

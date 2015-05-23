@@ -67,7 +67,7 @@ public class BeanSubEvento implements Serializable{
             this.subEvento.setEventoPai(evento);
             this.fachada.adicionarSubEvento(subEvento);
             
-            subEvento = new SubEvento();
+           this.subEvento = new SubEvento();
             
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Cadastro efetuado com sucesso!"));
