@@ -64,12 +64,13 @@
                                 <h:outputText value="#{p.descricao}"/>
                             </p:column>
                             <p:column>
-                                <p:button  value="+Info" outcome="InfoEvento" icon="ui-icon-pencil" title="+Info">
-                                    <f:param name="evento" value="#{beanEvento.setEventoSelecionado(p)}" />
-                                </p:button>
-                                <p:button  value="Fazer Inscrição" outcome="inscricaoEventoP1" icon="ui-icon-pencil" title="Fazer Inscrição">
-                                    <f:param name="inscricao" value="#{beanSubEvento.setEvento(p)}" />
-                                </p:button>
+                                <p:commandButton value="+Info" icon="ui-icon-pencil" title="+Info"
+                                                 actionListener="#{beanEvento.EventoSelect(p.codigo)}"
+                                                 action="InfoEvento.xhtml" ajax="false" />
+                                 <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
+                                                  actionListener="#{beanEvento.EventoSelect(p.codigo)}"
+                                                 action="inscricaoEventoP1.xhtml" ajax="false" />
+                                
                             </p:column>
                         </p:dataTable>
                     </p:panel>

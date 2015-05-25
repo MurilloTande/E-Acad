@@ -65,18 +65,19 @@ and open the template in the editor.
                             </p:column>
 
                             <p:column>
-                                <p:button  value="Editar" outcome="editarEvento" icon="ui-icon-pencil" title="Editar">
-                                    <f:param name="evento" value="#{beanEvento.setEventoSelecionado(p)}" />
-                                </p:button>
+                              <p:commandButton value="Editar" icon="ui-icon-pencil" title="Editar"
+                                               actionListener="#{beanEvento.EventoSelect(p.codigo)}"
+                                                 action="editarEvento.xhtml" ajax="false" />
                                 <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
                                                  actionListener="#{beanEvento.apagarEvento(p.codigo)}"
-                                                 update="@form" ajax="false"/>
-                                <p:button value="SubEventos" outcome="meusSubEventos" icon="ui-icon-pencil" title="SubEventos">
-                                    <f:param name="subEventos" value="#{beanSubEvento.setEvento(p)}" />
-                                </p:button>
-                                <p:button value="CriarSubEventos" outcome="CriarSubEventos" icon="ui-icon-pencil" title="CriarSubEventos">
-                                    <f:param name="criarSubEventos" value="#{beanSubEvento.setEvento(p)}" />
-                                </p:button>
+                                                  update="@form" ajax="false" />
+                                   <p:commandButton value="SubEventos" icon="ui-icon-pencil" title="SubEventos"
+                                                  actionListener="#{beanSubEvento.EventoSelect(p.codigo)}"
+                                                 action="meusSubEventos.xhtml" ajax="false" />
+                                 <p:commandButton value="CriarSubEventos" icon="ui-icon-pencil" title="CriarSubEventos"
+                                                  actionListener="#{beanSubEvento.EventoSelect(p.codigo)}"
+                                                 action="CriarSubEventos.xhtml" ajax="false" />
+                                
                                 
                             </p:column>
                         </p:dataTable>

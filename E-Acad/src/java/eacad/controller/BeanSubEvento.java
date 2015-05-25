@@ -10,6 +10,7 @@ import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
@@ -132,6 +133,32 @@ public class BeanSubEvento implements Serializable{
     }
     
    
+     public String SubEventoSelect(long codigo) throws SubEventoInexistenteException {
+        try {
+            SubEvento e = this.fachada.buscarCodigoSubEvento(codigo);
+            this.subEventoSelecionado = e;
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("SubEvento Selecionado!"));
+        } catch (ErroInternoException | SubEventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
 
+        return "meusEventos.xhtml";
+    }
+
+      public String EventoSelect(long codigo) throws EventoInexistenteException {
+        try {
+            Evento e = this.fachada.buscarCodigoEvento(codigo);
+            this.evento = e;
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Evento Selecionado!"));
+        } catch (ErroInternoException | EventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "meusEventos.xhtml";
+    }
+    
+     
     
 }

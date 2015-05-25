@@ -10,6 +10,8 @@ import eacad.exceptions.EventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -22,20 +24,25 @@ public class BeanEvento implements Serializable{
   
     
     private Evento evento;
+     
     private SubEvento subEvento;
     private Evento eventoSelecionado;
+
+   
+    
+    
+       @EJB
+    private FachadaSistema fachada;
 
     public Evento getEventoSelecionado() {
         return eventoSelecionado;
     }
 
     public void setEventoSelecionado(Evento eventoSelecionado) {
-        this.eventoSelecionado = eventoSelecionado;
-    }
-    
-    
-       @EJB
-    private FachadaSistema fachada;
+      this.eventoSelecionado = eventoSelecionado;
+       }
+       
+       
        
     public BeanEvento(){
     this.evento=new Evento();
@@ -126,5 +133,19 @@ public class BeanEvento implements Serializable{
 
         return "paginaProdutos.xhtml";
     }
+    
+    public String EventoSelect(long codigo) throws EventoInexistenteException {
+        try {
+            Evento e = this.fachada.buscarCodigoEvento(codigo);
+            this.eventoSelecionado = e;
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Evento Selecionado!"));
+        } catch (ErroInternoException | EventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "meusEventos.xhtml";
+    }
+    
     
 }

@@ -76,6 +76,9 @@
         <h:outputText value="Data de Inicio" />
         <h:outputText value="#{beanEvento.eventoSelecionado.data_final.date}/#{beanEvento.eventoSelecionado.data_final.month}/#{beanEvento.eventoSelecionado.data_final.year}"/>
         </p:panelGrid>
+                         <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
+                                                  actionListener="#{beanEvento.EventoSelect(p.codigo)}"
+                                                 action="inscricaoEventoP1.xhtml" ajax="false" />
                     </p:panel>
                 </p:layoutUnit>
             </p:layout>
