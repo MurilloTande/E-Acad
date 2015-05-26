@@ -10,8 +10,6 @@ import eacad.exceptions.EventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -23,8 +21,7 @@ import javax.faces.context.FacesContext;
 public class BeanEvento implements Serializable{
   
     
-    private Evento evento;
-     
+    private Evento evento;  
     private SubEvento subEvento;
     private Evento eventoSelecionado;
 

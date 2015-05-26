@@ -50,11 +50,24 @@
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="center">
-                    <p:panel header="Passo 2 -> Selecione seus SubEventos">
-                            <p:dataTable value="#{beanParticipante.buscarListSubEvento()}" var="p" paginator="true" rows="5">
-                            <p:column headerText="Selecionar">
-                                <p:commandButton action="#{beanParticipante.SubEventoSelect(p.codigo)}" icon="ui-icon-check"/>
+                    <p:panel header = "Passo 3 -> Finalizar Inscrição">
+                        <h:panelGrid columns = "2"> 
+                            <h:outputText value="Cpf: " />
+                            <p:inputText value="#{beanParticipante.participante.cpf}" disabled="true" id="codigo"/>
+                            <h:outputText value="Nome: "/>
+                            <p:inputText value="#{beanParticipante.participante.primeiroNome}" disabled="true" id="primeiroNome" />
+                            <h:outputText value = "Sobrenome:" />
+                            <p:inputTextarea value = "#{beanParticipante.participante.sobreNome}" disabled="true" id = "sobreNome"/>
+                            <h:outputText value = "Email:" />
+                            <p:inputTextarea value = "#{beanParticipante.participante.email}" disabled="true" id = "email"/>
+                            
+                        </h:panelGrid>
+                        
+                        <p:dataTable value="#{beanParticipante.part_subEvento}" var="p" paginator="true" rows="5">
+                            <p:column headerText="Código">
+                            <h:outputText value="#{p.codigo}"/>
                             </p:column>
+
                             <p:column headerText="Nome">
                                 <h:outputText value="#{p.nome}"/>
                             </p:column>
@@ -67,13 +80,13 @@
                                 <h:outputText value="#{p.eventoPai.criador.nome}"/>
                             </p:column>    
                         </p:dataTable>  
-                        
                         <p>
-                        <p:commandButton value = "Voltar" action = "inscricaoEventoP1" ajax = "false" />
-                        <p:commandButton value = "Passo 3" action = "inscricaoEventoP3" ajax = "false" />
-   
+                        <p:commandButton value = "Voltar" action = "inscricaoEventoP2" ajax = "false" />
+                        <p:commandButton value = "Finalizar Inscrição" action = "#{beanParticipante.cadastrarParticipante()}" ajax = "false" />
                         </p>
-                    	</p:panel>
+                        
+                        <p:messages />
+                    </p:panel>
                 </p:layoutUnit>
                 
              

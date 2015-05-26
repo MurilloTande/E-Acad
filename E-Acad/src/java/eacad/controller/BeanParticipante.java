@@ -9,8 +9,11 @@ import eacad.entidades.Evento;
 import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
+import eacad.exceptions.SubEventoExistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -91,6 +94,8 @@ public class BeanParticipante implements Serializable{
             
             
             this.participante = new Participante();
+            this.part_eventos = new ArrayList<>();
+            this.part_subEvento = new ArrayList<>();
             
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Inscrição efetuado com sucesso!"));
@@ -107,7 +112,45 @@ public class BeanParticipante implements Serializable{
         return "PaginaInicial.xhtml";
     }
     
+    public String EventoSelect(long codigo) throws EventoInexistenteException {
+        try {
+            Evento e = this.fachada.buscarCodigoEvento(codigo);
+            this.eventoSelecionado = e;
+            this.part_eventos.add(e);
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Evento Selecionado!"));
+        } catch (ErroInternoException | EventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "PaginaInicial.xhtml";
+    }
     
+    public String SubEventoSelect(long codigo) throws SubEventoInexistenteException {
+        try {
+            SubEvento e = this.fachada.buscarCodigoSubEvento(codigo);
+            this.subEventoSelecionado = e;
+            this.part_subEvento.add(e);
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("SubEvento Selecionado!"));
+        } catch (ErroInternoException | SubEventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "inscricaoEventoP2.xhtml";
+    }
+    
+    public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
+        try {
+            List<SubEvento> subEventos = this.fachada.buscarListSubEvento(this.eventoSelecionado);
+           
+            return subEventos;
+            
+        } catch (ErroInternoException ex ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return null;
+        }
+    }
     
     
 }

@@ -50,39 +50,24 @@
                 </p:layoutUnit>
                 
                 <p:layoutUnit position="center">
-                    			<p:panel header="Selecione seus SubEventos">
-                        <p:dataTable value="#{beanSubEvento.buscarListSubEvento()}" var="p" paginator="true" rows="5">
-                            <p:column headerText="Código">
-                                <h:outputText value="#{p.codigo}"/>
-                            </p:column>
-
-                            <p:column headerText="Nome">
-                                <h:outputText value="#{p.nome}"/>
-                            </p:column>
-
-                            <p:column headerText="Descrição">
-                                <h:outputText value="#{p.descricao}"/>
-                            </p:column>
-
-                            <p:column headerText="Nome do Criador">
-                                <h:outputText value="#{p.eventoPai.criador.nome}"/>
-                            </p:column>
-                            <p:column>
-                            <p:button value="Adicionar SubEvento" outcome="inscricaoEventoP1" icon="ui-icon-pencil" title="Adicionar">
-                                <f:param name="adicionar" value="#{beanParticipante.setPart_subEvento(p)}" />
-                            </p:button>
-                       
-                            <p:commandButton value="Desativado ..." icon="ui-icon-circle-close" title="P"
-                                                 actionListener="#{beanSubEvento.apagarSubEvento(p.codigo)}"
-                                                 update="@form" ajax="false"/>
-                          
-                            </p:column>
+                    <p:panel header = "Passo 1 -> Cadastro Inscrição">
+                        <h:panelGrid columns = "2"> 
+                            <h:outputText value="CPF"/>
+                            <p:inputMask mask="999.999.999-99" value="#{beanParticipante.participante.cpf}" id="cpf"/>
+                            <h:outputText value = "Nome" />
+                            <p:inputText value = "#{beanParticipante.participante.primeiroNome}" id = "primeiroNome" />
+			    <h:outputText value = "Sobrenome" />
+                            <p:inputText value = "#{beanParticipante.participante.sobreNome}" id = "sobreNome" />       
+                            <h:outputText value = "Email" />
+                            <p:inputText value = "#{beanParticipante.participante.email}" id = "email" />
                             
-                        </p:dataTable>
-                           
-                           <p:commandButton value="Proximo Passo ->" action="inscricaoEventoP2.xhtml" ajax="false" />        
-                           
-                    	</p:panel>
+                            <p>
+                            <p:commandButton value = "Voltar" action = "PaginaInicial" ajax = "false" />
+                            <p:commandButton value = "Passo 2" action = "inscricaoEventoP2" ajax = "false" />
+                            </p>
+                        </h:panelGrid>
+                        <p:messages />
+                    </p:panel>
                 </p:layoutUnit>
                 
              
