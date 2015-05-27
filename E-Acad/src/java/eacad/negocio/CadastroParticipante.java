@@ -12,6 +12,7 @@ import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.persistencia.RepositorioParticipante;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -59,5 +60,15 @@ public class CadastroParticipante implements Serializable{
         return u;
     }
     
+    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException{
+        this.repParticipante.remover(cpf);
+    }
     
+    public void atualizar(Participante part) throws ErroInternoException, ParticipanteInexistenteException{
+        this.repParticipante.atualizar(part);
+    }
+    
+    public List<Participante> listar() throws ErroInternoException{
+        return this.repParticipante.listar();
+    }
 }

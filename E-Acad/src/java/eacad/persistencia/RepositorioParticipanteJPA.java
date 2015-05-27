@@ -10,6 +10,7 @@ import eacad.entidades.Participante;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -54,6 +55,40 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
            
        }catch (Exception ex) {
             throw new ErroInternoException(ex);
+        }
+    }
+    
+    @Override
+    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+        try{
+         Participante p = buscar(cpf);
+        this.em.remove(p);
+        }catch(IllegalArgumentException e ){
+            throw new ErroInternoException(e);
+        }
+    }
+
+    @Override
+    public void atualizar(Participante part) throws ErroInternoException, ParticipanteInexistenteException {
+        Participante p  = buscar(part.getCpf());
+        p.setEmail(part.getEmail());
+        p.setPrimeiroNome(part.getPrimeiroNome());
+        p.setSobreNome(part.getSobreNome());
+        
+        try {
+            this.em.merge(p);
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
+        }
+    }
+
+    @Override
+    public List<Participante> listar() throws ErroInternoException {
+        try {
+        TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p", Participante.class);
+        return  consulta.getResultList();
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
         }
     }
     

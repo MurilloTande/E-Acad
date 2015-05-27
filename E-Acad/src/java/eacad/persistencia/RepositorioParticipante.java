@@ -11,6 +11,7 @@ import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.Local;
 
 @Local
@@ -19,5 +20,7 @@ public interface RepositorioParticipante extends Serializable{
     public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException;
     public void adicionar(Participante e) throws ErroInternoException;
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
-    
+    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
+    public void atualizar(Participante part) throws ErroInternoException, ParticipanteInexistenteException;
+    public List<Participante> listar() throws ErroInternoException; 
 }

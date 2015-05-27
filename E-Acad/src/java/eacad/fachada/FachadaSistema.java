@@ -139,10 +139,20 @@ public class FachadaSistema {
     return this.participante.buscar(cpf);
     } 
     
-     public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
-     return this.participante.buscarValidarPartipante(e);
-     }
+    public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
+    return this.participante.buscarValidarPartipante(e);
+    }
+     
+    public void removerParticipante(String cpf) throws ErroInternoException, ParticipanteInexistenteException{
+        this.participante.remover(cpf);
+    }
+    public void atualizarParticipante(Participante part) throws ErroInternoException, ParticipanteInexistenteException{
+        this.participante.atualizar(part);
+    }
     
+    public List<Participante> listarParticipante() throws ErroInternoException{
+        return this.participante.listar();
+    } 
     
 }
 
