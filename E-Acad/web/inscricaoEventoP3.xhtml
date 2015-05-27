@@ -78,11 +78,23 @@
 
                             <p:column headerText="Nome do Criador">
                                 <h:outputText value="#{p.eventoPai.criador.nome}"/>
-                            </p:column>    
+                            </p:column>   
+                            <p:column headerText="Excluir">
+                             <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
+                                              actionListener="#{beanParticipante.part_subEvento.remove(p)}"
+                                                  update="@form" ajax="false" />
+                             </p:column> 
+                            
+                            
+                             <p:column headerText="Informações">
+                                 <p:commandButton value="+Info" icon="ui-icon-pencil" title="+Info"
+                                                  actionListener="#{beanSubEvento.SubEventoSelect(p.codigo)}"
+                                                 action="InfoSubEvento2.xhtml" ajax="false" />
+                               </p:column> 
                         </p:dataTable>  
                         <p>
                         <p:commandButton value = "Voltar" action = "inscricaoEventoP2" ajax = "false" />
-                        <p:commandButton value = "Finalizar Inscrição" action = "#{beanParticipante.cadastrarParticipante()}" ajax = "false" />
+                        <p:commandButton value = "Finalizar Inscrição" action = "#{beanParticipante.CadastrarParticipante()}" ajax = "false" />
                         </p>
                         
                         <p:messages />

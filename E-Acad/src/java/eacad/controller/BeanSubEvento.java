@@ -97,13 +97,13 @@ public class BeanSubEvento implements Serializable{
     public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
         try {
             List<SubEvento> subEventos = this.fachada.buscarListSubEvento(evento);
-           
             return subEventos;
-            
+               
         } catch (ErroInternoException ex ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
+      
     }
 
     public String apagarSubEvento(long codigo) {

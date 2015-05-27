@@ -53,7 +53,7 @@
                     <p:panel header="Passo 2 -> Selecione seus SubEventos">
                             <p:dataTable value="#{beanParticipante.buscarListSubEvento()}" var="p" paginator="true" rows="5">
                             <p:column headerText="Selecionar">
-                                <p:commandButton action="#{beanParticipante.SubEventoSelect(p.codigo)}" icon="ui-icon-check"/>
+                                <input type="checkbox" action="#{beanParticipante.SubEventoSelect(p.codigo)}"/>
                             </p:column>
                             <p:column headerText="Nome">
                                 <h:outputText value="#{p.nome}"/>
@@ -62,10 +62,17 @@
                             <p:column headerText="Descrição">
                                 <h:outputText value="#{p.descricao}"/>
                             </p:column>
-
+                                
+                                
                             <p:column headerText="Nome do Criador">
                                 <h:outputText value="#{p.eventoPai.criador.nome}"/>
-                            </p:column>    
+                            </p:column>  
+                                
+                                <p:column headerText="Informações">
+                                 <p:commandButton value="+Info" icon="ui-icon-pencil" title="+Info"
+                                                  actionListener="#{beanSubEvento.SubEventoSelect(p.codigo)}"
+                                                 action="InfoSubEvento.xhtml" ajax="false" />
+                                  </p:column>
                         </p:dataTable>  
                         
                         <p>

@@ -5,6 +5,7 @@
  */
 package eacad.negocio;
 
+import eacad.entidades.Evento;
 import eacad.entidades.Participante;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
@@ -50,6 +51,13 @@ public class CadastroParticipante implements Serializable{
         return u;
     }
     
+   public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
+
+        Participante u = this.repParticipante.buscarValidarPartipante(e);
+
+      
+        return u;
+    }
     
     
 }

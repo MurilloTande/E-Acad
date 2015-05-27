@@ -5,8 +5,10 @@
  */
 package eacad.persistencia;
 
+import eacad.entidades.Evento;
 import eacad.entidades.Participante;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -43,5 +45,17 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
         }
     
     }
+    
+    public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
+       try {
+           TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p JOIN p.evento pe where pe.codigo = :codigo  ", Participante.class);
+           consulta.setParameter("codigo",e.getCodigo());
+            return consulta.getSingleResult();
+           
+       }catch (Exception ex) {
+            throw new ErroInternoException(ex);
+        }
+    }
+    
     
 }

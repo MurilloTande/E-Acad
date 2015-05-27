@@ -126,14 +126,20 @@ public class BeanParticipante implements Serializable{
         return "PaginaInicial.xhtml";
     }
     
-    public String SubEventoSelect(long codigo) throws SubEventoInexistenteException {
+    public String SubEventoSelect(long codigo) throws SubEventoInexistenteException, ErroInternoException {
         try {
             SubEvento e = this.fachada.buscarCodigoSubEvento(codigo);
             this.subEventoSelecionado = e;
-            this.part_subEvento.add(e);
+            if(part_subEvento.isEmpty()){
+           this.part_subEvento.add(e);
+            }else{
+             FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Inscrição efetuado com sucesso!"));
+            }
+            
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("SubEvento Selecionado!"));
-        } catch (ErroInternoException | SubEventoInexistenteException ex) {
+        } catch (SubEventoInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
         }
 
@@ -152,5 +158,20 @@ public class BeanParticipante implements Serializable{
         }
     }
     
-    
+   
+     public String ValidarParticipante() throws ParticipanteExistenteException, ParticipanteInexistenteException {
+        try {
+            Participante p = this.fachada.buscarValidarPartipante(eventoSelecionado);
+         if(p!=null){
+         return null;
+         }  else{
+         
+         }
+            
+        } catch (ErroInternoException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+
+        return "paginaProdutos.xhtml";
+    }
 }
