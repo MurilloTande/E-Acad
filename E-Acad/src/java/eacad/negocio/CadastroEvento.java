@@ -8,7 +8,6 @@ package eacad.negocio;
 import eacad.entidades.Evento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
-import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.persistencia.RepositorioEvento;
 import java.io.Serializable;
@@ -79,12 +78,12 @@ public class CadastroEvento implements Serializable{
     
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
      Evento e = this.repEvento.buscarNomeEvento(nome);
-
         if (e == null) {
             throw new EventoInexistenteException();
         }
         return e;
     }
+    
     public void remover(long codigo) throws ErroInternoException, EventoInexistenteException{
      this.repEvento.remover(codigo);
     }
