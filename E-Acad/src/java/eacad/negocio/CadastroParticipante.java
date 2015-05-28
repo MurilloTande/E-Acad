@@ -59,16 +59,5 @@ public class CadastroParticipante implements Serializable{
       
         return u;
     }
-    
-    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException{
-        this.repParticipante.remover(cpf);
-    }
-    
-    public void atualizar(Participante part) throws ErroInternoException, ParticipanteInexistenteException{
-        this.repParticipante.atualizar(part);
-    }
-    
-    public List<Participante> listar() throws ErroInternoException{
-        return this.repParticipante.listar();
-    }
+   
 }

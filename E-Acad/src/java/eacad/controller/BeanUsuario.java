@@ -122,6 +122,40 @@ public class BeanUsuario implements Serializable {
         }
 
     }
+    
+    public String esqueciSenha1() {  
+        try {
+            Usuario u = this.fachada.buscarEmail(this.login);  
+                usuario = u;   
+                
+                return "esqueciSenha.xhtml";
+                
+        } catch (UsuarioInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Usuario Inexistente"));
+            return null;
+        } catch (ErroInternoException e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
+            return null;
+        }
+    }
+    
+     public String esqueciSenha2() {
+            try {
+                usuario.setSenha(novaSenha);
+                this.fachada.atualizar(usuario);
+                usuario = new Usuario();
+
+                FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Senha alterada com sucesso!"));
+            } catch (UsuarioInexistenteException | ErroInternoException u) {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + u.getMessage()));
+            }
+            
+           return "PaginaInicial.xhtml";
+    }
 
     public boolean isLogado() {
         return usuarioLogado != null;
