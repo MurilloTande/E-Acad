@@ -9,7 +9,6 @@ import eacad.entidades.Evento;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
-import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.persistencia.RepositorioSubEvento;
 import java.io.Serializable;
@@ -19,7 +18,8 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class CadastroSubEvento implements Serializable{
-     @EJB
+     
+    @EJB
     private RepositorioSubEvento repSubEvento;
      
     public CadastroSubEvento(RepositorioSubEvento repSubEvento) {
@@ -30,11 +30,9 @@ public class CadastroSubEvento implements Serializable{
     }
     
     public void adicionar(SubEvento e) throws ErroInternoException,DatasIncorretas{
-        if((e.getData_final().after(e.getData_inicio()) || e.getData_final().equals(e.getData_inicio())) & 
-               ((e.getData_inicio().after(e.getEventoPai().getData_inicio()) || e.getData_inicio().equals(e.getEventoPai().getData_inicio())  )
-                & (e.getData_inicio().before(e.getEventoPai().getData_final())) || e.getData_inicio().equals(e.getEventoPai().getData_final()) )
-                
-                
+        if((e.getData_final().after(e.getData_inicio()) || e.getData_final().equals(e.getData_inicio())) 
+                & ((e.getData_inicio().after(e.getEventoPai().getData_inicio()) || e.getData_inicio().equals(e.getEventoPai().getData_inicio())  )
+                & (e.getData_inicio().before(e.getEventoPai().getData_final())) || e.getData_inicio().equals(e.getEventoPai().getData_final()) ) 
                 & ((e.getData_final().before(e.getEventoPai().getData_final()))|| e.getData_final().equals(e.getEventoPai().getData_final()))){  
         try {  
             this.repSubEvento.adicionar(e);        
@@ -83,7 +81,13 @@ public class CadastroSubEvento implements Serializable{
     }
     
     public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException{
-     this.repSubEvento.remover(codigo);
+        try {
+            
+             this.repSubEvento.remover(codigo);
+             
+        } catch (ErroInternoException e) {
+             throw new ErroInternoException(e);
+        }
     }
     
 }

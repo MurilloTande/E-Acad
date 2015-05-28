@@ -40,16 +40,15 @@
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
 
                 </p:layoutUnit>
-              
-                   
-           
-     
-                <p:layoutUnit position="center">
-
+   
+                    <p:layoutUnit position="center">
+                    
                     <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
-                    <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>
-                </p:layoutUnit>
-                     <p:layoutUnit position="center">
+                    <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>    
+                    
+                    <br></br>
+                    <br></br>
+                    
                     <p:panel header="Eventos Cadastrados no Sistema">
                         <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
                             <p:column headerText="Código">

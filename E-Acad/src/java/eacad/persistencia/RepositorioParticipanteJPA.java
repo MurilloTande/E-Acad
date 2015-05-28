@@ -10,7 +10,6 @@ import eacad.entidades.Participante;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -47,6 +46,7 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
     
     }
     
+    @Override
     public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
        try {
            TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p JOIN p.evento pe where pe.codigo = :codigo  ", Participante.class);

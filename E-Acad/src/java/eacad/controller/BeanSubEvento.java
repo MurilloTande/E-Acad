@@ -112,8 +112,12 @@ public class BeanSubEvento implements Serializable{
             
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("SubEvento removido!"));
-        } catch (ErroInternoException | SubEventoInexistenteException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        } catch (ErroInternoException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + ex.getMessage()));
+        } catch ( SubEventoInexistenteException ex1) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("SubEvento inexistente!" + ex1.getMessage()));
         }
 
         return "PaginaInicial.xhtml";

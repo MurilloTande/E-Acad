@@ -64,7 +64,7 @@ public class FachadaSistema {
     return this.usuarios.buscarEmail(email);
     }
     
-    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException{
+    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException{
     this.usuarios.remover(cpf);
     }
     
@@ -97,7 +97,7 @@ public class FachadaSistema {
     return this.buscarNomeEvento(nome);
     }
     
-    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException{
+    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException{
     this.evento.remover(codigo);
     }
     

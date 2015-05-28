@@ -7,6 +7,7 @@ import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.List;
@@ -124,8 +125,15 @@ public class BeanEvento implements Serializable{
             
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("Evento Removido!"));
-        } catch (ErroInternoException | EventoInexistenteException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        } catch (ErroInternoException ex) {
+             FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + ex.getMessage()));
+        } catch ( EventoInexistenteException ex1) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Evento inexistente!" + ex1.getMessage()));
+        }catch ( SubEventoInexistenteException ex2) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("SubEvento inexistente!" + ex2.getMessage()));
         }
 
         return "paginaProdutos.xhtml";

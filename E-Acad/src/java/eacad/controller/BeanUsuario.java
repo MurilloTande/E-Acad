@@ -5,6 +5,8 @@ package eacad.controller;
 
 import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
 import eacad.fachada.FachadaSistema;
@@ -223,9 +225,15 @@ public class BeanUsuario implements Serializable {
         } catch (UsuarioInexistenteException ex1) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + ex1.getMessage()));
-        usuarioLogado = null;
-        }
-        return "";/*Aqui vai ficar a pagina inicial*/
+            usuarioLogado = null;
+        }catch ( EventoInexistenteException ex2) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Evento inexistente!" + ex2.getMessage()));
+        }catch ( SubEventoInexistenteException ex3) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("SubEvento inexistente!" + ex3.getMessage()));
+        }    
+        return "PaginaInicial";
     }
 
 }

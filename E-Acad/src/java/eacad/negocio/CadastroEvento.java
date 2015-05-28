@@ -6,10 +6,13 @@
 package eacad.negocio;
 
 import eacad.entidades.Evento;
+import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
 import eacad.persistencia.RepositorioEvento;
+import eacad.persistencia.RepositorioSubEvento;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -20,6 +23,8 @@ public class CadastroEvento implements Serializable{
     
     @EJB
    private RepositorioEvento repEvento;
+    @EJB
+    private RepositorioSubEvento repSubEvento;
 
     public CadastroEvento() {
     }
@@ -84,8 +89,21 @@ public class CadastroEvento implements Serializable{
         return e;
     }
     
-    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException{
-     this.repEvento.remover(codigo);
+    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException{
+        Evento temp = this.repEvento.buscarCodigo(codigo);
+        
+        try {
+            
+            for(SubEvento e : this.repSubEvento.buscarListSubEvento(temp)){
+            if(e != null){    
+                this.repSubEvento.remover(e.getCodigo());    
+            }}
+            
+             this.repEvento.remover(codigo);
+            } catch (ErroInternoException e) {
+               throw new ErroInternoException(e);
+        }
+        
     }
     
 }
