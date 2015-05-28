@@ -32,10 +32,11 @@
                             <h:outputText value="E-mail: "/>
                             <p:inputText value="#{beanUsuario.login}" id="login" />
                             <h:outputText value="Senha: " />
-                            <p:password required="true" requiredMessage="Senha Obrigatória" value="#{beanUsuario.senha}"
-                                        id="senha" promptLabel="Digite sua senha" />
-                            <p:commandButton value="Logar" action="#{beanUsuario.logar()}" ajax="false" />
+                            <p:password value="#{beanUsuario.senha}" id="senha" promptLabel="Digite sua senha" />
+                            <p:commandButton value="Logar" action="#{beanUsuario.logar()}" ajax="false" />  
+                            <p:commandButton value="Esqueci Senha" action="#{beanUsuario.esqueciSenha1()}" ajax="false" />
                         </h:panelGrid>
+                        
                     </p:panel>
                     <p:messages/>
                 </p:layoutUnit>

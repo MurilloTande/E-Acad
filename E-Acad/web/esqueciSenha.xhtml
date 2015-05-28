@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <title>Login - E-Acad</title>
+        </f:facet>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="105">
+                    <h1><center><h:outputText value="E-Acad" /></center></h1>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2015.1" /></center>
+                </p:layoutUnit>
+               <p:layoutUnit position="west" size="245">
+                    <p:menu>
+                        <p:submenu label="Opções do Sistema">
+                            <p:menuitem value="Página Principal" url="PaginaInicial.xhtml" icon="ui-icon-home"/>
+                        </p:submenu>
+                    </p:menu>
+                   
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <p:panel header="Esqueci Senha">
+                        <h:panelGrid columns="2">
+                        <h:outputText value="Cpf: "/> 
+                            <p:inputText value="#{beanUsuario.usuario.cpf}" disabled="true" id="codigo"/>
+                        <h:outputText value="Nome: "/> 
+                            <p:inputText value="#{beanUsuario.usuario.nome}" disabled="true" id="nome" />
+			<h:outputText value="Email: "/> 
+                            <p:inputText value="#{beanUsuario.usuario.email}" disabled="true" id="email" />
+                        <h:outputText value = "Nova senha" /> 
+                            <p:password required = "true" requiredMessage = "Senha Obrigatória"
+                                    value = "#{beanUsuario.novaSenha}" id = "novaSenha"
+                                    feedback = "true" strongLabel = "Forte" weakLabel = "Fraco"
+                                    goodLabel = "Boa" promptLabel = "Digite sua senha"
+                                    match = "confirmacaoSenha" validatorMessage = " As senhas não conferem" />
+                        <h:outputText value = "Confirmação de nova senha" />
+                            <p:password required = "true" requiredMessage = "Senha Obrigatória"
+                                    value = "#{beanUsuario.novaSenha}" id = "confirmacaoSenha"
+                                    promptLabel = "Digite sua senha" validatorMessage = "As senhas não conferem" />
+
+                            <p:commandButton value = "Alterar" action = "#{beanUsuario.esqueciSenha2()}" ajax = "false" />
+                        
+                        <p:messages />
+                        
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:messages/>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+    </h:body>
+</html>
+
