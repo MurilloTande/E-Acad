@@ -23,6 +23,7 @@ public class BeanUsuario implements Serializable {
     private FachadaSistema fachada;
     
     private Usuario usuario;
+    private Usuario esqueciSenhaUsuario;
     private String login;
     private String senha;
     private String novaSenha;
@@ -45,6 +46,14 @@ public class BeanUsuario implements Serializable {
         this.usuario = usuario;
     }
 
+    public Usuario getEsqueciSenhaUsuario() {
+        return esqueciSenhaUsuario;
+    }
+
+    public void setEsqueciSenhaUsuario(Usuario esqueciSenhaUsuario) {
+        this.esqueciSenhaUsuario = esqueciSenhaUsuario;
+    }
+   
     public String getLogin() {
         return this.login;
     }
@@ -126,7 +135,7 @@ public class BeanUsuario implements Serializable {
     public String esqueciSenha1() {  
         try {
             Usuario u = this.fachada.buscarEmail(this.login);  
-                usuario = u;   
+              esqueciSenhaUsuario = u;   
                 
                 return "esqueciSenha.xhtml";
                 
@@ -143,9 +152,9 @@ public class BeanUsuario implements Serializable {
     
      public String esqueciSenha2() {
             try {
-                usuario.setSenha(novaSenha);
-                this.fachada.atualizar(usuario);
-                usuario = new Usuario();
+                esqueciSenhaUsuario.setSenha(novaSenha);
+                this.fachada.atualizar(esqueciSenhaUsuario);
+                esqueciSenhaUsuario = new Usuario();
 
                 FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Senha alterada com sucesso!"));

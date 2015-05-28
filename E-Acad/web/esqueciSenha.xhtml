@@ -30,11 +30,11 @@
                     <p:panel header="Esqueci Senha">
                         <h:panelGrid columns="2">
                         <h:outputText value="Cpf: "/> 
-                            <p:inputText value="#{beanUsuario.usuario.cpf}" disabled="true" id="codigo"/>
+                        <p:inputText value="#{beanUsuario.esqueciSenhaUsuario.cpf}" disabled="true" id="codigo"/>
                         <h:outputText value="Nome: "/> 
-                            <p:inputText value="#{beanUsuario.usuario.nome}" disabled="true" id="nome" />
+                            <p:inputText value="#{beanUsuario.esqueciSenhaUsuario.nome}" disabled="true" id="nome" />
 			<h:outputText value="Email: "/> 
-                            <p:inputText value="#{beanUsuario.usuario.email}" disabled="true" id="email" />
+                            <p:inputText value="#{beanUsuario.esqueciSenhaUsuario.email}" disabled="true" id="email" />
                         <h:outputText value = "Nova senha" /> 
                             <p:password required = "true" requiredMessage = "Senha Obrigatória"
                                     value = "#{beanUsuario.novaSenha}" id = "novaSenha"
