@@ -46,9 +46,13 @@ public class CadastroUsuario implements Serializable {
 
     }
 
-    public List<Usuario> listar() throws ErroInternoException {
+    public List<Usuario> listar() throws ErroInternoException, UsuarioInexistenteException {
         List<Usuario> u = this.repUsuario.listar();
-        return u;
+        if(u.isEmpty()){
+            return u;
+        }else{
+        throw new UsuarioInexistenteException();
+        }
     }
 
     public void Atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException {

@@ -103,7 +103,7 @@ public class BeanParticipante implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
             return null;
-        } catch (ParticipanteInexistenteException ex) {
+        } catch (ParticipanteExistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Participante já cadastrado no sistema."));
             return null;

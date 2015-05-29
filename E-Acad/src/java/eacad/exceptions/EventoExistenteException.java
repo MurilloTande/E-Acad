@@ -8,7 +8,7 @@ public class EventoExistenteException extends Exception{
         super("O Evento já está cadastrado no sistema!");
     }
     public EventoExistenteException(Exception e) {
-        super(e);
+        super("O Evento já está cadastrado no sistema!");
     }
     
 }

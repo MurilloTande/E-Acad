@@ -15,7 +15,7 @@ public class ParticipanteExistenteException extends Exception{
         super("O Participante já está cadastrado no evento!");
     }
     public ParticipanteExistenteException(Exception e) {
-        super(e);
+        super("O Participante já está cadastrado no evento!");
     }
     
 }

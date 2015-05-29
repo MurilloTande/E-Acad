@@ -12,6 +12,6 @@ public class ParticipanteInexistenteException extends Exception{
         super("Participante não encontrado!");
     }
     public ParticipanteInexistenteException(Exception e) {
-        super(e);
+        super("Participante não encontrado!");
     }
 }

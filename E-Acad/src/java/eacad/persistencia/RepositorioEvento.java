@@ -10,6 +10,7 @@ import eacad.exceptions.DatasIncorretas;
 import java.io.Serializable;
 import javax.ejb.Local;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
 import java.util.List;
 

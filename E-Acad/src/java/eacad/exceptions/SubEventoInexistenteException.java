@@ -15,7 +15,7 @@ public class SubEventoInexistenteException extends Exception{
         super("SubEvento não encontrado!");
     }
     public SubEventoInexistenteException(Exception e) {
-        super(e);
+        super("SubEvento não encontrado!");
     }
     
 }

@@ -15,7 +15,7 @@ public class SubEventoExistenteException extends Exception{
         super("O SubEvento já está cadastrado no sistema!");
     }
     public SubEventoExistenteException(Exception e) {
-        super(e);
+        super("O SubEvento já está cadastrado no sistema!");
     }
     
 }

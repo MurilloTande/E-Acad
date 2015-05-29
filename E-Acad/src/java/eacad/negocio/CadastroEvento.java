@@ -47,15 +47,34 @@ public class CadastroEvento implements Serializable{
      
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
     
-        List<Evento> e = this.repEvento.listarTudoEvento();
-        return e;
         
+        try {
+            List<Evento> e = this.repEvento.listarTudoEvento();
+            if(e!=null){
+            return e;
+            }
+        } catch (EventoInexistenteException a) {
+            throw new EventoInexistenteException();
+        } 
+        catch (ErroInternoException r) {
+            throw new ErroInternoException(r);
+        } 
+       return listarTudoEvento();
     }
     
     public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException{
-    
+        try{
         List<Evento> e = this.repEvento.EventosUsuario(cpf);
+        if(e!=null){
         return e;
+        }
+        } catch (EventoInexistenteException a) {
+            throw new EventoInexistenteException();
+        } 
+        catch (ErroInternoException r) {
+            throw new ErroInternoException(r);
+        } 
+       return EventosUsuario(cpf);
         
     }
     

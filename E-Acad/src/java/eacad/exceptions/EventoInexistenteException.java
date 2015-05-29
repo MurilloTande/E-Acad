@@ -7,7 +7,7 @@ public class EventoInexistenteException extends Exception{
         super("Evento não encontrado!");
     }
     public EventoInexistenteException(Exception e) {
-        super(e);
+        super("Evento não encontrado!");
     }
     
 }

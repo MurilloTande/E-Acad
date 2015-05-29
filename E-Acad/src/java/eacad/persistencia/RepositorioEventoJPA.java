@@ -7,6 +7,7 @@ package eacad.persistencia;
 
 import eacad.entidades.Evento;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.EventoInexistenteException;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -22,7 +23,7 @@ public class RepositorioEventoJPA implements RepositorioEvento{
     private EntityManager em;
     
     @Override
-     public void adicionar(Evento e) throws ErroInternoException{
+     public void adicionar(Evento e) throws ErroInternoException,DatasIncorretas{
       try {
             this.em.persist(e);
         } catch (Exception r) {

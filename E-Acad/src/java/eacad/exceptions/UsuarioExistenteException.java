@@ -8,7 +8,7 @@ public class UsuarioExistenteException extends Exception{
         super("O usuario já está cadastrado no sistema!");
     }
     public UsuarioExistenteException(Exception e) {
-        super(e);
+        super("O usuario já está cadastrado no sistema!");
     }
     
 }

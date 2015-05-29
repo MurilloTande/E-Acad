@@ -39,7 +39,10 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento{
         try {
         TypedQuery<SubEvento> consulta = this.em.createQuery("select e from SubEvento e", SubEvento.class);
         return  consulta.getResultList();
-        } catch (Exception e) {
+        } catch (NoResultException t) {
+           throw new SubEventoInexistenteException(t);
+        }
+        catch (Exception e) {
             throw new ErroInternoException(e);
         }
 }
@@ -59,7 +62,8 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento{
         
         try {
             this.em.merge(e);
-        } catch (Exception es) {
+        } 
+        catch (Exception es) {
             throw new ErroInternoException(es);
         }
         

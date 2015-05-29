@@ -44,7 +44,7 @@ public class FachadaSistema {
     this.usuarios.adicionarUsuario(usuario);
     }
 
-    public List<Usuario> listar() throws ErroInternoException {
+    public List<Usuario> listar() throws ErroInternoException, UsuarioInexistenteException {
     return this.usuarios.listar();
     }
 

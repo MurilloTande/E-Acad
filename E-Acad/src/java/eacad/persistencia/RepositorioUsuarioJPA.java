@@ -62,7 +62,11 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario{
            TypedQuery<Usuario> consulta = this.em.createQuery("select u from Usuario u where u.nome like :nome", Usuario.class);
            consulta.setParameter("nome", "%" + nome + "%");
            return consulta.getResultList();
-        } catch (Exception e) {
+        } 
+        catch (NoResultException t) {
+            throw new UsuarioInexistenteException(t);
+        }
+        catch (Exception e) {
             throw new ErroInternoException(e);
         }
     }
@@ -75,7 +79,7 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario{
             return consulta.getSingleResult();
            
         }catch(NoResultException es){
-                 throw new UsuarioInexistenteException();  
+                 throw new UsuarioInexistenteException(es);  
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }

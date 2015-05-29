@@ -8,7 +8,7 @@ public class UsuarioInexistenteException extends Exception{
         super("Usuário não encontrado!");
     }
     public UsuarioInexistenteException(Exception e) {
-        super(e);
+        super("Usuário não encontrado!");
     }
     
     

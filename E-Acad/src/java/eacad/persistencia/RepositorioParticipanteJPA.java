@@ -37,9 +37,9 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
            TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u where u.cpf like :cpf", Participante.class);
            consulta.setParameter("cpf", "%" + cpf + "%");
             return consulta.getSingleResult();
-           
-        }catch(NoResultException es){
+       }   catch(NoResultException es){
                  throw new ParticipanteInexistenteException(es);  
+        
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
@@ -52,7 +52,7 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
            TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p JOIN p.evento pe where pe.codigo = :codigo  ", Participante.class);
            consulta.setParameter("codigo",e.getCodigo());
             return consulta.getSingleResult();
-           
+       
        }catch (Exception ex) {
             throw new ErroInternoException(ex);
         }

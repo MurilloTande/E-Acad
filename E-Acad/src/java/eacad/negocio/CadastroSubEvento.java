@@ -46,7 +46,10 @@ public class CadastroSubEvento implements Serializable{
     public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException{
     
         List<SubEvento> e = this.repSubEvento.listarTudoSubEvento();
-        return e;
+        if(e!=null){return e;}
+        else{
+            throw new SubEventoInexistenteException();
+                    }
     }
     
     public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException{
@@ -58,8 +61,8 @@ public class CadastroSubEvento implements Serializable{
     List<SubEvento> e = this.repSubEvento.buscarListSubEvento(evento);
         if (e.isEmpty()) {
             throw new SubEventoInexistenteException();
-        }
-        return e;
+        }else{
+        return e;}
     }
     
     public SubEvento buscarCodigo(long codigo) throws ErroInternoException, SubEventoInexistenteException{

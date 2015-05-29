@@ -13,7 +13,7 @@ import javax.ejb.Local;
 @Local
 public interface RepositorioUsuario extends Serializable{
     public void adicionar(Usuario usuario) throws ErroInternoException;
-    public List<Usuario> listar() throws ErroInternoException;
+    public List<Usuario> listar() throws ErroInternoException,UsuarioInexistenteException;
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException;
     public List<Usuario> buscarNome(String nome) throws ErroInternoException, UsuarioInexistenteException;
     public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException;

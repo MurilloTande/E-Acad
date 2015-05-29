@@ -85,25 +85,45 @@ public class BeanSubEvento implements Serializable{
     }
     
     public List<SubEvento> listarTudoSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
-        try {
-            List<SubEvento> subEventos = this.fachada.listarTudoSubEvento();
-            return subEventos;
-        } catch (ErroInternoException ex ) {
+     try {
+            List<SubEvento> subEventos = this.fachada.buscarListSubEvento(evento);
+          
+                return subEventos;
+         
+          
+          
+        }catch (SubEventoInexistenteException ez ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ez.getMessage()));
+            return null;
+        }   
+               
+         catch (ErroInternoException ex ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
+      
+        
     }
     
     public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
         try {
             List<SubEvento> subEventos = this.fachada.buscarListSubEvento(evento);
-            return subEventos;
+          
+                return subEventos;
+         
+          
+          
+        }catch (SubEventoInexistenteException ez ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ez.getMessage()));
+            return null;
+        }   
                
-        } catch (ErroInternoException ex ) {
+         catch (ErroInternoException ex ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
       
+       
     }
 
     public String apagarSubEvento(long codigo) {
@@ -112,6 +132,7 @@ public class BeanSubEvento implements Serializable{
             
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("SubEvento removido!"));
+            return "meusEventos.xhtml";
         } catch (ErroInternoException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + ex.getMessage()));
@@ -120,7 +141,7 @@ public class BeanSubEvento implements Serializable{
                     new FacesMessage("SubEvento inexistente!" + ex1.getMessage()));
         }
 
-        return "PaginaInicial.xhtml";
+        return null;
     }
 
     public String atualizarSubEvento() {
