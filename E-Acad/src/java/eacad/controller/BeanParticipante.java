@@ -161,17 +161,16 @@ public class BeanParticipante implements Serializable{
    
      public String ValidarParticipante() throws ParticipanteExistenteException, ParticipanteInexistenteException {
         try {
-            Participante p = this.fachada.buscarValidarPartipante(eventoSelecionado);
-         if(p!=null){
-         return null;
-         }  else{
-         
-         }
-            
+            Participante p = this.fachada.buscarValidarPartipante(eventoSelecionado,participante);
+        
+           
+        } catch (ParticipanteExistenteException es) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(es.getMessage()));
+        
         } catch (ErroInternoException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
         }
 
-        return "paginaProdutos.xhtml";
+        return "";
     }
 }

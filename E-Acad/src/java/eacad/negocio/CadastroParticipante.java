@@ -54,11 +54,11 @@ public class CadastroParticipante implements Serializable{
         return u;
     }
     
-   public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
+   public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
          
        
        
-        Participante u = this.repParticipante.buscarValidarPartipante(e);
+        Participante u = this.repParticipante.buscarValidarPartipante(e,p);
           
         
         if(u==null){

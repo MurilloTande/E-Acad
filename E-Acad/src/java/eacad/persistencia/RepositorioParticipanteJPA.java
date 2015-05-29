@@ -46,12 +46,14 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
     
     }
     
-    @Override
-    public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
+    public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
        try {
-           TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p JOIN p.evento pe where pe.codigo = :codigo  ", Participante.class);
+           @SuppressWarnings("JPQLValidation")
+           TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p JOIN p.evento pe where pe.codigo = :codigo and pe.participantes.cpf = "+p.getCpf(), Participante.class);
            consulta.setParameter("codigo",e.getCodigo());
-            return consulta.getSingleResult();
+           
+           
+           return consulta.getSingleResult();
        
        }catch (Exception ex) {
             throw new ErroInternoException(ex);

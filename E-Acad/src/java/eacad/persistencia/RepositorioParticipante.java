@@ -17,7 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface RepositorioParticipante extends Serializable{
     
-    public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException;
+    public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException;
     public void adicionar(Participante e) throws ErroInternoException;
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
    

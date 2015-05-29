@@ -139,8 +139,8 @@ public class FachadaSistema {
     return this.participante.buscar(cpf);
     } 
     
-    public Participante buscarValidarPartipante(Evento e) throws ErroInternoException, ParticipanteExistenteException {
-    return this.participante.buscarValidarPartipante(e);
+    public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
+    return this.participante.buscarValidarPartipante(e,p);
     }
      
    
