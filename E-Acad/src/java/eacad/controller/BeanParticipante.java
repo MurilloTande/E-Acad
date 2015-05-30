@@ -158,13 +158,24 @@ public class BeanParticipante implements Serializable{
     public String SubEventoSelect(long codigo) throws SubEventoInexistenteException, ErroInternoException {
         try {
             SubEvento e = this.fachada.buscarCodigoSubEvento(codigo);
+            int cont=0;
             this.subEventoSelecionado = e;
+            
+            
             if(part_subEvento.isEmpty()){
            this.part_subEvento.add(e);
             }else{
-             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Inscrição efetuado com sucesso!"));
-            }
+                for(SubEvento x: part_subEvento){
+                if(e.getCodigo()!=x.getCodigo()){
+                cont++;    
+                }}}
+            
+            
+            if(cont >= part_subEvento.size()){
+            this.part_subEvento.add(e);
+            }    
+                
+            
             
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("SubEvento Selecionado!"));

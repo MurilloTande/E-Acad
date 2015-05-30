@@ -46,6 +46,32 @@ and open the template in the editor.
                 </p:layoutUnit>
                 <p:layoutUnit position="center">
                     
+                    <p:panel header="Seus SubEventos Cadastrados">
+                        <p:dataTable value="#{beanParticipante.buscarListSubEvento()}" var="p" paginator="true" rows="5">
+                            <p:column headerText="Código">
+                                <h:outputText value="#{p.codigo}"/>
+                            </p:column>
+
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{p.nome}"/>
+                            </p:column>
+
+                            <p:column headerText="Descrição">
+                                <h:outputText value="#{p.descricao}"/>
+                            </p:column>
+
+                            <p:column headerText="Nome do Criador">
+                                <h:outputText value="#{p.eventoPai.criador.nome}"/>
+                            </p:column>
+                            <p:column>
+                             <p:commandButton value="ParticipantesSubEvento" icon="ui-icon-pencil" title="ParticipantesSubEvento"
+                                              actionListener="#{beanParticipante.SubEventoSelect(p.codigo)}"
+                                                 action="ParticipantesSubEvento.xhtml" ajax="false" />
+                                 
+                            </p:column>   
+                        </p:dataTable>
+                    </p:panel>
+                    
                     <p:panel header="Participantes do Evento">
                         <p:dataTable value="#{beanParticipante.eventosParticipante()}" var="p" paginator="true" rows="5">
                             <p:column headerText="CPF">

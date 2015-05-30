@@ -4,6 +4,7 @@
 package eacad.negocio;
 
 import eacad.entidades.Evento;
+import eacad.entidades.SubEvento;
 import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
@@ -11,6 +12,7 @@ import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
 import eacad.persistencia.RepositorioEvento;
+import eacad.persistencia.RepositorioSubEvento;
 import eacad.persistencia.RepositorioUsuario;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +27,8 @@ public class CadastroUsuario implements Serializable {
    private RepositorioUsuario repUsuario;
      @EJB
    private RepositorioEvento repEvento;
+     @EJB
+    private RepositorioSubEvento repSubEvento;
 
     public CadastroUsuario() {
     }
@@ -94,15 +98,25 @@ public class CadastroUsuario implements Serializable {
         try {
             
             for(Evento e: this.repEvento.EventosUsuario(temp.getCpf())){
-            if(e != null){
+            if(e == null){
+            break;   
+            }else{               
+                
+                for(SubEvento a : this.repSubEvento.buscarListSubEvento(this.repEvento.buscarCodigo(e.getCodigo()))){
+            if(a == null){    
+            break;    
+            }else{
+                this.repSubEvento.remover(a.getCodigo());    
+            }}
+                
                 this.repEvento.remover(e.getCodigo());
             }}
             
             this.repUsuario.remover(cpf);
-        } catch (ErroInternoException e) {
-            throw new ErroInternoException(e);
-        }
-    
+        } catch (ErroInternoException ex) {
+            throw new ErroInternoException(ex);
+        } 
     }
+
 
 }
