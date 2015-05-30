@@ -41,6 +41,7 @@ public class Evento implements Serializable{
     private Usuario criador;
     private List<Participante> participantes;
     private List<SubEvento> subEventos;
+    private Participante participante_evento;
     
 
     /**
@@ -263,8 +264,12 @@ public class Evento implements Serializable{
      * @see java.util.List
      * "@ManyToMany" indica muitos para muitos no JPA.
     */
-    @OneToMany(mappedBy = "evento")
-    @ManyToMany
+   
+    
+    
+    
+    
+    @ManyToMany(mappedBy = "evento")
     public List<Participante> getParticipantes() {
         return participantes;
     }
@@ -336,6 +341,15 @@ public class Evento implements Serializable{
         }
         
         return true;
+    }
+
+    @ManyToOne
+    public Participante getParticipante_evento() {
+        return participante_evento;
+    }
+
+    public void setParticipante_evento(Participante participante_evento) {
+        this.participante_evento = participante_evento;
     }
 
  

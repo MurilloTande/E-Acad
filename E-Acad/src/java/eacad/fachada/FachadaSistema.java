@@ -86,7 +86,10 @@ public class FachadaSistema {
     }
     
     public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException{
-    return this.buscarNomeListEvento(nome);
+    return this.evento.buscarNomeListEvento(nome);
+    }
+    public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException{
+    return this.evento.buscarValidarPartipante(f, p);
     }
     
     public Evento buscarCodigoEvento(long codigo) throws ErroInternoException, EventoInexistenteException{
@@ -94,7 +97,7 @@ public class FachadaSistema {
     }
     
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
-    return this.buscarNomeEvento(nome);
+    return this.evento.buscarNomeEvento(nome);
     }
     
     public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException{
@@ -139,10 +142,13 @@ public class FachadaSistema {
     return this.participante.buscar(cpf);
     } 
     
-    public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
-    return this.participante.buscarValidarPartipante(e,p);
-    }
-     
+   public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException{
+   return this.participante.listarTudoEventoParticipante(e);
+   }
+   public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException{
+   return this.participante.listarTudoSubEventoParticipante(e);
+   }
+   
    
     
 }

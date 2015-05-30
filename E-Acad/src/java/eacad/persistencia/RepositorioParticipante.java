@@ -7,6 +7,7 @@ package eacad.persistencia;
 
 import eacad.entidades.Evento;
 import eacad.entidades.Participante;
+import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
@@ -17,7 +18,8 @@ import javax.ejb.Local;
 @Local
 public interface RepositorioParticipante extends Serializable{
     
-    public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException;
+    public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException;
+    public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException;
     public void adicionar(Participante e) throws ErroInternoException;
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
    

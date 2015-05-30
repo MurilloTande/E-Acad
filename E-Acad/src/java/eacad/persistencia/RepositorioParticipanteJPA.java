@@ -7,9 +7,11 @@ package eacad.persistencia;
 
 import eacad.entidades.Evento;
 import eacad.entidades.Participante;
+import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -31,6 +33,33 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
         }
      }
     
+     public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException{
+     try {
+           TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u join u.evento ue on ue.codigo = :codigo ", Participante.class);
+           consulta.setParameter("codigo",e.getCodigo());
+            return consulta.getResultList();
+       }   catch(NoResultException es){
+                 throw new ParticipanteInexistenteException(es);  
+        
+        } catch (Exception ex) {
+            throw new ErroInternoException(ex);
+        }
+     }
+    @Override
+    public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException{
+     try {
+           TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u join u.subEvento ue on ue.codigo = :codigo ", Participante.class);
+           consulta.setParameter("codigo",e.getCodigo());
+            return consulta.getResultList();
+       }   catch(NoResultException es){
+                 throw new ParticipanteInexistenteException(es);  
+        
+        } catch (Exception ex) {
+            throw new ErroInternoException(ex);
+        }
+     }
+     
+    
     @Override
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
        try {
@@ -46,18 +75,6 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante{
     
     }
     
-    public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
-       try {
-           @SuppressWarnings("JPQLValidation")
-           TypedQuery<Participante> consulta = this.em.createQuery("select p from Participante p JOIN p.evento pe where pe.codigo = :codigo and pe.participantes.cpf = "+p.getCpf(), Participante.class);
-           consulta.setParameter("codigo",e.getCodigo());
-           
-           
-           return consulta.getSingleResult();
-       
-       }catch (Exception ex) {
-            throw new ErroInternoException(ex);
-        }
-    }
+    
     
 }

@@ -12,6 +12,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  * "@Entity" é usada para informar que a classe Participante é uma entidade no JPA.
@@ -106,6 +107,10 @@ public class Participante implements Serializable{
      * @return List - Retorna o evento.
      * "@ManyToMany", identifica o Muitos para Muitos no JPA.
      */
+    
+    
+    
+    
     @ManyToMany
     public List<Evento> getEvento() {
         return evento;
@@ -121,6 +126,7 @@ public class Participante implements Serializable{
     /**
      * @return String - Retorna os subEventos.
      */
+    @ManyToMany
     public List<SubEvento> getSubEvento() {
         return subEvento;
     }

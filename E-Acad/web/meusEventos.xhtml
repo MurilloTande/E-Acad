@@ -48,10 +48,7 @@ and open the template in the editor.
                 <p:layoutUnit position="center">
                     <p:panel header="Seus Eventos Cadastrados">
                         <p:dataTable value="#{beanEvento.eventosUsuario()}" var="p" paginator="true" rows="5">
-                            <p:column headerText="Código">
-                                <h:outputText value="#{p.codigo}"/>
-                            </p:column>
-
+                           
                             <p:column headerText="Nome">
                                 <h:outputText value="#{p.nome}"/>
                             </p:column>
@@ -60,11 +57,11 @@ and open the template in the editor.
                                 <h:outputText value="#{p.descricao}"/>
                             </p:column>
 
-                            <p:column headerText="Criador">
-                                <h:outputText value="#{p.criador.nome}"/>
+                            <p:column headerText="Local">
+                                <h:outputText value="#{p.localidade}"/>
                             </p:column>
 
-                            <p:column>
+                            <p:column headerText="Funcionalidades" >
                              
                               <p:commandButton value="Editar" icon="ui-icon-pencil" title="Editar"
                                                actionListener="#{beanEvento.EventoSelect(p.codigo)}"
@@ -78,6 +75,11 @@ and open the template in the editor.
                                  <p:commandButton value="CriarSubEventos" icon="ui-icon-pencil" title="CriarSubEventos"
                                                   actionListener="#{beanSubEvento.EventoSelect(p.codigo)}"
                                                  action="CriarSubEventos.xhtml" ajax="false" />
+                                 <p:commandButton value="ParticipantesEvento" icon="ui-icon-pencil" title="ParticipantesEvento"
+                                                  actionListener="#{beanParticipante.EventoSelect(p.codigo)}"
+                                                 action="ParticipantesEvento.xhtml" ajax="false" />
+                                 
+                               
                               
                                 
                             </p:column>

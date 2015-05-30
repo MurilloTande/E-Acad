@@ -6,10 +6,12 @@
 package eacad.negocio;
 
 import eacad.entidades.Evento;
+import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.persistencia.RepositorioEvento;
 import eacad.persistencia.RepositorioSubEvento;
@@ -87,6 +89,14 @@ public class CadastroEvento implements Serializable{
     List<Evento> e = this.repEvento.buscarNomeListEvento(nome);
         if ((e.isEmpty())) {
             throw new EventoInexistenteException();
+        }
+        return e;
+    }
+    
+    public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException{
+     Evento e = this.repEvento.buscarValidarPartipante(f, p);
+        if (e != null) {
+            throw new ParticipanteExistenteException();
         }
         return e;
     }

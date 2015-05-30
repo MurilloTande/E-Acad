@@ -7,6 +7,7 @@ package eacad.negocio;
 
 import eacad.entidades.Evento;
 import eacad.entidades.Participante;
+import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
@@ -54,22 +55,11 @@ public class CadastroParticipante implements Serializable{
         return u;
     }
     
-   public Participante buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
-         
-       
-       
-        Participante u = this.repParticipante.buscarValidarPartipante(e,p);
-          
-        
-        if(u==null){
-   return u;
-   }else{
-          throw new ParticipanteExistenteException();
-           }
-      
-        
-    }
-
-   
+public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException{
+return this.repParticipante.listarTudoEventoParticipante(e);
+}
+   public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException{
+return this.repParticipante.listarTudoSubEventoParticipante(e);
+}
    
 }

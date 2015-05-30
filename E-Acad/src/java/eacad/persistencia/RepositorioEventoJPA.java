@@ -6,9 +6,11 @@
 package eacad.persistencia;
 
 import eacad.entidades.Evento;
+import eacad.entidades.Participante;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.ParticipanteExistenteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,6 +31,15 @@ public class RepositorioEventoJPA implements RepositorioEvento{
         } catch (Exception r) {
             throw new ErroInternoException(r);
         }
+     }
+     
+    @Override
+     public Evento buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException{
+       
+        return null;
+         
+       
+     
      }
      
     @Override

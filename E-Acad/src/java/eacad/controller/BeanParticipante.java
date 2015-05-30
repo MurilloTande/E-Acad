@@ -126,6 +126,35 @@ public class BeanParticipante implements Serializable{
         return "PaginaInicial.xhtml";
     }
     
+     public List<Participante> eventosParticipante() throws ParticipanteInexistenteException {
+        try {
+            List<Participante> a= this.fachada.listarTudoEventoParticipante(eventoSelecionado);
+            return a;
+        } catch (ErroInternoException ex ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return null;
+        }
+    }
+      public List<Participante> subEventosParticipante() throws ParticipanteInexistenteException {
+        try {
+            List<Participante> a= this.fachada.listarTudoSubEventoParticipante(subEventoSelecionado);
+            return a;
+        } catch (ErroInternoException ex ) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+            return null;
+        }
+    }
+     
+    public String ValidarParticipante() throws ParticipanteExistenteException, ErroInternoException {
+      
+            this.fachada.buscarValidarPartipante(eventoSelecionado,participante);
+            
+            
+        
+        return null;
+    
+    }
+    
     public String SubEventoSelect(long codigo) throws SubEventoInexistenteException, ErroInternoException {
         try {
             SubEvento e = this.fachada.buscarCodigoSubEvento(codigo);
@@ -159,18 +188,4 @@ public class BeanParticipante implements Serializable{
     }
     
    
-     public String ValidarParticipante() throws ParticipanteExistenteException, ParticipanteInexistenteException {
-        try {
-            Participante p = this.fachada.buscarValidarPartipante(eventoSelecionado,participante);
-        
-           
-        } catch (ParticipanteExistenteException es) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(es.getMessage()));
-        
-        } catch (ErroInternoException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
-        }
-
-        return "";
-    }
 }

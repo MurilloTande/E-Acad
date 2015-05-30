@@ -106,6 +106,8 @@ public class BeanEvento implements Serializable{
         }
     }
     
+    
+    
     public String atualizarEvento() {
         try {
             this.fachada.atualizarEvento(eventoSelecionado);
@@ -118,6 +120,11 @@ public class BeanEvento implements Serializable{
 
         return "meusEventos.xhtml";
     }
+    
+       
+
+        
+    
     
     public String apagarEvento(long codigo) throws EventoInexistenteException {
         try {
