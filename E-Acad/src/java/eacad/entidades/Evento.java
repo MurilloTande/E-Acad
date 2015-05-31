@@ -1,9 +1,11 @@
-/** Classe para objetos do tipo Evento, onde serão contidos, atributos e métodos para o mesmo.<p/>
- * 
- *  @author Murillo Tande
- *  @author Matheus Barbosa
- *  @author Hugo Calado
- *  @author Felipe Xavier
+/**
+ * Classe para objetos do tipo Evento, onde serão contidos, atributos e métodos
+ * para o mesmo.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.entidades;
 
@@ -26,8 +28,8 @@ import javax.persistence.TemporalType;
  * "@Entity" é usada para informar que a classe Evento é uma entidade no JPA.
  */
 @Entity
-public class Evento implements Serializable{
-    
+public class Evento implements Serializable {
+
     private long codigo;
     private String nome;
     private String descricao;
@@ -42,7 +44,6 @@ public class Evento implements Serializable{
     private List<Participante> participantes;
     private List<SubEvento> subEventos;
     private Participante participante_evento;
-    
 
     /**
      * Construtor vazio.
@@ -52,16 +53,17 @@ public class Evento implements Serializable{
 
     /**
      * Construtor com todos os atritutos inicializados.
-     * @param codigo
-     * @param nome
-     * @param descricao
-     * @param data_inicio
-     * @param data_final
-     * @param localidade
-     * @param endereco
-     * @param cidade
-     * @param total_vagas
-     * @param estado
+     *
+     * @param codigo;
+     * @param nome;
+     * @param descricao;
+     * @param data_inicio;
+     * @param data_final;
+     * @param localidade;
+     * @param endereco;
+     * @param cidade;
+     * @param total_vagas;
+     * @param estado;
      */
     public Evento(long codigo, String nome, String descricao, Date data_inicio, Date data_final, String localidade, String endereco, String cidade, String estado, int total_vagas) {
         this.codigo = codigo;
@@ -73,89 +75,92 @@ public class Evento implements Serializable{
         this.endereco = endereco;
         this.cidade = cidade;
         this.estado = estado;
-        this.total_vagas = total_vagas;  
+        this.total_vagas = total_vagas;
     }
-    
-    
+
     /**
-     * @return long - codigo do evento.
-     * "@Id" e "@GeneratedValue" indicam respectivamente que o atributo é a chave principal do Evento e nele o valor é gerado automaticamente. 
+     * @return long - codigo do evento. "@Id" e "@GeneratedValue" indicam
+     * respectivamente que o atributo é a chave principal do Evento e nele o
+     * valor é gerado automaticamente.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getCodigo() {
         return codigo;
     }
+
     /**
-     * @param codigo
+     * @param codigo;
      */
     public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
-    
+
     /**
-     * "@Column" define que a coluna será única e não poderá receber um atributo null
-     * @return  String - Nome do Evento.
-     * 
-    */
-    @Column (unique = true, nullable = false)
+     * "@Column" define que a coluna será única e não poderá receber um atributo
+     * null
+     *
+     * @return String - Nome do Evento;
+     *
+     */
+    @Column(unique = true, nullable = false)
     public String getNome() {
         return nome;
     }
 
     /**
-     * @param nome
-    */
+     * @param nome;
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
     /**
-     * @return String - Descrição do evento
-    */
+     * @return String - Descrição do evento.
+     */
     public String getDescricao() {
         return descricao;
     }
-    
+
     /**
-     * @param descricao
-    */
+     * @param descricao;
+     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
     /**
-     * @return Date - Data em que o evento será iniciado.
-     * "@Temporal" é usado para definir o tipo Date no JPA.
-    */
+     * @return Date - Data em que o evento será iniciado. "@Temporal" é usado
+     * para definir o tipo Date no JPA.
+     */
     @Temporal(TemporalType.DATE)
     public Date getData_inicio() {
         return data_inicio;
     }
 
     /**
-     * @param data_inicio
-    */
+     * @param data_inicio;
+     */
     public void setData_inicio(Date data_inicio) {
         this.data_inicio = data_inicio;
     }
 
     /**
-     * @return Date - Data em que o evento terá fim.
-     * "@Temporal" é usado para definir o tipo Date no JPA.
-    */
+     * @return Date - Data em que o evento terá fim. "@Temporal" é usado para
+     * definir o tipo Date no JPA.
+     */
     @Temporal(TemporalType.DATE)
     public Date getData_final() {
         return data_final;
     }
-    
+
     /**
-     * @param data_final
+     * @param data_final;
      */
     public void setData_final(Date data_final) {
         this.data_final = data_final;
     }
-    
+
     /**
      * @return String - Local onde ocorrerá o evento.
      */
@@ -164,7 +169,7 @@ public class Evento implements Serializable{
     }
 
     /**
-     * @param localidade
+     * @param localidade;
      */
     public void setLocalidade(String localidade) {
         this.localidade = localidade;
@@ -178,7 +183,7 @@ public class Evento implements Serializable{
     }
 
     /**
-     * @param endereco
+     * @param endereco;
      */
     public void setEndereco(String endereco) {
         this.endereco = endereco;
@@ -192,7 +197,7 @@ public class Evento implements Serializable{
     }
 
     /**
-     * @param cidade
+     * @param cidade;
      */
     public void setCidade(String cidade) {
         this.cidade = cidade;
@@ -206,7 +211,7 @@ public class Evento implements Serializable{
     }
 
     /**
-     * @param estado
+     * @param estado;
      */
     public void setEstado(String estado) {
         this.estado = estado;
@@ -220,32 +225,33 @@ public class Evento implements Serializable{
     }
 
     /**
-     * @param total_vagas
+     * @param total_vagas;
      */
     public void setTotal_vagas(int total_vagas) {
         this.total_vagas = total_vagas;
     }
-    
+
     /**
-     * @return Usuario - Indica o criador do evento.
-     * "@ManyToOne" anotação utilizada para informar uma relação Muitos para um.
+     * @return Usuario - Indica o criador do evento. "@ManyToOne" anotação
+     * utilizada para informar uma relação Muitos para um.
      */
     @ManyToOne
-    public Usuario getCriador(){
+    public Usuario getCriador() {
         return this.criador;
     }
-    
+
     /**
-     * @param criador
+     * @param criador;
      */
-    public void setCriador(Usuario criador){
-    this.criador = criador;
+    public void setCriador(Usuario criador) {
+        this.criador = criador;
     }
-    
+
     /**
      * @return List - retorna todos os subeventos do Evento principal<p/>
      * @see java.util.List<p/>
-     * "@OneToMany" indica o mapeamento de um para muitos no JPA, e o mappedBy indica onde está mapeado.
+     * "@OneToMany" indica o mapeamento de um para muitos no JPA, e o mappedBy
+     * indica onde está mapeado.
      */
     @OneToMany(mappedBy = "eventoPai")
     public List<SubEvento> getSubEventos() {
@@ -259,26 +265,35 @@ public class Evento implements Serializable{
         this.subEventos = subEventos;
     }
 
-   /**
+    /**
      * @return List - retorna lista de participantes registrados no evento.
-     * @see java.util.List
-     * "@ManyToMany" indica muitos para muitos no JPA.
-    */
-   
-    
-    
-    
-    
+     * @see java.util.List; "@ManyToMany" indica muitos para muitos no JPA.
+     */
     @ManyToMany(mappedBy = "evento")
     public List<Participante> getParticipantes() {
         return participantes;
     }
-    
+
     /**
-     * @param participantes
+     * @param participantes;
      */
     public void setParticipantes(List<Participante> participantes) {
         this.participantes = participantes;
+    }
+
+    /**
+     * @return Participante.
+     */
+    @ManyToOne
+    public Participante getParticipante_evento() {
+        return participante_evento;
+    }
+
+    /**
+     * @param participante_evento;
+     */
+    public void setParticipante_evento(Participante participante_evento) {
+        this.participante_evento = participante_evento;
     }
 
     /**
@@ -296,7 +311,7 @@ public class Evento implements Serializable{
         hash = 79 * hash + Objects.hashCode(this.cidade);
         hash = 79 * hash + Objects.hashCode(this.estado);
         hash = 79 * hash + this.total_vagas;
-       
+
         return hash;
     }
 
@@ -339,21 +354,8 @@ public class Evento implements Serializable{
         if (this.total_vagas != other.total_vagas) {
             return false;
         }
-        
+
         return true;
     }
 
-    @ManyToOne
-    public Participante getParticipante_evento() {
-        return participante_evento;
-    }
-
-    public void setParticipante_evento(Participante participante_evento) {
-        this.participante_evento = participante_evento;
-    }
-
- 
-    
-    
-    
 }

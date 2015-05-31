@@ -1,4 +1,12 @@
-
+/**
+ * Classe da Fachada do sistema, onde estão contidos todos os métodos in-line do
+ * sistema.
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
+ */
 package eacad.fachada;
 
 import eacad.entidades.Evento;
@@ -23,13 +31,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
-/**
- * @author Tande
- */
-
 @Stateless
 public class FachadaSistema {
-    
+
     @EJB
     private CadastroUsuario usuarios;
     @EJB
@@ -38,118 +42,316 @@ public class FachadaSistema {
     private CadastroSubEvento subEvento;
     @EJB
     private CadastroParticipante participante;
-    
+
     //---------------------------Usuario---------------------------
+    /**
+     * Assinatura in line do método adicionar.
+     *
+     * @param usuario;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.UsuarioExistenteException;
+     * @throws eacad.exceptions.UsuarioInexistenteException;
+     */
     public void adicionarUsuario(Usuario usuario) throws ErroInternoException, UsuarioExistenteException, UsuarioInexistenteException {
-    this.usuarios.adicionarUsuario(usuario);
+        this.usuarios.adicionarUsuario(usuario);
     }
 
+    /**
+     * Assinatura in line do método listar Usuário.
+     *
+     * @return List;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.UsuarioInexistenteException;
+     */
     public List<Usuario> listar() throws ErroInternoException, UsuarioInexistenteException {
-    return this.usuarios.listar();
+        return this.usuarios.listar();
     }
 
+    /**
+     * Assinatura in line do método atualizar Usuário.
+     *
+     * @param usuario;
+     * @throws ErroInternoException;
+     * @throws UsuarioInexistenteException;
+     */
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException {
-    this.usuarios.Atualizar(usuario);
+        this.usuarios.Atualizar(usuario);
     }
 
-    public List<Usuario> buscarNome(String nome) throws ErroInternoException, UsuarioInexistenteException {
-    return this.usuarios.buscarNome(nome);
-    }
-
+    /**
+     * Assinatura in line do método buscar Usuário.
+     *
+     * @param cpf;
+     * @return Usuario.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.UsuarioInexistenteException;
+     */
     public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
-    return this.usuarios.buscar(cpf);
+        return this.usuarios.buscar(cpf);
     }
-    
-    public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
-    return this.usuarios.buscarEmail(email);
-    }
-    
-    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException{
-    this.usuarios.remover(cpf);
-    }
-    
-    //---------------------------Evento---------------------------
-    public void adicionarEvento(Evento e) throws ErroInternoException, EventoExistenteException, DatasIncorretas{
-    this.evento.adicionar(e);
-    }
-     
-    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
-    return this.evento.listarTudoEvento();
-    }
-    
-    public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException{
-    return this.evento.EventosUsuario(cpf);
-    }
-    
-    public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException{
-    this.evento.atualizar(e);
-    }
-    
-    public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException{
-    return this.evento.buscarNomeListEvento(nome);
-    }
-    public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException{
-    return this.evento.buscarValidarPartipante(f, p);
-    }
-    
-    public Evento buscarCodigoEvento(long codigo) throws ErroInternoException, EventoInexistenteException{
-    return this.evento.buscarCodigo(codigo);
-    }
-    
-    public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
-    return this.evento.buscarNomeEvento(nome);
-    }
-    
-    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException{
-    this.evento.remover(codigo);
-    }
-    
-    //---------------------------SubEvento---------------------------
-    public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException, DatasIncorretas{
-    this.subEvento.adicionar(e);
-    }
-     
-    public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException{
-    return this.subEvento.listarTudoSubEvento();
-    }
-    
-    public void atualizarSubEvento(SubEvento e) throws ErroInternoException, SubEventoInexistenteException{
-    this.subEvento.atualizar(e);
-    }
-    
-    public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException{
-    return this.subEvento.buscarListSubEvento(evento);
-    }
-    
-    public SubEvento buscarCodigoSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{
-    return this.subEvento.buscarCodigo(codigo);
-    }
-    
-    public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException{
-    return this.subEvento.buscarNomeSubEvento(nome);
-    }
-    
-    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException{
-    this.subEvento.remover(codigo);
-    }
-    
-    //---------------------------Participante---------------------------
-    public void adicionarParticipante(Participante e) throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException{
-    this.participante.adicionar(e);
-    }
-    
-    public Participante buscarParticipante(String cpf) throws ErroInternoException, ParticipanteInexistenteException{
-    return this.participante.buscar(cpf);
-    } 
-    
-   public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException{
-   return this.participante.listarTudoEventoParticipante(e);
-   }
-   public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException{
-   return this.participante.listarTudoSubEventoParticipante(e);
-   }
-   
-   
-    
-}
 
+    /**
+     * Assinatura in line do método buscar Usuário através do e-mail.
+     *
+     * @param email;
+     * @return Usuário.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.UsuarioInexistenteException;
+     */
+    public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
+        return this.usuarios.buscarEmail(email);
+    }
+
+    /**
+     * Assinatura in line do método remover Usuário.
+     *
+     * @param cpf;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.SubEventoInexistenteException;
+     */
+    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException {
+        this.usuarios.remover(cpf);
+    }
+
+    //---------------------------Evento---------------------------
+    /**
+     * Assinatura in line do método adicionar Evento.
+     *
+     * @param e;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoExistenteException;
+     * @throws eacad.exceptions.DatasIncorretas;
+     */
+    public void adicionarEvento(Evento e) throws ErroInternoException, EventoExistenteException, DatasIncorretas {
+        this.evento.adicionar(e);
+    }
+
+    /**
+     * Assinatura in line do método listar Evento.
+     *
+     * @return List.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException {
+        return this.evento.listarTudoEvento();
+    }
+
+    /**
+     * Assinatura in line do método listar Eventos de um Usuário.
+     *
+     * @param cpf;
+     * @return List.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException {
+        return this.evento.EventosUsuario(cpf);
+    }
+
+    /**
+     * Assinatura in line do método atualizar Evento.
+     *
+     * @param e;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException {
+        this.evento.atualizar(e);
+    }
+
+    /**
+     * Assinatura in line do método buscar Evento através do nome.
+     *
+     * @param nome;
+     * @return List.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException {
+        return this.evento.buscarNomeListEvento(nome);
+    }
+
+    /**
+     * Assinatura in line do método validação de Participante em um Evento.
+     *
+     * @param f;
+     * @param p;
+     * @return Evento.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteExistenteException;
+     */
+    public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException {
+        return this.evento.buscarValidarPartipante(f, p);
+    }
+
+    /**
+     * Assinatura in line do método buscar Evento, através do código.
+     *
+     * @param codigo
+     * @return Evento.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    public Evento buscarCodigoEvento(long codigo) throws ErroInternoException, EventoInexistenteException {
+        return this.evento.buscarCodigo(codigo);
+    }
+
+    /**
+     * Assinatura in line do método buscar Evento, através do nome.
+     *
+     * @param nome;
+     * @return Evento.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException {
+        return this.evento.buscarNomeEvento(nome);
+    }
+
+    /**
+     * Assinatura in line do método remover Evento.
+     *
+     * @param codigo;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     * @throws SubEventoInexistenteException;
+     */
+    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException {
+        this.evento.remover(codigo);
+    }
+
+    //---------------------------SubEvento---------------------------
+    /**
+     * Assinatura in line do método adicionar SubEvento.
+     *
+     * @param e;
+     * @throws ErroInternoException;
+     * @throws SubEventoExistenteException;
+     * @throws DatasIncorretas;
+     */
+    public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException, DatasIncorretas {
+        this.subEvento.adicionar(e);
+    }
+
+    /**
+     * Assinatura in line do método listar SubEvento.
+     *
+     * @return List;
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException {
+        return this.subEvento.listarTudoSubEvento();
+    }
+
+    /**
+     * Assinatura in line do método atualizar SubEvento.
+     *
+     * @param e;
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public void atualizarSubEvento(SubEvento e) throws ErroInternoException, SubEventoInexistenteException {
+        this.subEvento.atualizar(e);
+    }
+
+    /**
+     * Assinatura in line do método buscar SubEvento.
+     *
+     * @param evento;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException {
+        return this.subEvento.buscarListSubEvento(evento);
+    }
+
+    /**
+     * Assinatura in line do método buscar SubEvento, através do código.
+     *
+     * @param codigo;
+     * @return SubEvento.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.SubEventoInexistenteException;
+     */
+    public SubEvento buscarCodigoSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException {
+        return this.subEvento.buscarCodigo(codigo);
+    }
+
+    /**
+     * Assinatura in line do método buscar SubEvento, através do nome.
+     *
+     * @param nome;
+     * @return SubEvento.
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException {
+        return this.subEvento.buscarNomeSubEvento(nome);
+    }
+
+    /**
+     * Assinatura in line do método remover SubEvento.
+     *
+     * @param codigo;
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException {
+        this.subEvento.remover(codigo);
+    }
+
+    //---------------------------Participante---------------------------
+    /**
+     * Assinatura in line do método buscar adicionar Participante.
+     *
+     * @param e;
+     * @throws ErroInternoException;
+     * @throws ParticipanteExistenteException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public void adicionarParticipante(Participante e) throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
+        this.participante.adicionar(e);
+    }
+
+    /**
+     * Assinatura in line do método buscar Participante.
+     *
+     * @param cpf;
+     * @return Participante.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public Participante buscarParticipante(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+        return this.participante.buscar(cpf);
+    }
+
+    /**
+     * Assinatura in line do método listar Participantes de um Evento.
+     *
+     * @param e;
+     * @return List;
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException {
+        return this.participante.listarTudoEventoParticipante(e);
+    }
+
+    /**
+     * Assinatura in line do método listar Participantes de um SubEvento.
+     *
+     * @param e;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException {
+        return this.participante.listarTudoSubEventoParticipante(e);
+    }
+
+}

@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe de negócios, Evento, onde serão contidos os métodos da camada de
+ * negócio.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.negocio;
 
@@ -28,13 +32,27 @@ public class CadastroEvento implements Serializable{
     @EJB
     private RepositorioSubEvento repSubEvento;
 
+    /**
+     * Construtor vazio.
+     */
     public CadastroEvento() {
     }
 
+    /**
+     * Cosntrutor com o RepositorioEvento para implementação da camada de negócio.
+     * @param repEvento;
+     */
     public CadastroEvento(RepositorioEvento repEvento) {
         this.repEvento = repEvento;
     }
     
+    /**
+     * Método para adicionar Evento;
+     * @see eacad.persistencia.RepositorioEvento.adicionar;
+     * @param e;
+     * @throws ErroInternoException;
+     * @throws DatasIncorretas;
+     */
      public void adicionar(Evento e) throws ErroInternoException, DatasIncorretas{
          
               if(e.getData_final().after(e.getData_inicio()) || e.getData_inicio().equals(e.getData_final())){
@@ -46,7 +64,13 @@ public class CadastroEvento implements Serializable{
                }else{
                  throw new DatasIncorretas(); 
      }}
-     
+    /**
+     * Método ListarTudoEvento.
+     * @see eacad.persistencia.RepositorioEvento.litsarTudoEvento;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */ 
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
     
         
@@ -63,7 +87,14 @@ public class CadastroEvento implements Serializable{
         } 
        return listarTudoEvento();
     }
-    
+    /**
+     * Método EventosUsuário.
+     * @see eacad.persistencia.RepositorioEvento.EventosUsuario;
+     * @param cpf;
+     * @return List;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
     public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException{
         try{
         List<Evento> e = this.repEvento.EventosUsuario(cpf);
@@ -79,12 +110,26 @@ public class CadastroEvento implements Serializable{
        return EventosUsuario(cpf);
         
     }
-    
+    /**
+     * Método atualizar Evento.
+     * @see eacad.persistencia.RepositorioEvento.atualizar;
+     * @param e;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
     public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
     
     this.repEvento.atualizar(e);
         
     }
+    /**
+     * Método buscarNomeListEvento.
+     * @see eacad.persistencia.RepositorioEvento.buscarNomeListEvento;
+     * @param nome;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
     public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException{
     List<Evento> e = this.repEvento.buscarNomeListEvento(nome);
         if ((e.isEmpty())) {
@@ -93,6 +138,15 @@ public class CadastroEvento implements Serializable{
         return e;
     }
     
+    /** 
+     * Método buscarValidarParticipante, Evento.
+     * @see eacad.persistencia.RepositorioEvento.buscarValidarParticipante;
+     * @param f;
+     * @param p;
+     * @return Evento
+     * @throws ErroInternoException;
+     * @throws ParticipanteExistenteException;
+     */
     public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException{
      Evento e = this.repEvento.buscarValidarPartipante(f, p);
         if (e != null) {
@@ -101,6 +155,14 @@ public class CadastroEvento implements Serializable{
         return e;
     }
     
+    /**
+     * Método buscarCodigo Evento.
+     * @see eacad.persistencia.RepositorioEvento.buscarCodigo;
+     * @param codigo;
+     * @return Evento;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
     public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException{
     Evento e = this.repEvento.buscarCodigo(codigo);
 
@@ -110,6 +172,14 @@ public class CadastroEvento implements Serializable{
         return e;
     }
     
+    /**
+     * Método buscarNomeEvento.
+     * @see eacad.persistencia.RepositorioEvento.buscarNomeEvento;
+     * @param nome;
+     * @return Evento.
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
      Evento e = this.repEvento.buscarNomeEvento(nome);
         if (e == null) {
@@ -118,6 +188,14 @@ public class CadastroEvento implements Serializable{
         return e;
     }
     
+    /**
+     * Método para remover Evento.
+     * @see eacad.persistencia.RepositorioEvento.remover;
+     * @param codigo;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     * @throws SubEventoInexistenteException;
+     */
     public void remover(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException{
         Evento temp = this.repEvento.buscarCodigo(codigo);
         

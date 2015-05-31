@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Clase repositório Participante, onde serão contidas os metodos da camada de
+ * persistência em conexão com a base de dados.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.persistencia;
 
@@ -19,62 +23,88 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 @Stateless
-public class RepositorioParticipanteJPA implements RepositorioParticipante{
-    
+public class RepositorioParticipanteJPA implements RepositorioParticipante {
+
     @PersistenceContext(unitName = "EacadPU")
     private EntityManager em;
-    
+
+    /**
+     * Método para adicionar um Participante a base de dados
+     *
+     * @param e;
+     * @throws eacad.exceptions.ErroInternoException;
+     */
     @Override
-    public void adicionar(Participante e) throws ErroInternoException{
-      try {
+    public void adicionar(Participante e) throws ErroInternoException {
+        try {
             this.em.persist(e);
         } catch (Exception r) {
             throw new ErroInternoException(r);
         }
-     }
-    
-     public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException{
-     try {
-           TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u join u.evento ue on ue.codigo = :codigo ", Participante.class);
-           consulta.setParameter("codigo",e.getCodigo());
-            return consulta.getResultList();
-       }   catch(NoResultException es){
-                 throw new ParticipanteInexistenteException(es);  
-        
-        } catch (Exception ex) {
-            throw new ErroInternoException(ex);
-        }
-     }
+    }
+
+    /**
+     * Método para Listar Participantes de um Evento.
+     *
+     * @param e;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
     @Override
-    public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException{
-     try {
-           TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u join u.subEvento ue on ue.codigo = :codigo ", Participante.class);
-           consulta.setParameter("codigo",e.getCodigo());
+    public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException {
+        try {
+            TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u join u.evento ue on ue.codigo = :codigo ", Participante.class);
+            consulta.setParameter("codigo", e.getCodigo());
             return consulta.getResultList();
-       }   catch(NoResultException es){
-                 throw new ParticipanteInexistenteException(es);  
-        
+        } catch (NoResultException es) {
+            throw new ParticipanteInexistenteException(es);
+
         } catch (Exception ex) {
             throw new ErroInternoException(ex);
         }
-     }
-     
-    
+    }
+
+    /**
+     * Método para listar Participantes de um SubEvento.
+     *
+     * @param e;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
+    @Override
+    public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException {
+        try {
+            TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u join u.subEvento ue on ue.codigo = :codigo ", Participante.class);
+            consulta.setParameter("codigo", e.getCodigo());
+            return consulta.getResultList();
+        } catch (NoResultException es) {
+            throw new ParticipanteInexistenteException(es);
+
+        } catch (Exception ex) {
+            throw new ErroInternoException(ex);
+        }
+    }
+
+    /**
+     * Método para buscar um Participante.
+     *
+     * @param cpf;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
     @Override
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
-       try {
-           TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u where u.cpf like :cpf", Participante.class);
-           consulta.setParameter("cpf", "%" + cpf + "%");
+        try {
+            TypedQuery<Participante> consulta = this.em.createQuery("select u from Participante u where u.cpf like :cpf", Participante.class);
+            consulta.setParameter("cpf", "%" + cpf + "%");
             return consulta.getSingleResult();
-       }   catch(NoResultException es){
-                 throw new ParticipanteInexistenteException(es);  
-        
+        } catch (NoResultException es) {
+            throw new ParticipanteInexistenteException(es);
+
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
-    
+
     }
-    
-    
-    
+
 }

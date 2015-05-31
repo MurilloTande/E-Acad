@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe de negócios, Evento, onde serão contidos os métodos da camada de
+ * negócio.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.negocio;
 
@@ -18,33 +22,50 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class CadastroParticipante implements Serializable{
-    
-    @EJB
-   private RepositorioParticipante repParticipante;
+public class CadastroParticipante implements Serializable {
 
+    @EJB
+    private RepositorioParticipante repParticipante;
+
+    /**
+     * Contrutor Vazio.
+     */
     public CadastroParticipante() {
     }
 
+    /**
+     * Contrutor
+     *
+     * @param repParticipante;
+     */
     public CadastroParticipante(RepositorioParticipante repParticipante) {
         this.repParticipante = repParticipante;
     }
-    
-    public void adicionar(Participante e) throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException{
-    
-        
-           try {
+
+    /**
+     */
+    public void adicionar(Participante e) throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
+
+        try {
             Participante u = this.repParticipante.buscar(e.getCpf());
-            if ( u!=null   ) {
+            if (u != null) {
                 throw new ParticipanteExistenteException();
-            } 
+            }
         } catch (ParticipanteInexistenteException ui) {
             this.repParticipante.adicionar(e);
         }
-        
+
     }
-    
-    
+
+    /**
+     * Método buscar, Participante.
+     *
+     * @see eacad.persistencia.RepositorioParticipante.buscar;
+     * @param cpf;
+     * @return Participante.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
 
         Participante u = this.repParticipante.buscar(cpf);
@@ -54,12 +75,30 @@ public class CadastroParticipante implements Serializable{
         }
         return u;
     }
-    
-public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException{
-return this.repParticipante.listarTudoEventoParticipante(e);
-}
-   public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException{
-return this.repParticipante.listarTudoSubEventoParticipante(e);
-}
-   
+
+    /**
+     * Método listar Participantes de um Evento.
+     *
+     * @see eacad.persistencia.RepositorioParticipante.buscar;
+     * @param e;
+     * @return List.
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
+    public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException {
+        return this.repParticipante.listarTudoEventoParticipante(e);
+    }
+
+    /**
+     * Método listar Participantes de um SubEvento
+     *
+     * @param e;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException {
+        return this.repParticipante.listarTudoSubEventoParticipante(e);
+    }
+
 }

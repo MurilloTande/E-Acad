@@ -1,7 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Interface Participante, onde serão contidas as assinaturas dos metodos da
+ * camada de persistência.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.persistencia;
 
@@ -15,13 +19,49 @@ import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Local;
 
+/**
+ * Interface onde serão contidas as assinaturas de todos os metodos da
+ * persistencia de Participante.
+ */
 @Local
-public interface RepositorioParticipante extends Serializable{
-    
+public interface RepositorioParticipante extends Serializable {
+
+    /**
+     * Assinatura do método para listar os participantes de um evento.
+     *
+     * @param e;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
     public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException;
+
+    /**
+     * Assinatura do método para listar os participantes de um SubEvento.
+     *
+     * @param e;
+     * @return List.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
     public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException;
+
+    /**
+     * Assinatura do método adicionar um Participante.
+     *
+     * @param e;
+     * @throws ErroInternoException;
+     */
     public void adicionar(Participante e) throws ErroInternoException;
+
+    /**
+     * Assinatura do método buscar Participante
+     *
+     * @param cpf;
+     * @return Participante;
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
-   
 
 }

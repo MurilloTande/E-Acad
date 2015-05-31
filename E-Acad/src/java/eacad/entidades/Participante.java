@@ -1,9 +1,11 @@
-/** Classe para objetos do tipo Participante, onde serão contidos, atributos e métodos para o mesmo.<p/>
- * 
- *  @author Murillo Tande
- *  @author Matheus Barbosa
- *  @author Hugo Calado
- *  @author Felipe Xavier
+/**
+ * Classe para objetos do tipo Participante, onde serão contidos, atributos e
+ * métodos para o mesmo.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.entidades;
 
@@ -15,11 +17,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /**
- * "@Entity" é usada para informar que a classe Participante é uma entidade no JPA.
+ * "@Entity" é usada para informar que a classe Participante é uma entidade no
+ * JPA.
  */
 @Entity
-public class Participante implements Serializable{
-    
+public class Participante implements Serializable {
+
     private String cpf;
     private String primeiroNome;
     private String sobreNome;
@@ -28,10 +31,10 @@ public class Participante implements Serializable{
     private List<SubEvento> subEvento;
 
     /**
-     * @param cpf
-     * @param primeiroNome
-     * @param sobreNome
-     * @param email
+     * @param cpf;
+     * @param primeiroNome;
+     * @param sobreNome;
+     * @param email;
      */
     public Participante(String cpf, String primeiroNome, String sobreNome, String email) {
         this.cpf = cpf;
@@ -55,7 +58,7 @@ public class Participante implements Serializable{
     }
 
     /**
-     * @param cpf
+     * @param cpf;
      */
     public void setCpf(String cpf) {
         this.cpf = cpf;
@@ -69,7 +72,7 @@ public class Participante implements Serializable{
     }
 
     /**
-     * @param primeiroNome
+     * @param primeiroNome;
      */
     public void setPrimeiroNome(String primeiroNome) {
         this.primeiroNome = primeiroNome;
@@ -83,7 +86,7 @@ public class Participante implements Serializable{
     }
 
     /**
-     * @param sobreNome
+     * @param sobreNome;
      */
     public void setSobreNome(String sobreNome) {
         this.sobreNome = sobreNome;
@@ -97,27 +100,23 @@ public class Participante implements Serializable{
     }
 
     /**
-     * @param email
+     * @param email;
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * @return List - Retorna o evento.
-     * "@ManyToMany", identifica o Muitos para Muitos no JPA.
+     * @return List - Retorna o evento. "@ManyToMany", identifica o Muitos para
+     * Muitos no JPA.
      */
-    
-    
-    
-    
     @ManyToMany
     public List<Evento> getEvento() {
         return evento;
     }
 
     /**
-     * @param evento
+     * @param evento;
      */
     public void setEvento(List<Evento> evento) {
         this.evento = evento;
@@ -132,13 +131,10 @@ public class Participante implements Serializable{
     }
 
     /**
-     * @param subEvento
+     * @param subEvento;
      */
     public void setSubEvento(List<SubEvento> subEvento) {
         this.subEvento = subEvento;
     }
 
-    
-    
-   
 }

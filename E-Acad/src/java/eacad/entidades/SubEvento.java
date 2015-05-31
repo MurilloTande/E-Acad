@@ -1,9 +1,11 @@
-/** Classe para objetos do tipo subEvento, onde serão contidos, atributos e métodos para o mesmo.<p/>
- * 
- *  @author Murillo Tande
- *  @author Matheus Barbosa
- *  @author Hugo Calado
- *  @author Felipe Xavier
+/**
+ * Classe para objetos do tipo subEvento, onde serão contidos, atributos e
+ * métodos para o mesmo.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.entidades;
 
@@ -19,13 +21,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 /**
  * "@Entity" é usada para informar que a classe subEvento é uma entidade no JPA.
  */
 @Entity
-public class SubEvento implements Serializable{
-    
+public class SubEvento implements Serializable {
+
     private long codigo;
     private String nome;
     private String descricao;
@@ -35,7 +36,7 @@ public class SubEvento implements Serializable{
     private Date data_final;
     private int total_vagas;
     private Evento eventoPai;
-    
+
     /**
      * Construtor vazio.
      */
@@ -43,14 +44,14 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param codigo
-     * @param nome
-     * @param descricao
-     * @param apresentador
-     * @param tipo
-     * @param data_inicio
-     * @param data_final
-     * @param total_vagas
+     * @param codigo;
+     * @param nome;
+     * @param descricao;
+     * @param apresentador;
+     * @param tipo;
+     * @param data_inicio;
+     * @param data_final;
+     * @param total_vagas;
      */
     public SubEvento(long codigo, String nome, String descricao, String apresentador, String tipo, Date data_inicio, Date data_final, int total_vagas) {
         this.codigo = codigo;
@@ -64,8 +65,9 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @return long - Retorna codigo do subEvento.
-     * "@Id" e "@GeneratedValue" indicam respectivamente que o atributo é a chave principal do subEvento e nele o valor é gerado automaticamente. 
+     * @return long - Retorna codigo do subEvento. "@Id" e "@GeneratedValue"
+     * indicam respectivamente que o atributo é a chave principal do subEvento e
+     * nele o valor é gerado automaticamente.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -74,7 +76,7 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param codigo
+     * @param codigo;
      */
     public void setCodigo(long codigo) {
         this.codigo = codigo;
@@ -88,7 +90,7 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param nome
+     * @param nome;
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -102,7 +104,7 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param descricao
+     * @param descricao;
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
@@ -116,7 +118,7 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param apresentador
+     * @param apresentador;
      */
     public void setApresentador(String apresentador) {
         this.apresentador = apresentador;
@@ -130,27 +132,27 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param tipo
+     * @param tipo;
      */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
+
     /**
      * @return Date - Retorna a data de inicio do subEvento
-     */ 
-     @Temporal(TemporalType.DATE)
+     */
+    @Temporal(TemporalType.DATE)
     public Date getData_inicio() {
         return data_inicio;
     }
 
     /**
-     * @param data_inicio
+     * @param data_inicio;
      */
     public void setData_inicio(Date data_inicio) {
         this.data_inicio = data_inicio;
     }
-    
+
     /**
      * @return Date - Retorna a data em que o subEvento termina.
      */
@@ -160,7 +162,7 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param data_final
+     * @param data_final;
      */
     public void setData_final(Date data_final) {
         this.data_final = data_final;
@@ -174,14 +176,14 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param total_vagas
+     * @param total_vagas;
      */
     public void setTotal_vagas(int total_vagas) {
         this.total_vagas = total_vagas;
     }
-   
+
     /**
-     * @return Evento - Retorna o eSventoPai
+     * @return Evento - Retorna o eventoPai
      */
     @ManyToOne
     public Evento getEventoPai() {
@@ -189,10 +191,10 @@ public class SubEvento implements Serializable{
     }
 
     /**
-     * @param eventoPai
+     * @param eventoPai;
      */
     public void setEventoPai(Evento eventoPai) {
         this.eventoPai = eventoPai;
-    } 
-      
+    }
+
 }
