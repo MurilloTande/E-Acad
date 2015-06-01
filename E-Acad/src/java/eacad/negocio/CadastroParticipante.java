@@ -44,7 +44,7 @@ public class CadastroParticipante implements Serializable {
 
     /**
      */
-    public void adicionar(Participante e) throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
+    public void adicionar(Participante e) throws ErroInternoException, ParticipanteExistenteException{
 
         try {
             Participante u = this.repParticipante.buscar(e.getCpf());
@@ -101,6 +101,14 @@ public class CadastroParticipante implements Serializable {
         return this.repParticipante.listarTudoSubEventoParticipante(e);
     }
 
-    
+    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+        try {
+
+            this.repParticipante.remover(cpf);
+
+        } catch (ErroInternoException e) {
+            throw new ErroInternoException(e);
+        }
+    }
     
 }

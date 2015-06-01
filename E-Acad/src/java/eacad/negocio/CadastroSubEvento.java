@@ -10,12 +10,16 @@
 package eacad.negocio;
 
 import eacad.entidades.Evento;
+import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
+import eacad.persistencia.RepositorioParticipante;
 import eacad.persistencia.RepositorioSubEvento;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -25,6 +29,8 @@ public class CadastroSubEvento implements Serializable {
 
     @EJB
     private RepositorioSubEvento repSubEvento;
+    @EJB
+    private RepositorioParticipante repParticipante;
 
     /**
      * @param repSubEvento;
@@ -148,14 +154,39 @@ public class CadastroSubEvento implements Serializable {
     /**
      * Método remover, SubEvento.
      *
+     * @throws eacad.exceptions.ParticipanteInexistenteException
      * @see eacad.persistencia.RepositorioSubEvento.remover;
      * @param codigo;
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
      */
-    public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException {
+   
+    public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException {
+        SubEvento temp = this.repSubEvento.buscarCodigo(codigo);
+        ArrayList<SubEvento> n = new ArrayList<>();
+        
         try {
-
+            
+            for(Participante x : this.repParticipante.listarTudoSubEventoParticipante(temp)){
+                if(x!=null){
+                   if(1==x.getSubEvento().size()){
+                       this.repParticipante.remover(x.getCpf());
+                   }else{
+                       
+                       for(SubEvento a: x.getSubEvento()){
+                           if(temp.getCodigo()!=a.getCodigo()){
+                               n.add(a);
+                           } 
+                       }
+                     x.setSubEvento(n);
+                     this.repParticipante.atualizar(x);
+                     n = new ArrayList<>();
+                   }
+                    
+                    
+                }
+            }
+            
             this.repSubEvento.remover(codigo);
 
         } catch (ErroInternoException e) {

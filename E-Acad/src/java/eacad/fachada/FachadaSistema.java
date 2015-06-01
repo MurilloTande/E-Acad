@@ -354,7 +354,9 @@ public class FachadaSistema {
         return this.participante.listarTudoSubEventoParticipante(e);
     }
     
-    
+    public void removerParticipante(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+        this.participante.remover(cpf);
+    }
     
 
 }

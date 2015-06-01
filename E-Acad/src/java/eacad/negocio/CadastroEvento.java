@@ -16,8 +16,10 @@ import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteExistenteException;
+import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.persistencia.RepositorioEvento;
+import eacad.persistencia.RepositorioParticipante;
 import eacad.persistencia.RepositorioSubEvento;
 import java.io.Serializable;
 import java.util.List;
@@ -31,6 +33,8 @@ public class CadastroEvento implements Serializable{
    private RepositorioEvento repEvento;
     @EJB
     private RepositorioSubEvento repSubEvento;
+     @EJB
+    private RepositorioParticipante repParticipante;
 
     /**
      * Construtor vazio.
@@ -190,16 +194,23 @@ public class CadastroEvento implements Serializable{
     
     /**
      * Método para remover Evento.
+     * @throws eacad.exceptions.ParticipanteInexistenteException
      * @see eacad.persistencia.RepositorioEvento.remover;
      * @param codigo;
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      * @throws SubEventoInexistenteException;
      */
-    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException{
+    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException{
         Evento temp = this.repEvento.buscarCodigo(codigo);
         
         try {
+            
+            for(Participante x : this.repParticipante.listarTudoEventoParticipante(temp)){
+                if(x!=null){
+                    this.repParticipante.remover(x.getCpf());
+                }
+            }
             
             for(SubEvento e : this.repSubEvento.buscarListSubEvento(temp)){
             if(e != null){    

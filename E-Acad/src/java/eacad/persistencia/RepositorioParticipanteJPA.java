@@ -13,14 +13,12 @@ import eacad.entidades.Evento;
 import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
-import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 @Stateless
@@ -109,7 +107,34 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
-
+    }
+    
+    @Override
+    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+        try {
+            Participante e = buscar(cpf);
+            this.em.remove(e);
+        } catch (IllegalArgumentException e) {
+            throw new ErroInternoException(e);
+        }
     }
 
+    
+    @Override
+    public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException{
+    
+        Participante u = buscar(participante.getCpf());
+        u.setPrimeiroNome(participante.getPrimeiroNome());
+        u.setSobreNome(participante.getSobreNome());
+        u.setEmail(participante.getEmail());
+        u.setSubEvento(participante.getSubEvento());
+
+        try {
+            this.em.merge(u);
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
+        }
+        
+        
+    }
 }

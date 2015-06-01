@@ -10,14 +10,17 @@
 package eacad.negocio;
 
 import eacad.entidades.Evento;
+import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
 import eacad.persistencia.RepositorioEvento;
+import eacad.persistencia.RepositorioParticipante;
 import eacad.persistencia.RepositorioSubEvento;
 import eacad.persistencia.RepositorioUsuario;
 import java.io.Serializable;
@@ -34,6 +37,8 @@ public class CadastroUsuario implements Serializable {
     private RepositorioEvento repEvento;
     @EJB
     private RepositorioSubEvento repSubEvento;
+    @EJB
+    private RepositorioParticipante repParticipante;
 
     /**
      * Contrutor Vazio
@@ -164,7 +169,7 @@ public class CadastroUsuario implements Serializable {
      * @throws EventoInexistenteException;
      * @throws SubEventoInexistenteException;
      */
-    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException {
+    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
         Usuario temp = this.repUsuario.buscar(cpf);
 
         try {
@@ -173,6 +178,12 @@ public class CadastroUsuario implements Serializable {
                 if (e == null) {
                     break;
                 } else {
+                    
+                    for(Participante x : this.repParticipante.listarTudoEventoParticipante(e)){
+                if(x!=null){
+                    this.repParticipante.remover(x.getCpf());
+                }
+            }
 
                     for (SubEvento a : this.repSubEvento.buscarListSubEvento(this.repEvento.buscarCodigo(e.getCodigo()))) {
                         if (a == null) {
