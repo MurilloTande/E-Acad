@@ -68,6 +68,10 @@ public class CadastroSubEvento implements Serializable {
         }
     }
 
+    public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException{
+    this.repSubEvento.atualizarVagasSubEvento(vagas, ev);
+    }
+    
     /**
      * Método listarTudoSubEvento.
      *

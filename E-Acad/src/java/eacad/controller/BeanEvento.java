@@ -68,6 +68,7 @@ public class BeanEvento implements Serializable{
         try {
             
             evento.setCriador(BeanUsuario.getInstancia());
+            evento.setContVagasEvento(evento.getTotal_vagas());
             this.fachada.adicionarEvento(evento); 
             
             evento = new Evento();

@@ -44,6 +44,7 @@ public class Evento implements Serializable {
     private List<Participante> participantes;
     private List<SubEvento> subEventos;
     private Participante participante_evento;
+    private int contVagasEvento;
 
     /**
      * Construtor vazio.
@@ -108,6 +109,16 @@ public class Evento implements Serializable {
         return nome;
     }
 
+    public int getContVagasEvento() {
+        return contVagasEvento;
+    }
+
+    public void setContVagasEvento(int contVagasEvento) {
+        this.contVagasEvento = contVagasEvento;
+    }
+
+    
+    
     /**
      * @param nome;
      */

@@ -37,6 +37,8 @@ public interface RepositorioEvento extends Serializable {
      */
     public Evento buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException;
 
+    public void atualizarVagasEvento(int vagas,Evento ev) throws ErroInternoException, EventoInexistenteException;
+    
     /**
      * Assinatura do método adicionar evento.
      *

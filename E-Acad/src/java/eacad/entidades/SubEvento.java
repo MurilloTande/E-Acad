@@ -34,6 +34,7 @@ public class SubEvento implements Serializable {
     private Date data_final;
     private int total_vagas;
     private Evento eventoPai;
+    private int contVagasSubEvento;
 
     /**
      * Construtor vazio.
@@ -60,6 +61,7 @@ public class SubEvento implements Serializable {
         this.data_inicio = data_inicio;
         this.data_final = data_final;
         this.total_vagas = total_vagas;
+        
     }
 
     /**
@@ -80,6 +82,16 @@ public class SubEvento implements Serializable {
         this.codigo = codigo;
     }
 
+    public int getContVagasSubEvento() {
+        return contVagasSubEvento;
+    }
+
+    public void setContVagasSubEvento(int contVagasSubEvento) {
+        this.contVagasSubEvento = contVagasSubEvento;
+    }
+
+    
+    
     /**
      * @return Stirng - Retorna o nome
      */

@@ -81,6 +81,21 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
 
     }
 
+    
+    public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
+
+        SubEvento e = buscarCodigo(ev.getCodigo());
+        e.setContVagasSubEvento(vagas);
+       
+
+        try {
+            this.em.merge(e);
+        } catch (Exception es) {
+            throw new ErroInternoException(es);
+        }
+
+    }
+    
     /**
      * Método para listar os SubEventos de um Evento.
      *

@@ -126,6 +126,11 @@ public class CadastroEvento implements Serializable{
     this.repEvento.atualizar(e);
         
     }
+    
+    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException{
+    this.repEvento.atualizarVagasEvento(vagas, ev);
+    }
+    
     /**
      * Método buscarNomeListEvento.
      * @see eacad.persistencia.RepositorioEvento.buscarNomeListEvento;

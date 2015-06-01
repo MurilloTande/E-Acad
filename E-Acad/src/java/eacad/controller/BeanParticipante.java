@@ -87,17 +87,27 @@ public class BeanParticipante implements Serializable{
 
     
     
-    public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
+    public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException, SubEventoInexistenteException {
         try {
             
             this.participante.setEvento(part_eventos);
+            
+            if(subEventoSelecionado.getContVagasSubEvento()>0){
+               
             this.participante.setSubEvento(part_subEvento);
             this.fachada.adicionarParticipante(participante);
-            
-            
+             this.fachada.atualizarVagasSubEvento(subEventoSelecionado.getContVagasSubEvento()-1, subEventoSelecionado);
             this.participante = new Participante();
             this.part_eventos = new ArrayList<>();
             this.part_subEvento = new ArrayList<>();
+            
+            }else{
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Quantidade de vagas preenchida"));
+            return "inscricaoEventoP3.xhtml";
+            }
+            
+           
             
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Inscrição efetuado com sucesso!"));

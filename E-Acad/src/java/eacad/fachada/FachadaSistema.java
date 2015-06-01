@@ -163,6 +163,10 @@ public class FachadaSistema {
         this.evento.atualizar(e);
     }
 
+    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException{
+    this.evento.atualizarVagasEvento(vagas, ev);
+    }
+    
     /**
      * Assinatura in line do método buscar Evento através do nome.
      *
@@ -237,7 +241,10 @@ public class FachadaSistema {
     public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException, DatasIncorretas {
         this.subEvento.adicionar(e);
     }
-
+public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException{
+this.subEvento.atualizarVagasSubEvento(vagas, ev);
+}
+    
     /**
      * Assinatura in line do método listar SubEvento.
      *

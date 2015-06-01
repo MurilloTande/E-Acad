@@ -118,6 +118,20 @@ public class RepositorioEventoJPA implements RepositorioEvento {
         }
 
     }
+    
+    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException {
+
+        Evento e = buscarCodigo(ev.getCodigo());
+     
+        
+     e.setContVagasEvento(vagas);
+        try {
+            this.em.merge(e);
+        } catch (Exception es) {
+            throw new ErroInternoException(es);
+        }
+
+    }
 
     /**
      * Método para buscar Eventos apartir de um nome.

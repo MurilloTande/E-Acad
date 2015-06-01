@@ -30,6 +30,7 @@ public class BeanSubEvento implements Serializable{
     private SubEvento subEvento;
     private Evento evento;
     private SubEvento subEventoSelecionado;
+   
     
      @EJB
     private FachadaSistema fachada;
@@ -38,6 +39,10 @@ public class BeanSubEvento implements Serializable{
     this.subEvento = new SubEvento();
     }
 
+  
+    
+  
+    
     public SubEvento getSubEvento() {
         return subEvento;
     }
@@ -64,12 +69,25 @@ public class BeanSubEvento implements Serializable{
     
     
     
-    public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas, SubEventoExistenteException {
+    public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas, SubEventoExistenteException, EventoInexistenteException {
         try {
             this.subEvento.setEventoPai(evento);
-            this.fachada.adicionarSubEvento(subEvento);
+            this.subEvento.setContVagasSubEvento(subEvento.getTotal_vagas());
+            if(evento.getContVagasEvento()>=subEvento.getTotal_vagas()){
+             
+              this.fachada.atualizarVagasEvento(evento.getContVagasEvento()-subEvento.getTotal_vagas(), evento);
+              this.fachada.adicionarSubEvento(subEvento);
+              this.subEvento = new SubEvento();
+            }else{
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Quantidade de Vagas para SubEvento indisponível. Restam apenas: "+evento.getContVagasEvento()+"Vagas"));
+            return "CriarSubEventos.xhtml";
+            }
+           
             
-           this.subEvento = new SubEvento();
+            
+             
+           
             
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Cadastro efetuado com sucesso!"));
