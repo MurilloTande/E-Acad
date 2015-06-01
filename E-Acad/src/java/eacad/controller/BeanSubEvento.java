@@ -11,6 +11,7 @@ import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
@@ -105,21 +106,14 @@ public class BeanSubEvento implements Serializable{
         
     }
     
-    public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
+    public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException {
         try {
             List<SubEvento> subEventos = this.fachada.buscarListSubEvento(evento);
           
                 return subEventos;
-         
-          
-          
-        }catch (SubEventoInexistenteException ez ) {
+  
+        }catch (SubEventoInexistenteException | ErroInternoException ez ) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ez.getMessage()));
-            return null;
-        }   
-               
-         catch (ErroInternoException ex ) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
       
@@ -139,6 +133,9 @@ public class BeanSubEvento implements Serializable{
         } catch ( SubEventoInexistenteException ex1) {
            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("SubEvento inexistente!" + ex1.getMessage()));
+        }catch ( ParticipanteInexistenteException ex2) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Participante inexistente!" + ex2.getMessage()));
         }
 
         return null;

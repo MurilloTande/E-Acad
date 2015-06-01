@@ -6,6 +6,7 @@ package eacad.controller;
 import eacad.entidades.Usuario;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
@@ -232,7 +233,12 @@ public class BeanUsuario implements Serializable {
         }catch ( SubEventoInexistenteException ex3) {
            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("SubEvento inexistente!" + ex3.getMessage()));
-        }    
+        }catch ( ParticipanteInexistenteException ex4) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Participante inexistente!" + ex4.getMessage()));
+        }
+        
+        
         return "PaginaInicial";
     }
 

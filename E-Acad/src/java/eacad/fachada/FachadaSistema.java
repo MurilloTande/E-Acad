@@ -106,12 +106,13 @@ public class FachadaSistema {
      * Assinatura in line do método remover Usuário.
      *
      * @param cpf;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
-     * @throws eacad.exceptions.EventoInexistenteException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws ErroInternoException;
+     * @throws UsuarioInexistenteException;
+     * @throws EventoInexistenteException;
+     * @throws SubEventoInexistenteException;
+     * @throws ParticipanteInexistenteException
      */
-    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException {
+    public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
         this.usuarios.remover(cpf);
     }
 
@@ -218,8 +219,9 @@ public class FachadaSistema {
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      * @throws SubEventoInexistenteException;
+     * @throws ParticipanteInexistenteException
      */
-    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException {
+    public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
         this.evento.remover(codigo);
     }
 
@@ -300,8 +302,9 @@ public class FachadaSistema {
      * @param codigo;
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
+     * @throws ParticipanteInexistenteException
      */
-    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException {
+    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException {
         this.subEvento.remover(codigo);
     }
 
