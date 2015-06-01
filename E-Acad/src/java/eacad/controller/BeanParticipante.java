@@ -18,6 +18,8 @@ import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -199,4 +201,27 @@ public class BeanParticipante implements Serializable{
     }
     
    
+    public String buscarParticipanteEvento() throws ErroInternoException{
+    
+        List<Participante> p;
+        try {
+            p = this.fachada.listarTudoEventoParticipante(eventoSelecionado);
+        } catch (ParticipanteInexistenteException ex) {
+            return "inscricaoEventoP2.xhtml";
+        }
+        
+        for(Participante x : p){
+        if(participante.getCpf().equals(x.getCpf())){
+            
+             FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("CPF de Participante Já cadastrado no Evento!"));
+            
+            return "inscricaoEventoP1.xhtml";
+        
+        } 
+        }
+        return "inscricaoEventoP2.xhtml";
+    }
+    
+    
 }

@@ -52,8 +52,8 @@
                 <p:layoutUnit position="center">
                     <p:panel header="Passo 2 -> Selecione seus SubEventos">
                             <p:dataTable value="#{beanParticipante.buscarListSubEvento()}" var="p" paginator="true" rows="5">
-                            <p:column headerText="Selecionar">
-                                <p:commandButton action="#{beanParticipante.SubEventoSelect(p.codigo)}"/>
+                            <p:column  headerText="Selecionar">
+                                <p:commandButton value="Adicionar" action="#{beanParticipante.SubEventoSelect(p.codigo)}"/>
                             </p:column>
                             <p:column headerText="Nome">
                                 <h:outputText value="#{p.nome}"/>
