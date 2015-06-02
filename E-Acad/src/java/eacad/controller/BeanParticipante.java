@@ -145,7 +145,6 @@ public class BeanParticipante implements Serializable {
                         new FacesMessage("Quantidade de vagas preenchida"));
                 return "inscricaoEventoP3.xhtml";
             }
-
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Inscrição efetuado com sucesso!"));
         } catch (ErroInternoException e) {
@@ -294,22 +293,33 @@ public class BeanParticipante implements Serializable {
 
         List<Participante> p;
         try {
+           
             p = this.fachada.listarTudoEventoParticipante(eventoSelecionado);
+        
         } catch (ParticipanteInexistenteException ex) {
+            
+            if(eventoSelecionado.getSubEventos().isEmpty()){
+            return "inscricaoEventoP22.xhtml";    
+            }else{
             return "inscricaoEventoP2.xhtml";
+            }
+        
         }
-
+        
         for (Participante x : p) {
             if (participante.getCpf().equals(x.getCpf())) {
 
                 FacesContext aviso = FacesContext.getCurrentInstance();
                 aviso.addMessage(null, new FacesMessage("CPF de Participante Já cadastrado no Evento!"));
-
                 return "inscricaoEventoP1.xhtml";
-
             }
         }
-        return "inscricaoEventoP2.xhtml";
+        
+            if(eventoSelecionado.getSubEventos().isEmpty()){
+            return "inscricaoEventoP22.xhtml";    
+            }else{
+            return "inscricaoEventoP2.xhtml";
+            }
     }
 
     /**
