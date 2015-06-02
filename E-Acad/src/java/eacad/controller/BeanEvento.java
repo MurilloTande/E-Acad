@@ -20,6 +20,7 @@ import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -35,7 +36,9 @@ public class BeanEvento implements Serializable {
     private SubEvento subEvento;
     private Evento eventoSelecionado;
     private Participante participanteSelecionado;
-
+    private String pesquisa;
+    private List<Evento> eventosPesquisa;
+    
     @EJB
     private FachadaSistema fachada;
 
@@ -43,6 +46,17 @@ public class BeanEvento implements Serializable {
         this.evento = new Evento();
     }
 
+    public List<Evento> getEventosPesquisa() {
+        return eventosPesquisa;
+    }
+
+    public void setEventosPesquisa(List<Evento> eventosPesquisa) {
+        this.eventosPesquisa = eventosPesquisa;
+    }
+
+    
+    
+    
     /**
      * @return Participante.
      */
@@ -50,6 +64,16 @@ public class BeanEvento implements Serializable {
         return participanteSelecionado;
     }
 
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
+    
+    
     /**
      * @param participanteSelecionado;
      */
@@ -75,7 +99,7 @@ public class BeanEvento implements Serializable {
      * @return Evento.
      */
     public Evento getEvento() {
-        return evento;
+       return evento;
     }
 
     /**
@@ -185,6 +209,40 @@ public class BeanEvento implements Serializable {
         return "meusEventos.xhtml";
     }
 
+    
+    public String pesquisarEvento() {
+        try {
+            this.eventosPesquisa=new ArrayList<>();
+                    
+            //for(Evento e: this.fachada.listarTudoEvento()){
+              // if(e.getNome().startsWith(pesquisa)){
+                //   this.eventosPesquisa.add(e);
+                   
+               //} else {
+               
+              // }
+            //}
+            
+            
+           this.eventosPesquisa = this.fachada.buscarNomeListEvento(pesquisa);
+           
+           
+           this.pesquisa = ""; 
+           
+            return "resultadoPesquisa.xhtml";
+            
+        } catch (ErroInternoException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+        } catch (EventoInexistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Evento não encontrado no sistema."));
+            return null;
+        }
+
+        return null;
+    }
+
+    
     /**
      * Método para apagar Evento do sistema.
      *

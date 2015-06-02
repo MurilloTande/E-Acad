@@ -24,7 +24,6 @@
                         <p:submenu label="Evento" rendered="#{beanUsuario.logado}">
                             <p:menuitem value="Criar Evento" icon="ui-icon-pencil" url="criarEvento.xhtml" rendered="#{beanUsuario.logado}"  />
                             <p:menuitem value="Meus Eventos" icon="ui-icon-pencil" url="meusEventos.xhtml" rendered="#{beanUsuario.logado}"  />
-                            
                         </p:submenu>
                         <p:submenu label="Perfil">
                             <p:menuitem value="Login" url="Login.xhtml" rendered="#{not beanUsuario.logado}" icon="ui-icon-person"/>
@@ -40,26 +39,24 @@
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
 
                 </p:layoutUnit>
-   
-                    <p:layoutUnit position="center">
-                    
-                    <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
-                    <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>    
-                    
-                    <br></br>
-                    <br></br>
-                    <br /><br /><br /><br /><br /><br /><br />
-                    <h1><center><h:outputText value="Buscar Evento" /></center></h1>
+              
+                   
+           
+     
+                <p:layoutUnit position="center">
 
-                    <br />
-                    <center>
-                        <p:inputText value = "#{beanEvento.pesquisa}" id = "nome"/>
-                        <p:commandButton value="pesquisar" icon="ui-icon-search" actionListener="#{beanEvento.pesquisarEvento()}" action="resultadoPesquisa.xhtml" ajax="false" />
-                    </center>
+                    <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
+                    <h:outputText value="Olá, #{beanUsuario.usuarioLogado.nome}" rendered="#{beanUsuario.logado}"></h:outputText>
+                </p:layoutUnit>
+                
+                
+                <p:layoutUnit position="center">                                     
                     
-                    <br /><br /><br /><br /><br /><br /><br />
-                    <p:panel header="Eventos Cadastrados no Sistema">
-                        <p:dataTable value="#{beanEvento.listarTudoEvento()}" var="p" paginator="true" rows="5">
+                    <br></br>
+                    <br></br>
+                    
+                    <p:panel header="Eventos encontrados">
+                        <p:dataTable value="#{beanEvento.eventosPesquisa}" var="p" paginator="true" rows="5">
                             <p:column headerText="Código">
                                 <h:outputText value="#{p.codigo}"/>
                             </p:column>
@@ -78,21 +75,28 @@
                                  <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
                                                   actionListener="#{beanParticipante.EventoSelect(p.codigo)}"
                                                  action="inscricaoEventoP1.xhtml" ajax="false" />
-                                  
                                 
                             </p:column>
                         </p:dataTable>
-                        
+                        <p:commandButton value="Voltar" icon="ui-icon-pencil" title="Voltar"
+                                                  
+                                                 action="PaginaInicial.xhtml" ajax="false" />
                     </p:panel>
                          </p:layoutUnit>
-                 </p:layout>
-                  
-                    
-                    
-                    
-                    
-                   
-              
- </h:form>
-    </h:body>
+                
+                
+                
+                
+                
+             
+            </p:layout>
+        </h:form>
+        
+        
+        <h:form rendered="#{not beanUsuario.logado}">
+            Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>
+        </h:form>
+        
+        
+    </h:body>/body>
 </html>
