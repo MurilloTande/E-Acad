@@ -2,6 +2,7 @@
 package eacad.controller;
 
 import eacad.entidades.Evento;
+import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
@@ -26,12 +27,25 @@ public class BeanEvento implements Serializable{
     private Evento evento;  
     private SubEvento subEvento;
     private Evento eventoSelecionado;
+    private Participante participanteSelecionado;
 
    
     
     
        @EJB
     private FachadaSistema fachada;
+       
+    public BeanEvento(){
+    this.evento=new Evento();
+    }
+       
+    public Participante getParticipanteSelecionado() {
+        return participanteSelecionado;
+    }
+
+    public void setParticipanteSelecionado(Participante participanteSelecionado) {
+        this.participanteSelecionado = participanteSelecionado;
+    }
 
     public Evento getEventoSelecionado() {
         return eventoSelecionado;
@@ -39,14 +53,9 @@ public class BeanEvento implements Serializable{
 
     public void setEventoSelecionado(Evento eventoSelecionado) {
       this.eventoSelecionado = eventoSelecionado;
-       }
-       
-       
-       
-    public BeanEvento(){
-    this.evento=new Evento();
     }
-    
+       
+      
     public Evento getEvento() {
         return evento;
     }
@@ -107,9 +116,7 @@ public class BeanEvento implements Serializable{
             return null;
         }
     }
-    
-    
-    
+      
     public String atualizarEvento() {
         try {
             this.fachada.atualizarEvento(eventoSelecionado);
@@ -122,12 +129,7 @@ public class BeanEvento implements Serializable{
 
         return "meusEventos.xhtml";
     }
-    
-       
-
-        
-    
-    
+     
     public String apagarEvento(long codigo) throws EventoInexistenteException {
         try {
             this.fachada.removerEvento(codigo);
@@ -163,6 +165,7 @@ public class BeanEvento implements Serializable{
 
         return "meusEventos.xhtml";
     }
+    
     
     
 }

@@ -90,7 +90,12 @@ and open the template in the editor.
                                 <h:outputText value="#{p.sobreNome}"/>
                             </p:column>
                             
-                            
+                            <p:column headerText="Opções">
+                                 <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
+                                                  actionListener="#{beanParticipante.removerParticipante(p.cpf)}"
+                                                  update="@form" ajax="false" />
+                            </p:column>
+      
                         </p:dataTable>
                     </p:panel>
                 </p:layoutUnit>

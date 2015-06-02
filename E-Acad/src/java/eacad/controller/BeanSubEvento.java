@@ -7,15 +7,18 @@ package eacad.controller;
 
 
 import eacad.entidades.Evento;
+import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
+import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -30,6 +33,7 @@ public class BeanSubEvento implements Serializable{
     private SubEvento subEvento;
     private Evento evento;
     private SubEvento subEventoSelecionado;
+    private Participante participanteSelecionado;
    
     
      @EJB
@@ -39,10 +43,14 @@ public class BeanSubEvento implements Serializable{
     this.subEvento = new SubEvento();
     }
 
-  
-    
-  
-    
+    public Participante getParticipanteSelecionado() {
+        return participanteSelecionado;
+    }
+
+    public void setParticipanteSelecionado(Participante participanteSelecionado) {
+        this.participanteSelecionado = participanteSelecionado;
+    } 
+     
     public SubEvento getSubEvento() {
         return subEvento;
     }
@@ -171,9 +179,8 @@ public class BeanSubEvento implements Serializable{
 
         return "meusSubEventos.xhtml";
     }
-    
-   
-     public String SubEventoSelect(long codigo) throws SubEventoInexistenteException {
+     
+    public String SubEventoSelect(long codigo) throws SubEventoInexistenteException {
         try {
             SubEvento e = this.fachada.buscarCodigoSubEvento(codigo);
             this.subEventoSelecionado = e;
@@ -186,7 +193,7 @@ public class BeanSubEvento implements Serializable{
         return "meusEventos.xhtml";
     }
 
-      public String EventoSelect(long codigo) throws EventoInexistenteException {
+    public String EventoSelect(long codigo) throws EventoInexistenteException {
         try {
             Evento e = this.fachada.buscarCodigoEvento(codigo);
             this.evento = e;
@@ -198,7 +205,5 @@ public class BeanSubEvento implements Serializable{
 
         return "meusEventos.xhtml";
     }
-    
-     
     
 }

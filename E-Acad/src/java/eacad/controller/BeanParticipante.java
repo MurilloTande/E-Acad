@@ -18,8 +18,6 @@ import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -96,7 +94,7 @@ public class BeanParticipante implements Serializable{
                
             this.participante.setSubEvento(part_subEvento);
             this.fachada.adicionarParticipante(participante);
-             this.fachada.atualizarVagasSubEvento(subEventoSelecionado.getContVagasSubEvento()-1, subEventoSelecionado);
+            this.fachada.atualizarVagasSubEvento(subEventoSelecionado.getContVagasSubEvento()-1, subEventoSelecionado);
             this.participante = new Participante();
             this.part_eventos = new ArrayList<>();
             this.part_subEvento = new ArrayList<>();
@@ -147,7 +145,8 @@ public class BeanParticipante implements Serializable{
             return null;
         }
     }
-      public List<Participante> subEventosParticipante() throws ParticipanteInexistenteException {
+      
+    public List<Participante> subEventosParticipante() throws ParticipanteInexistenteException {
         try {
             List<Participante> a= this.fachada.listarTudoSubEventoParticipante(subEventoSelecionado);
             return a;
@@ -209,8 +208,7 @@ public class BeanParticipante implements Serializable{
             return null;
         }
     }
-    
-   
+       
     public String buscarParticipanteEvento() throws ErroInternoException{
     
         List<Participante> p;
@@ -233,5 +231,40 @@ public class BeanParticipante implements Serializable{
         return "inscricaoEventoP2.xhtml";
     }
     
+    public String removerParticipante2(String cpf){
+    
+        try { 
+                
+            this.fachada.removerParticipante2(cpf, this.subEventoSelecionado);
+            
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Participante Excluido!"));           
+        } catch (ErroInternoException e) {
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+        }catch ( ParticipanteInexistenteException e1) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Participante inexistente!" + e1.getMessage()));
+        }
+        
+         return null;     
+    }
+    
+    public String removerParticipante(String cpf){
+    
+        try { 
+            
+            this.fachada.removerParticipante(cpf);
+            
+            FacesContext aviso = FacesContext.getCurrentInstance();
+            aviso.addMessage(null, new FacesMessage("Participante Excluido!"));           
+        } catch (ErroInternoException e) {
+          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+        }catch ( ParticipanteInexistenteException e1) {
+           FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Participante inexistente!" + e1.getMessage()));
+        }
+        
+         return null;     
+    }
     
 }
