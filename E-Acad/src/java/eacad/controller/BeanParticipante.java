@@ -298,7 +298,7 @@ public class BeanParticipante implements Serializable {
         
         } catch (ParticipanteInexistenteException ex) {
             
-            if(eventoSelecionado.getSubEventos().isEmpty()){
+            if(eventoSelecionado.getSubEventos().size()==0){
             return "inscricaoEventoP22.xhtml";    
             }else{
             return "inscricaoEventoP2.xhtml";
@@ -315,7 +315,7 @@ public class BeanParticipante implements Serializable {
             }
         }
         
-            if(eventoSelecionado.getSubEventos().isEmpty()){
+            if(eventoSelecionado.getSubEventos().size()==0){
             return "inscricaoEventoP22.xhtml";    
             }else{
             return "inscricaoEventoP2.xhtml";
