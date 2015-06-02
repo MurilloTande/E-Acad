@@ -163,10 +163,18 @@ public class FachadaSistema {
         this.evento.atualizar(e);
     }
 
-    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException{
-    this.evento.atualizarVagasEvento(vagas, ev);
+    /**
+     * Assinatura in line do método atualizar vagas do Evento.
+     *
+     * @param vagas;
+     * @param ev;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
+    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException {
+        this.evento.atualizarVagasEvento(vagas, ev);
     }
-    
+
     /**
      * Assinatura in line do método buscar Evento através do nome.
      *
@@ -241,10 +249,21 @@ public class FachadaSistema {
     public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException, DatasIncorretas {
         this.subEvento.adicionar(e);
     }
-public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException{
-this.subEvento.atualizarVagasSubEvento(vagas, ev);
-}
-    
+
+    /**
+     * Assinatura in line do método atualizar vagas de SubEvento.
+     *
+     * @param vagas;
+     * @param ev;
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public void atualizarVagasSubEvento(int vagas, SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
+
+        this.subEvento.atualizarVagasSubEvento(vagas, ev);
+
+    }
+
     /**
      * Assinatura in line do método listar SubEvento.
      *
@@ -363,17 +382,41 @@ this.subEvento.atualizarVagasSubEvento(vagas, ev);
     public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException {
         return this.participante.listarTudoSubEventoParticipante(e);
     }
-    
-    public void atualizarParticipante(Participante participante) throws ErroInternoException, ParticipanteInexistenteException{
+
+    /**
+     * Assinatura in line do método atualizar Participante.
+     *
+     * @param participante;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
+    public void atualizarParticipante(Participante participante) throws ErroInternoException, ParticipanteInexistenteException {
         this.participante.atualizar(participante);
     }
-    
+
+    /**
+     * Assinatura in line para remover Participante.
+     *
+     * @param codigo;
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
     public void removerParticipante(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
         this.participante.remover(codigo);
     }
-    
- public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException{
- return this.participante.buscarCodigo(codigo);
- }
-    
+
+    /**
+     * Assiantura in line para buscar Participante pelo código.
+     *
+     * @param codigo;
+     * @return Participante.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
+
+        return this.participante.buscarCodigo(codigo);
+
+    }
+
 }

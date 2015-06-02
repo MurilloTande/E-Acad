@@ -118,13 +118,21 @@ public class RepositorioEventoJPA implements RepositorioEvento {
         }
 
     }
-    
+
+    /**
+     * Método para atualizar as vagas de um Evento.
+     *
+     * @param vagas;
+     * @param ev;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.EventoInexistenteException;
+     */
+    @Override
     public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException {
 
         Evento e = buscarCodigo(ev.getCodigo());
-     
-        
-     e.setContVagasEvento(vagas);
+
+        e.setContVagasEvento(vagas);
         try {
             this.em.merge(e);
         } catch (Exception es) {

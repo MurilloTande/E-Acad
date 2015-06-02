@@ -17,13 +17,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-/**
- * "@Entity" é usada para informar que a classe Participante é uma entidade no
- * JPA.
- */
 @Entity
 public class Participante implements Serializable {
-    
+
     private long codigo;
     private String cpf;
     private String primeiroNome;
@@ -33,12 +29,13 @@ public class Participante implements Serializable {
     private List<SubEvento> subEvento;
 
     /**
+     * @param codigo;
      * @param cpf;
      * @param primeiroNome;
      * @param sobreNome;
      * @param email;
      */
-    public Participante(long codigo,String cpf, String primeiroNome, String sobreNome, String email) {
+    public Participante(long codigo, String cpf, String primeiroNome, String sobreNome, String email) {
         this.codigo = codigo;
         this.cpf = cpf;
         this.primeiroNome = primeiroNome;
@@ -52,13 +49,18 @@ public class Participante implements Serializable {
     public Participante() {
     }
 
-    
-     @Id
+    /**
+     * @return long.
+     */
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public long getCodigo() {
         return codigo;
     }
 
+    /**
+     * @param codigo;
+     */
     public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
@@ -66,9 +68,6 @@ public class Participante implements Serializable {
     /**
      * @return String - Retorna CPF do participante
      */
-    
-    
-    
     public String getCpf() {
         return cpf;
     }
@@ -123,8 +122,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return List - Retorna o evento. "@ManyToMany", identifica o Muitos para
-     * Muitos no JPA.
+     * @return List - Retorna o evento.
      */
     @ManyToMany
     public List<Evento> getEvento() {

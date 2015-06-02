@@ -32,6 +32,14 @@ public interface RepositorioSubEvento extends Serializable {
      */
     public void adicionar(SubEvento e) throws ErroInternoException, DatasIncorretas;
 
+    /**
+     * Assinatura do método atualizarVagasSubEvento.
+     *
+     * @param vagas;
+     * @param ev;
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
     public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException;
     
     /**

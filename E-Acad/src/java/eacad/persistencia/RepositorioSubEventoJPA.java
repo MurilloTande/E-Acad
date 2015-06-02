@@ -28,6 +28,8 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
 
     /**
      * Método para adicionar um SubEvento a base de dados.
+     *
+     * @throws eacad.exceptions.ErroInternoException;
      */
     @Override
     public void adicionar(SubEvento e) throws ErroInternoException {
@@ -81,7 +83,15 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
 
     }
 
-    
+    /**
+     * Método atualizarVagasSubEvento.
+     *
+     * @param vagas;
+     * @param ev;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.SubEventoInexistenteException;
+     */
+    @Override
     public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
 
         SubEvento e = buscarCodigo(ev.getCodigo());

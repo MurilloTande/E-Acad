@@ -62,10 +62,6 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
             throw new ErroInternoException(ex);
         }
     }
-    
-    
-      
-    
 
     /**
      * Método para listar Participantes de um SubEvento.
@@ -108,11 +104,18 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
             throw new ErroInternoException(e);
         }
     }
-    
+
+    /**
+     * Método para buscar um participante através do código.
+     *
+     * @param codigo;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
     @Override
-    public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException{
-    
-         Participante p = null;
+    public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
+
+        Participante p = null;
 
         try {
             p = this.em.find(Participante.class, codigo);
@@ -126,9 +129,15 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
 
         return p;
 
-        
     }
-    
+
+    /**
+     * Método para remover um Participante.
+     *
+     * @param codigo;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
     @Override
     public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
         try {
@@ -139,10 +148,16 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
         }
     }
 
-    
+    /**
+     * Método para atualizar Participante.
+     *
+     * @param participante;
+     * @throws eacad.exceptions.ErroInternoException;
+     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     */
     @Override
-    public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException{
-    
+    public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException {
+
         Participante u = buscar(participante.getCpf());
         u.setPrimeiroNome(participante.getPrimeiroNome());
         u.setSobreNome(participante.getSobreNome());
@@ -154,7 +169,6 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
         } catch (Exception e) {
             throw new ErroInternoException(e);
         }
-        
-        
+
     }
 }

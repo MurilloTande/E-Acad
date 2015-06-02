@@ -27,13 +27,13 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 @Stateless
-public class CadastroEvento implements Serializable{
-    
+public class CadastroEvento implements Serializable {
+
     @EJB
-   private RepositorioEvento repEvento;
+    private RepositorioEvento repEvento;
     @EJB
     private RepositorioSubEvento repSubEvento;
-     @EJB
+    @EJB
     private RepositorioParticipante repParticipante;
 
     /**
@@ -43,112 +43,130 @@ public class CadastroEvento implements Serializable{
     }
 
     /**
-     * Cosntrutor com o RepositorioEvento para implementação da camada de negócio.
+     * Cosntrutor com o RepositorioEvento para implementação da camada de
+     * negócio.
+     *
      * @param repEvento;
      */
     public CadastroEvento(RepositorioEvento repEvento) {
         this.repEvento = repEvento;
     }
-    
+
     /**
      * Método para adicionar Evento;
+     *
      * @see eacad.persistencia.RepositorioEvento.adicionar;
      * @param e;
      * @throws ErroInternoException;
      * @throws DatasIncorretas;
      */
-     public void adicionar(Evento e) throws ErroInternoException, DatasIncorretas{
-         
-              if(e.getData_final().after(e.getData_inicio()) || e.getData_inicio().equals(e.getData_final())){
-               try {
-            this.repEvento.adicionar(e);        
-        } catch (ErroInternoException ui) {
-            throw new ErroInternoException(ui);
+    public void adicionar(Evento e) throws ErroInternoException, DatasIncorretas {
+
+        if (e.getData_final().after(e.getData_inicio()) || e.getData_inicio().equals(e.getData_final())) {
+            try {
+                this.repEvento.adicionar(e);
+            } catch (ErroInternoException ui) {
+                throw new ErroInternoException(ui);
+            }
+        } else {
+            throw new DatasIncorretas();
         }
-               }else{
-                 throw new DatasIncorretas(); 
-     }}
+    }
+
     /**
      * Método ListarTudoEvento.
+     *
      * @see eacad.persistencia.RepositorioEvento.litsarTudoEvento;
      * @return List.
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
-     */ 
-    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException{
-    
-        
+     */
+    public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException {
+
         try {
             List<Evento> e = this.repEvento.listarTudoEvento();
-            if(e!=null){
-            return e;
+            if (e != null) {
+                return e;
             }
         } catch (EventoInexistenteException a) {
             throw new EventoInexistenteException();
-        } 
-        catch (ErroInternoException r) {
+        } catch (ErroInternoException r) {
             throw new ErroInternoException(r);
-        } 
-       return listarTudoEvento();
+        }
+        return listarTudoEvento();
     }
+
     /**
      * Método EventosUsuário.
+     *
      * @see eacad.persistencia.RepositorioEvento.EventosUsuario;
      * @param cpf;
      * @return List;
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      */
-    public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException{
-        try{
-        List<Evento> e = this.repEvento.EventosUsuario(cpf);
-        if(e!=null){
-        return e;
-        }
+    public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException {
+        try {
+            List<Evento> e = this.repEvento.EventosUsuario(cpf);
+            if (e != null) {
+                return e;
+            }
         } catch (EventoInexistenteException a) {
             throw new EventoInexistenteException();
-        } 
-        catch (ErroInternoException r) {
+        } catch (ErroInternoException r) {
             throw new ErroInternoException(r);
-        } 
-       return EventosUsuario(cpf);
-        
+        }
+        return EventosUsuario(cpf);
+
     }
+
     /**
      * Método atualizar Evento.
+     *
      * @see eacad.persistencia.RepositorioEvento.atualizar;
      * @param e;
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      */
-    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException{
-    
-    this.repEvento.atualizar(e);
-        
+    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException {
+
+        this.repEvento.atualizar(e);
+
     }
-    
-    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException{
-    this.repEvento.atualizarVagasEvento(vagas, ev);
+
+    /**
+     * Método atualizarVagasEvento.
+     *
+     * @see eacad.persistencia.RepositorioEvento.atualizarVagasEvento;
+     * @param vagas;
+     * @param ev;
+     * @throws ErroInternoException;
+     * @throws EventoInexistenteException;
+     */
+    public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException {
+        this.repEvento.atualizarVagasEvento(vagas, ev);
     }
-    
+
     /**
      * Método buscarNomeListEvento.
+     *
      * @see eacad.persistencia.RepositorioEvento.buscarNomeListEvento;
      * @param nome;
      * @return List.
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      */
-    public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException{
-    List<Evento> e = this.repEvento.buscarNomeListEvento(nome);
+    public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException {
+        List<Evento> e = this.repEvento.buscarNomeListEvento(nome);
         if ((e.isEmpty())) {
             throw new EventoInexistenteException();
         }
         return e;
     }
-    
-    /** 
+
+    /**
      * Método buscarValidarParticipante, Evento.
+     *
      * @see eacad.persistencia.RepositorioEvento.buscarValidarParticipante;
      * @param f;
      * @param p;
@@ -156,49 +174,52 @@ public class CadastroEvento implements Serializable{
      * @throws ErroInternoException;
      * @throws ParticipanteExistenteException;
      */
-    public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException{
-     Evento e = this.repEvento.buscarValidarPartipante(f, p);
+    public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException {
+        Evento e = this.repEvento.buscarValidarPartipante(f, p);
         if (e != null) {
             throw new ParticipanteExistenteException();
         }
         return e;
     }
-    
+
     /**
      * Método buscarCodigo Evento.
+     *
      * @see eacad.persistencia.RepositorioEvento.buscarCodigo;
      * @param codigo;
      * @return Evento;
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      */
-    public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException{
-    Evento e = this.repEvento.buscarCodigo(codigo);
+    public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException {
+        Evento e = this.repEvento.buscarCodigo(codigo);
 
         if (e == null) {
             throw new EventoInexistenteException();
         }
         return e;
     }
-    
+
     /**
      * Método buscarNomeEvento.
+     *
      * @see eacad.persistencia.RepositorioEvento.buscarNomeEvento;
      * @param nome;
      * @return Evento.
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      */
-    public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException{
-     Evento e = this.repEvento.buscarNomeEvento(nome);
+    public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException {
+        Evento e = this.repEvento.buscarNomeEvento(nome);
         if (e == null) {
             throw new EventoInexistenteException();
         }
         return e;
     }
-    
+
     /**
      * Método para remover Evento.
+     *
      * @throws eacad.exceptions.ParticipanteInexistenteException
      * @see eacad.persistencia.RepositorioEvento.remover;
      * @param codigo;
@@ -206,27 +227,28 @@ public class CadastroEvento implements Serializable{
      * @throws EventoInexistenteException;
      * @throws SubEventoInexistenteException;
      */
-    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException{
+    public void remover(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
         Evento temp = this.repEvento.buscarCodigo(codigo);
-        
+
         try {
-            
-            for(Participante x : this.repParticipante.listarTudoEventoParticipante(temp)){
-                if(x!=null){
+
+            for (Participante x : this.repParticipante.listarTudoEventoParticipante(temp)) {
+                if (x != null) {
                     this.repParticipante.remover(x.getCodigo());
                 }
             }
-            
-            for(SubEvento e : this.repSubEvento.buscarListSubEvento(temp)){
-            if(e != null){    
-                this.repSubEvento.remover(e.getCodigo());    
-            }}
-            
-             this.repEvento.remover(codigo);
-            } catch (ErroInternoException e) {
-               throw new ErroInternoException(e);
+
+            for (SubEvento e : this.repSubEvento.buscarListSubEvento(temp)) {
+                if (e != null) {
+                    this.repSubEvento.remover(e.getCodigo());
+                }
+            }
+
+            this.repEvento.remover(codigo);
+        } catch (ErroInternoException e) {
+            throw new ErroInternoException(e);
         }
-        
+
     }
-    
+
 }

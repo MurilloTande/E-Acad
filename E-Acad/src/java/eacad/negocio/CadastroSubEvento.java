@@ -68,10 +68,18 @@ public class CadastroSubEvento implements Serializable {
         }
     }
 
-    public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException{
-    this.repSubEvento.atualizarVagasSubEvento(vagas, ev);
+    /**
+     * Método atualizarvagasSubEvento.
+     *
+     * @param vagas;
+     * @param ev;
+     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException;
+     */
+    public void atualizarVagasSubEvento(int vagas, SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
+        this.repSubEvento.atualizarVagasSubEvento(vagas, ev);
     }
-    
+
     /**
      * Método listarTudoSubEvento.
      *
@@ -164,33 +172,31 @@ public class CadastroSubEvento implements Serializable {
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
      */
-   
     public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException {
         SubEvento temp = this.repSubEvento.buscarCodigo(codigo);
         ArrayList<SubEvento> n = new ArrayList<>();
-        
+
         try {
-            
-            for(Participante x : this.repParticipante.listarTudoSubEventoParticipante(temp)){
-                if(x!=null){
-                   if(1==x.getSubEvento().size()){
-                       this.repParticipante.remover(x.getCodigo());
-                   }else{
-                       
-                       for(SubEvento a: x.getSubEvento()){
-                           if(temp.getCodigo()!=a.getCodigo()){
-                               n.add(a);
-                           } 
-                       }
-                     x.setSubEvento(n);
-                     this.repParticipante.atualizar(x);
-                     n = new ArrayList<>();
-                   }
-                    
-                    
+
+            for (Participante x : this.repParticipante.listarTudoSubEventoParticipante(temp)) {
+                if (x != null) {
+                    if (1 == x.getSubEvento().size()) {
+                        this.repParticipante.remover(x.getCodigo());
+                    } else {
+
+                        for (SubEvento a : x.getSubEvento()) {
+                            if (temp.getCodigo() != a.getCodigo()) {
+                                n.add(a);
+                            }
+                        }
+                        x.setSubEvento(n);
+                        this.repParticipante.atualizar(x);
+                        n = new ArrayList<>();
+                    }
+
                 }
             }
-            
+
             this.repSubEvento.remover(codigo);
 
         } catch (ErroInternoException e) {

@@ -55,6 +55,7 @@ public class CadastroUsuario implements Serializable {
     }
 
     /**
+     * Método para atualizar Usuário.
      *
      * @see eacad.persistencia.RepositorioUsuario.adicionar;
      * @param usuario;
@@ -178,12 +179,12 @@ public class CadastroUsuario implements Serializable {
                 if (e == null) {
                     break;
                 } else {
-                    
-                    for(Participante x : this.repParticipante.listarTudoEventoParticipante(e)){
-                if(x!=null){
-                    this.repParticipante.remover(x.getCodigo());
-                }
-            }
+
+                    for (Participante x : this.repParticipante.listarTudoEventoParticipante(e)) {
+                        if (x != null) {
+                            this.repParticipante.remover(x.getCodigo());
+                        }
+                    }
 
                     for (SubEvento a : this.repSubEvento.buscarListSubEvento(this.repEvento.buscarCodigo(e.getCodigo()))) {
                         if (a == null) {

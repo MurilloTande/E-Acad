@@ -54,7 +54,7 @@ public interface RepositorioParticipante extends Serializable {
     public void adicionar(Participante e) throws ErroInternoException;
 
     /**
-     * Assinatura do método buscar Participante
+     * Assinatura do método buscar Participante.
      *
      * @param cpf;
      * @return Participante;
@@ -62,11 +62,33 @@ public interface RepositorioParticipante extends Serializable {
      * @throws ParticipanteInexistenteException;
      */
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
-    
-     public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException;
-    
+
+    /**
+     * Assinatura do método buscar Código.
+     *
+     * @param codigo;
+     * @return Participante.
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
+    public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException;
+
+    /**
+     * Assinatura do método remover Participante.
+     *
+     * @param codigo;
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
     public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException;
-    
+
+    /**
+     * Assinatura do método atualizar Participante.
+     *
+     * @param participante;
+     * @throws ErroInternoException;
+     * @throws ParticipanteInexistenteException;
+     */
     public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException;
 
 }

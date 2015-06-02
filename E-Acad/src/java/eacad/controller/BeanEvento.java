@@ -1,4 +1,12 @@
-
+/**
+ * Classe de controlador, Evento, onde serão contidos os métodos da camada de
+ * controller para conexão com a view.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
+ */
 package eacad.controller;
 
 import eacad.entidades.Evento;
@@ -21,67 +29,93 @@ import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
-public class BeanEvento implements Serializable{
-  
-    
-    private Evento evento;  
+public class BeanEvento implements Serializable {
+
+    private Evento evento;
     private SubEvento subEvento;
     private Evento eventoSelecionado;
     private Participante participanteSelecionado;
 
-   
-    
-    
-       @EJB
+    @EJB
     private FachadaSistema fachada;
-       
-    public BeanEvento(){
-    this.evento=new Evento();
+
+    public BeanEvento() {
+        this.evento = new Evento();
     }
-       
+
+    /**
+     * @return Participante.
+     */
     public Participante getParticipanteSelecionado() {
         return participanteSelecionado;
     }
 
+    /**
+     * @param participanteSelecionado;
+     */
     public void setParticipanteSelecionado(Participante participanteSelecionado) {
         this.participanteSelecionado = participanteSelecionado;
     }
 
+    /**
+     * @return Evento - um Evento selecionado.
+     */
     public Evento getEventoSelecionado() {
         return eventoSelecionado;
     }
 
+    /**
+     * @param eventoSelecionado;
+     */
     public void setEventoSelecionado(Evento eventoSelecionado) {
-      this.eventoSelecionado = eventoSelecionado;
+        this.eventoSelecionado = eventoSelecionado;
     }
-       
-      
+
+    /**
+     * @return Evento.
+     */
     public Evento getEvento() {
         return evento;
     }
 
+    /**
+     * @param evento;
+     */
     public void setEvento(Evento evento) {
         this.evento = evento;
     }
 
+    /**
+     * @return SubEvento.
+     */
     public SubEvento getSubEvento() {
         return subEvento;
     }
 
+    /**
+     * @param subEvento;
+     */
     public void setSubEvento(SubEvento subEvento) {
         this.subEvento = subEvento;
     }
-    
-    
-       public String CadastrarEvento() throws ErroInternoException,DatasIncorretas, EventoExistenteException {
+
+    /**
+     * Método para cadastrar Evento no sistema.
+     *
+     * @return String.
+     * @throws ErroInternoException;
+     * @throws DatasIncorretas;
+     * @throws EventoExistenteException;
+     */
+    public String CadastrarEvento() throws ErroInternoException, DatasIncorretas, EventoExistenteException {
         try {
-            
+
             evento.setCriador(BeanUsuario.getInstancia());
             evento.setContVagasEvento(evento.getTotal_vagas());
-            this.fachada.adicionarEvento(evento); 
-            
+            this.fachada.adicionarEvento(evento);
+
             evento = new Evento();
-            
+
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Cadastro efetuado com sucesso!"));
         } catch (ErroInternoException e) {
@@ -96,31 +130,52 @@ public class BeanEvento implements Serializable{
         return "meusEventos.xhtml";
 
     }
-       
+
+    /**
+     * Método para Listar Evento no sistema.
+     *
+     * @return List.
+     * @see java.util.List;
+     * @throws EventoExistenteException;
+     * @throws EventoInexistenteException;
+     */
     public List<Evento> listarTudoEvento() throws EventoExistenteException, EventoInexistenteException {
         try {
             List<Evento> eventos = this.fachada.listarTudoEvento();
             return eventos;
-        } catch (ErroInternoException ex ) {
+        } catch (ErroInternoException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
     }
-    
+
+    /**
+     * Método para listar Eventos de um Usuários.
+     *
+     * @return List.
+     * @see java.util.List;
+     * @throws EventoExistenteException;
+     * @throws EventoInexistenteException;
+     */
     public List<Evento> eventosUsuario() throws EventoExistenteException, EventoInexistenteException {
         try {
             List<Evento> eventos = this.fachada.EventosUsuario(BeanUsuario.getInstancia().getCpf());
             return eventos;
-        } catch (ErroInternoException ex ) {
+        } catch (ErroInternoException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
     }
-      
+
+    /**
+     * Método atualizar Evento no sistema.
+     *
+     * @return String.
+     */
     public String atualizarEvento() {
         try {
             this.fachada.atualizarEvento(eventoSelecionado);
-            
+
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("Evento Atualizado!"));
         } catch (ErroInternoException | EventoInexistenteException ex) {
@@ -129,30 +184,44 @@ public class BeanEvento implements Serializable{
 
         return "meusEventos.xhtml";
     }
-     
+
+    /**
+     * Método para apagar Evento do sistema.
+     *
+     * @param codigo;
+     * @return String.
+     * @throws EventoInexistenteException;
+     */
     public String apagarEvento(long codigo) throws EventoInexistenteException {
         try {
             this.fachada.removerEvento(codigo);
-            
+
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("Evento Removido!"));
         } catch (ErroInternoException ex) {
-             FacesContext.getCurrentInstance().addMessage(null,
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + ex.getMessage()));
-        } catch ( EventoInexistenteException ex1) {
-           FacesContext.getCurrentInstance().addMessage(null,
+        } catch (EventoInexistenteException ex1) {
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Evento inexistente!" + ex1.getMessage()));
-        }catch ( SubEventoInexistenteException ex2) {
-           FacesContext.getCurrentInstance().addMessage(null,
+        } catch (SubEventoInexistenteException ex2) {
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("SubEvento inexistente!" + ex2.getMessage()));
-        }catch ( ParticipanteInexistenteException ex3) {
-           FacesContext.getCurrentInstance().addMessage(null,
+        } catch (ParticipanteInexistenteException ex3) {
+            FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Participante inexistente!" + ex3.getMessage()));
         }
 
         return "paginaProdutos.xhtml";
     }
-    
+
+    /**
+     * Método para selecionar Evento no sistema.
+     *
+     * @param codigo;
+     * @return String.
+     * @throws EventoInexistenteException;
+     */
     public String EventoSelect(long codigo) throws EventoInexistenteException {
         try {
             Evento e = this.fachada.buscarCodigoEvento(codigo);
@@ -165,7 +234,5 @@ public class BeanEvento implements Serializable{
 
         return "meusEventos.xhtml";
     }
-    
-    
-    
+
 }
