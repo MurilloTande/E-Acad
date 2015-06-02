@@ -12,6 +12,8 @@ package eacad.entidades;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -21,7 +23,8 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Participante implements Serializable {
-
+    
+    private long codigo;
     private String cpf;
     private String primeiroNome;
     private String sobreNome;
@@ -35,7 +38,8 @@ public class Participante implements Serializable {
      * @param sobreNome;
      * @param email;
      */
-    public Participante(String cpf, String primeiroNome, String sobreNome, String email) {
+    public Participante(long codigo,String cpf, String primeiroNome, String sobreNome, String email) {
+        this.codigo = codigo;
         this.cpf = cpf;
         this.primeiroNome = primeiroNome;
         this.sobreNome = sobreNome;
@@ -48,10 +52,23 @@ public class Participante implements Serializable {
     public Participante() {
     }
 
+    
+     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(long codigo) {
+        this.codigo = codigo;
+    }
+
     /**
      * @return String - Retorna CPF do participante
      */
-    @Id
+    
+    
+    
     public String getCpf() {
         return cpf;
     }

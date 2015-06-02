@@ -231,11 +231,11 @@ public class BeanParticipante implements Serializable{
         return "inscricaoEventoP2.xhtml";
     }
     
-    public String removerParticipante(String cpf){
+    public String removerParticipante(long codigo){
     
         try { 
             
-            this.fachada.removerParticipante(cpf);
+            this.fachada.removerParticipante(codigo);
             
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("Participante Excluido!"));           

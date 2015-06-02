@@ -48,10 +48,8 @@ public class CadastroParticipante implements Serializable {
     public void adicionar(Participante e) throws ErroInternoException, ParticipanteExistenteException{
 
         try {
-            Participante u = this.repParticipante.buscar(e.getCpf());
-            if (u != null) {
-                throw new ParticipanteExistenteException();
-            }
+            Participante u = this.repParticipante.buscarCodigo(e.getCodigo());
+           
         } catch (ParticipanteInexistenteException ui) {
             this.repParticipante.adicionar(e);
         }
@@ -102,10 +100,10 @@ public class CadastroParticipante implements Serializable {
         return this.repParticipante.listarTudoSubEventoParticipante(e);
     }
 
-    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+    public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
         try {
 
-            this.repParticipante.remover(cpf);
+            this.repParticipante.remover(codigo);
 
         } catch (ErroInternoException e) {
             throw new ErroInternoException(e);
@@ -115,5 +113,9 @@ public class CadastroParticipante implements Serializable {
     public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException{
      this.repParticipante.atualizar(participante);
     }   
+    
+     public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException{
+      return this.repParticipante.buscarCodigo(codigo);
+     }
     
 }

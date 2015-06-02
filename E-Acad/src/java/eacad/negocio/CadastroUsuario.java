@@ -181,7 +181,7 @@ public class CadastroUsuario implements Serializable {
                     
                     for(Participante x : this.repParticipante.listarTudoEventoParticipante(e)){
                 if(x!=null){
-                    this.repParticipante.remover(x.getCpf());
+                    this.repParticipante.remover(x.getCodigo());
                 }
             }
 

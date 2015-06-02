@@ -368,9 +368,12 @@ this.subEvento.atualizarVagasSubEvento(vagas, ev);
         this.participante.atualizar(participante);
     }
     
-    public void removerParticipante(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
-        this.participante.remover(cpf);
+    public void removerParticipante(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
+        this.participante.remover(codigo);
     }
     
-
+ public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException{
+ return this.participante.buscarCodigo(codigo);
+ }
+    
 }

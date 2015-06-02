@@ -174,7 +174,7 @@ public class CadastroSubEvento implements Serializable {
             for(Participante x : this.repParticipante.listarTudoSubEventoParticipante(temp)){
                 if(x!=null){
                    if(1==x.getSubEvento().size()){
-                       this.repParticipante.remover(x.getCpf());
+                       this.repParticipante.remover(x.getCodigo());
                    }else{
                        
                        for(SubEvento a: x.getSubEvento()){

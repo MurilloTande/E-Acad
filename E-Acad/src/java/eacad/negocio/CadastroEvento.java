@@ -213,7 +213,7 @@ public class CadastroEvento implements Serializable{
             
             for(Participante x : this.repParticipante.listarTudoEventoParticipante(temp)){
                 if(x!=null){
-                    this.repParticipante.remover(x.getCpf());
+                    this.repParticipante.remover(x.getCodigo());
                 }
             }
             

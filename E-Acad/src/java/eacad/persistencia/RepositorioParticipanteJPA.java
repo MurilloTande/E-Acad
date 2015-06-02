@@ -110,9 +110,29 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
     }
     
     @Override
-    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
+    public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException{
+    
+         Participante p = null;
+
         try {
-            Participante e = buscar(cpf);
+            p = this.em.find(Participante.class, codigo);
+        } catch (Exception e) {
+            throw new ErroInternoException(e);
+        }
+
+        if (p == null) {
+            throw new ParticipanteInexistenteException();
+        }
+
+        return p;
+
+        
+    }
+    
+    @Override
+    public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
+        try {
+            Participante e = buscarCodigo(codigo);
             this.em.remove(e);
         } catch (IllegalArgumentException e) {
             throw new ErroInternoException(e);

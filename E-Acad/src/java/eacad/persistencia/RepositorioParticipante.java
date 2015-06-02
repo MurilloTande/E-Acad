@@ -63,7 +63,9 @@ public interface RepositorioParticipante extends Serializable {
      */
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
     
-    public void remover(String cpf) throws ErroInternoException, ParticipanteInexistenteException;
+     public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException;
+    
+    public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException;
     
     public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException;
 
