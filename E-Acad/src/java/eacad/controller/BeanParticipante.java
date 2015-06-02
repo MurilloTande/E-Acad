@@ -231,24 +231,6 @@ public class BeanParticipante implements Serializable{
         return "inscricaoEventoP2.xhtml";
     }
     
-    public String removerParticipante2(String cpf){
-    
-        try { 
-                
-            this.fachada.removerParticipante2(cpf, this.subEventoSelecionado);
-            
-            FacesContext aviso = FacesContext.getCurrentInstance();
-            aviso.addMessage(null, new FacesMessage("Participante Excluido!"));           
-        } catch (ErroInternoException e) {
-          FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-        }catch ( ParticipanteInexistenteException e1) {
-           FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Participante inexistente!" + e1.getMessage()));
-        }
-        
-         return null;     
-    }
-    
     public String removerParticipante(String cpf){
     
         try { 

@@ -372,9 +372,5 @@ this.subEvento.atualizarVagasSubEvento(vagas, ev);
         this.participante.remover(cpf);
     }
     
-    public void removerParticipante2(String cpf, SubEvento subEvento) throws ErroInternoException, ParticipanteInexistenteException{
-        this.participante.remover2(cpf, subEvento);
-    }
-    
 
 }
