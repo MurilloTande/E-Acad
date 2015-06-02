@@ -119,12 +119,17 @@ public class CadastroSubEvento implements Serializable {
      * @throws SubEventoInexistenteException;
      */
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException {
+       try{
         List<SubEvento> e = this.repSubEvento.buscarListSubEvento(evento);
-        if (e.isEmpty()) {
+         if (e != null) {
+                return e;
+            }
+         } catch (SubEventoInexistenteException a) {
             throw new SubEventoInexistenteException();
-        } else {
-            return e;
+        } catch (ErroInternoException r) {
+            throw new ErroInternoException(r);
         }
+       return buscarListSubEvento(evento);
     }
 
     /**

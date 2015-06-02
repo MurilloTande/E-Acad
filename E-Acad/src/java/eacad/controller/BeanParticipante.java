@@ -160,6 +160,41 @@ public class BeanParticipante implements Serializable {
         return "PaginaInicial.xhtml";
     }
 
+    
+    public String CadastrarParticipanteSemSubEvento() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException, SubEventoInexistenteException, EventoInexistenteException {
+        try {
+
+            this.participante.setEvento(part_eventos);
+
+            if (eventoSelecionado.getContVagasEvento()> 0) {
+
+                this.participante.setSubEvento(null);
+                this.fachada.adicionarParticipante(participante);
+                this.fachada.atualizarVagasEvento(eventoSelecionado.getContVagasEvento() - 1, eventoSelecionado);
+                this.participante = new Participante();
+                this.part_eventos = new ArrayList<>();
+                this.part_subEvento = new ArrayList<>();
+
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,
+                        new FacesMessage("Quantidade de vagas preenchida"));
+                return "inscricaoEventoP3.xhtml";
+            }
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Inscrição efetuado com sucesso!"));
+        } catch (ErroInternoException e) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Ocorreu um erro no sistema. Tente novamente." + e.getMessage()));
+            return null;
+        } catch (ParticipanteExistenteException ex) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Participante já cadastrado no sistema."));
+            return null;
+        }
+
+        return "PaginaInicial.xhtml";
+    }
+    
     /**
      * Método para selecionar Evento.
      *

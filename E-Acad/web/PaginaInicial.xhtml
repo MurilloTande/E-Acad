@@ -18,6 +18,8 @@
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="50">
                     <center><h:outputText value="Projeto de Orientação a Objeto - UPE - 2015.1" /></center>
+                    
+                 
                 </p:layoutUnit>
                 <p:layoutUnit position="west" size="220">
                     <p:panelMenu style="width: 200px">
@@ -35,6 +37,8 @@
                         <p:submenu label="Sistema">
                             <p:menuitem value="Página Principal" icon="ui-icon-home" url="PaginaInicial.xhtml" />
                         </p:submenu>
+                   
+                        
                     </p:panelMenu>
                     <p:separator />
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
