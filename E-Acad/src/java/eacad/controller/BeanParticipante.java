@@ -219,7 +219,6 @@ public class BeanParticipante implements Serializable {
 
     /**
      * @return List.
-     * @see eacad.persistencia.RepositorioParticipante.eventosParticipante.
      * @throws ParticipanteInexistenteException
      */
     public List<Participante> eventosParticipante() throws ParticipanteInexistenteException {
@@ -234,7 +233,6 @@ public class BeanParticipante implements Serializable {
 
     /**
      * @return List.
-     * @see eacad.persistencia.RepositorioParticipante.subEventoParticipante.
      * @throws ParticipanteInexistenteException
      */
     public List<Participante> subEventosParticipante() throws ParticipanteInexistenteException {
@@ -251,7 +249,7 @@ public class BeanParticipante implements Serializable {
      * Método para validar participante.
      *
      * @return String.
-     * @throws ParticipanteExistenteException;
+     * @throws ParticipanteExistenteException
      * @throws ErroInternoException
      */
     public String ValidarParticipante() throws ParticipanteExistenteException, ErroInternoException {
@@ -303,7 +301,6 @@ public class BeanParticipante implements Serializable {
      * Método para buscar SubEventos de um Evento.
      *
      * @return List.
-     * @see eacad.persistencia.RepositorioParticipante.buscarListSubEvento;
      * @throws SubEventoExistenteException
      * @throws SubEventoInexistenteException
      */

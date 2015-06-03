@@ -211,6 +211,9 @@ public class BeanSubEvento implements Serializable {
      * Método para atualizar SubEvento.
      *
      * @return String.
+     * @throws EventoInexistenteException
+     * @throws ParticipanteInexistenteException
+     * @throws VagasIncorretasException
      */
     public String atualizarSubEvento() throws EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException {
         try {

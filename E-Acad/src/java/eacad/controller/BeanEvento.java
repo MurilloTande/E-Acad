@@ -39,7 +39,7 @@ public class BeanEvento implements Serializable {
     private Participante participanteSelecionado;
     private String pesquisa;
     private List<Evento> eventosPesquisa;
-    
+
     @EJB
     private FachadaSistema fachada;
 
@@ -47,17 +47,20 @@ public class BeanEvento implements Serializable {
         this.evento = new Evento();
     }
 
+    /**
+     * @return List.
+     */
     public List<Evento> getEventosPesquisa() {
         return eventosPesquisa;
     }
 
+    /**
+     * @param eventosPesquisa;
+     */
     public void setEventosPesquisa(List<Evento> eventosPesquisa) {
         this.eventosPesquisa = eventosPesquisa;
     }
 
-    
-    
-    
     /**
      * @return Participante.
      */
@@ -65,16 +68,20 @@ public class BeanEvento implements Serializable {
         return participanteSelecionado;
     }
 
+    /**
+     * @return String.
+     */
     public String getPesquisa() {
         return pesquisa;
     }
 
+    /**
+     * @param pesquisa;
+     */
     public void setPesquisa(String pesquisa) {
         this.pesquisa = pesquisa;
     }
 
-    
-    
     /**
      * @param participanteSelecionado;
      */
@@ -100,7 +107,7 @@ public class BeanEvento implements Serializable {
      * @return Evento.
      */
     public Evento getEvento() {
-       return evento;
+        return evento;
     }
 
     /**
@@ -160,7 +167,6 @@ public class BeanEvento implements Serializable {
      * Método para Listar Evento no sistema.
      *
      * @return List.
-     * @see java.util.List;
      * @throws EventoExistenteException
      * @throws EventoInexistenteException
      */
@@ -178,7 +184,6 @@ public class BeanEvento implements Serializable {
      * Método para listar Eventos de um Usuários.
      *
      * @return List.
-     * @see java.util.List;
      * @throws EventoExistenteException
      * @throws EventoInexistenteException
      */
@@ -205,38 +210,31 @@ public class BeanEvento implements Serializable {
             aviso.addMessage(null, new FacesMessage("Evento Atualizado!"));
         } catch (ErroInternoException | EventoInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
-        }
-         catch (VagasIncorretasException fd) {
+        } catch (VagasIncorretasException fd) {
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Vagas Incorretas: "+fd.getMessage()));
+                    new FacesMessage("Vagas Incorretas: " + fd.getMessage()));
             return "editarEvento.xhtml";
         }
 
         return "meusEventos.xhtml";
     }
 
-    
     public String pesquisarEvento() {
         try {
-            this.eventosPesquisa=new ArrayList<>();
-                    
+            this.eventosPesquisa = new ArrayList<>();
+
             //for(Evento e: this.fachada.listarTudoEvento()){
-              // if(e.getNome().startsWith(pesquisa)){
-                //   this.eventosPesquisa.add(e);
-                   
+            // if(e.getNome().startsWith(pesquisa)){
+            //   this.eventosPesquisa.add(e);
                //} else {
-               
               // }
             //}
-            
-            
-           this.eventosPesquisa = this.fachada.buscarNomeListEvento(pesquisa);
-           
-           
-           this.pesquisa = ""; 
-           
+            this.eventosPesquisa = this.fachada.buscarNomeListEvento(pesquisa);
+
+            this.pesquisa = "";
+
             return "resultadoPesquisa.xhtml";
-            
+
         } catch (ErroInternoException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
         } catch (EventoInexistenteException ex) {
@@ -248,7 +246,6 @@ public class BeanEvento implements Serializable {
         return null;
     }
 
-    
     /**
      * Método para apagar Evento do sistema.
      *
