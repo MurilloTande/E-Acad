@@ -167,7 +167,7 @@ public class BeanParticipante implements Serializable {
 
             this.participante.setEvento(part_eventos);
 
-            if (eventoSelecionado.getContVagasEvento()> 0) {
+            if (eventoSelecionado.getContVagasEvento() > 0) {
 
                 this.participante.setSubEvento(null);
                 this.fachada.adicionarParticipante(participante);
@@ -327,7 +327,7 @@ public class BeanParticipante implements Serializable {
      */
     public String buscarParticipanteEvento() throws ErroInternoException {
 
-        List<Participante> p;
+        List<Participante> p = new ArrayList<>();
         try {
            
             p = this.fachada.listarTudoEventoParticipante(eventoSelecionado);
@@ -369,7 +369,7 @@ public class BeanParticipante implements Serializable {
         try {
 
             this.fachada.removerParticipante(codigo);
-
+            
             FacesContext aviso = FacesContext.getCurrentInstance();
             aviso.addMessage(null, new FacesMessage("Participante Excluido!"));
         } catch (ErroInternoException e) {

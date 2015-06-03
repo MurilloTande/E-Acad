@@ -13,9 +13,13 @@ import eacad.entidades.Evento;
 import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
+import eacad.exceptions.SubEventoInexistenteException;
+import eacad.persistencia.RepositorioEvento;
 import eacad.persistencia.RepositorioParticipante;
+import eacad.persistencia.RepositorioSubEvento;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,13 @@ public class CadastroParticipante implements Serializable {
 
     @EJB
     private RepositorioParticipante repParticipante;
-
+    
+    @EJB
+    private RepositorioEvento repEvento;
+    
+    @EJB
+    private RepositorioSubEvento repSubEvento;
+    
     /**
      * Contrutor Vazio.
      */
@@ -103,13 +113,25 @@ public class CadastroParticipante implements Serializable {
     /**
      * Método remover, Participante.
      *
-     * @param cpf;
+     * @param codigo;
      * @throws ErroInternoException;
      * @throws ParticipanteInexistenteException;
      */
-    public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
+    public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException, SubEventoInexistenteException, EventoInexistenteException {
         try {
-
+            Participante p = this.buscarCodigo(codigo);
+            
+            
+            if(p.getSubEvento().size()!=0){
+                for(SubEvento s : p.getSubEvento()){
+            this.repSubEvento.atualizarVagasSubEvento(s.getContVagasSubEvento()+1, s);
+            }}
+            
+            if(p.getEvento()!=null){
+                 for(Evento e : p.getEvento()){
+            this.repEvento.atualizarVagasEvento(e.getContVagasEvento()+1,e);
+            }}
+            
             this.repParticipante.remover(codigo);
 
         } catch (ErroInternoException e) {

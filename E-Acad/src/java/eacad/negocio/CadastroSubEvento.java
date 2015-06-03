@@ -14,8 +14,10 @@ import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
 import eacad.exceptions.ErroInternoException;
+import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
+import eacad.persistencia.RepositorioEvento;
 import eacad.persistencia.RepositorioParticipante;
 import eacad.persistencia.RepositorioSubEvento;
 import java.io.Serializable;
@@ -31,6 +33,9 @@ public class CadastroSubEvento implements Serializable {
     private RepositorioSubEvento repSubEvento;
     @EJB
     private RepositorioParticipante repParticipante;
+    
+    @EJB
+    private RepositorioEvento repEvento;
 
     /**
      * @param repSubEvento;
@@ -177,7 +182,7 @@ public class CadastroSubEvento implements Serializable {
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
      */
-    public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException {
+    public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException, EventoInexistenteException {
         SubEvento temp = this.repSubEvento.buscarCodigo(codigo);
         ArrayList<SubEvento> n = new ArrayList<>();
 
@@ -201,7 +206,8 @@ public class CadastroSubEvento implements Serializable {
 
                 }
             }
-
+            
+            this.repEvento.atualizarVagasEvento(temp.getEventoPai().getContVagasEvento()+temp.getTotal_vagas(),temp.getEventoPai());
             this.repSubEvento.remover(codigo);
 
         } catch (ErroInternoException e) {

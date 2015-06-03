@@ -111,9 +111,9 @@ public class BeanSubEvento implements Serializable {
     public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas, SubEventoExistenteException, EventoInexistenteException {
         try {
             this.subEvento.setEventoPai(evento);
-            this.subEvento.setContVagasSubEvento(subEvento.getTotal_vagas());
+          
             if (evento.getContVagasEvento() >= subEvento.getTotal_vagas()) {
-
+                      this.subEvento.setContVagasSubEvento(subEvento.getTotal_vagas());
                 this.fachada.atualizarVagasEvento(evento.getContVagasEvento() - subEvento.getTotal_vagas(), evento);
                 this.fachada.adicionarSubEvento(subEvento);
                 this.subEvento = new SubEvento();
