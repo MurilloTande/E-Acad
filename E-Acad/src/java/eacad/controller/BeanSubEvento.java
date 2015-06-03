@@ -104,10 +104,10 @@ public class BeanSubEvento implements Serializable {
 
     /**
      * @return String.
-     * @throws ErroInternoException;
-     * @throws DatasIncorretas;
-     * @throws SubEventoExistenteException;
-     * @throws EventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws DatasIncorretas
+     * @throws SubEventoExistenteException
+     * @throws EventoInexistenteException
      */
     public String CadastrarSubEvento() throws ErroInternoException, DatasIncorretas, SubEventoExistenteException, EventoInexistenteException {
         try {
@@ -142,8 +142,8 @@ public class BeanSubEvento implements Serializable {
      * Método para listar SubEventos
      *
      * @return List.
-     * @throws SubEventoExistenteException;
-     * @throws SubEventoInexistenteException;
+     * @throws SubEventoExistenteException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> listarTudoSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
         try {
@@ -162,7 +162,7 @@ public class BeanSubEvento implements Serializable {
      * Método para buscar SubEvento.
      *
      * @return List.
-     * @throws SubEventoExistenteException;
+     * @throws SubEventoExistenteException
      */
     public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException {
         try {
@@ -238,7 +238,7 @@ public class BeanSubEvento implements Serializable {
      *
      * @param codigo;
      * @return String.
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws eacad.exceptions.SubEventoInexistenteException
      */
     public String SubEventoSelect(long codigo) throws SubEventoInexistenteException {
         try {
@@ -258,7 +258,7 @@ public class BeanSubEvento implements Serializable {
      *
      * @param codigo;
      * @return String.
-     * @throws EventoInexistenteException;
+     * @throws EventoInexistenteException
      */
     public String EventoSelect(long codigo) throws EventoInexistenteException {
         try {

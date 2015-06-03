@@ -1,16 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe de exceção da entidade Participante, exceção de participante
+ * inexistente.
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.exceptions;
 
+public class ParticipanteInexistenteException extends Exception {
 
-public class ParticipanteInexistenteException extends Exception{
-    
-    public ParticipanteInexistenteException(){
+    public ParticipanteInexistenteException() {
         super("Participante não encontrado!");
     }
+
+    /**
+     * Exceção de participante não encontrado.
+     *
+     * @param e;
+     */
     public ParticipanteInexistenteException(Exception e) {
         super("Participante não encontrado!");
     }

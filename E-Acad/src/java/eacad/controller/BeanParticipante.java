@@ -122,10 +122,10 @@ public class BeanParticipante implements Serializable {
      * Método para cadastrar Participantes no evento
      *
      * @return String.
-     * @throws ErroInternoException;
-     * @throws ParticipanteExistenteException;
-     * @throws ParticipanteInexistenteException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteExistenteException
+     * @throws ParticipanteInexistenteException
+     * @throws SubEventoInexistenteException
      */
     public String CadastrarParticipante() throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException, SubEventoInexistenteException {
         try {
@@ -201,7 +201,7 @@ public class BeanParticipante implements Serializable {
      *
      * @param codigo;
      * @return String.
-     * @throws EventoInexistenteException;
+     * @throws EventoInexistenteException
      */
     public String EventoSelect(long codigo) throws EventoInexistenteException {
         try {
@@ -220,7 +220,7 @@ public class BeanParticipante implements Serializable {
     /**
      * @return List.
      * @see eacad.persistencia.RepositorioParticipante.eventosParticipante.
-     * @throws ParticipanteInexistenteException;
+     * @throws ParticipanteInexistenteException
      */
     public List<Participante> eventosParticipante() throws ParticipanteInexistenteException {
         try {
@@ -235,7 +235,7 @@ public class BeanParticipante implements Serializable {
     /**
      * @return List.
      * @see eacad.persistencia.RepositorioParticipante.subEventoParticipante.
-     * @throws ParticipanteInexistenteException;
+     * @throws ParticipanteInexistenteException
      */
     public List<Participante> subEventosParticipante() throws ParticipanteInexistenteException {
         try {
@@ -252,7 +252,7 @@ public class BeanParticipante implements Serializable {
      *
      * @return String.
      * @throws ParticipanteExistenteException;
-     * @throws ErroInternoException;
+     * @throws ErroInternoException
      */
     public String ValidarParticipante() throws ParticipanteExistenteException, ErroInternoException {
 
@@ -267,8 +267,8 @@ public class BeanParticipante implements Serializable {
      *
      * @param codigo;
      * @return String.
-     * @throws SubEventoInexistenteException;
-     * @throws ErroInternoException;
+     * @throws SubEventoInexistenteException
+     * @throws ErroInternoException
      */
     public String SubEventoSelect(long codigo) throws SubEventoInexistenteException, ErroInternoException {
         try {
@@ -304,8 +304,8 @@ public class BeanParticipante implements Serializable {
      *
      * @return List.
      * @see eacad.persistencia.RepositorioParticipante.buscarListSubEvento;
-     * @throws SubEventoExistenteException;
-     * @throws SubEventoInexistenteException;
+     * @throws SubEventoExistenteException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> buscarListSubEvento() throws SubEventoExistenteException, SubEventoInexistenteException {
         try {
@@ -323,7 +323,7 @@ public class BeanParticipante implements Serializable {
      * Método para buscar Participante de um evento no sistema.
      *
      * @return String.
-     * @throws ErroInternoException;
+     * @throws ErroInternoException
      */
     public String buscarParticipanteEvento() throws ErroInternoException {
 

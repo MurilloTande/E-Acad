@@ -128,9 +128,9 @@ public class BeanEvento implements Serializable {
      * Método para cadastrar Evento no sistema.
      *
      * @return String.
-     * @throws ErroInternoException;
-     * @throws DatasIncorretas;
-     * @throws EventoExistenteException;
+     * @throws ErroInternoException
+     * @throws DatasIncorretas
+     * @throws EventoExistenteException
      */
     public String CadastrarEvento() throws ErroInternoException, DatasIncorretas, EventoExistenteException {
         try {
@@ -161,8 +161,8 @@ public class BeanEvento implements Serializable {
      *
      * @return List.
      * @see java.util.List;
-     * @throws EventoExistenteException;
-     * @throws EventoInexistenteException;
+     * @throws EventoExistenteException
+     * @throws EventoInexistenteException
      */
     public List<Evento> listarTudoEvento() throws EventoExistenteException, EventoInexistenteException {
         try {
@@ -179,8 +179,8 @@ public class BeanEvento implements Serializable {
      *
      * @return List.
      * @see java.util.List;
-     * @throws EventoExistenteException;
-     * @throws EventoInexistenteException;
+     * @throws EventoExistenteException
+     * @throws EventoInexistenteException
      */
     public List<Evento> eventosUsuario() throws EventoExistenteException, EventoInexistenteException {
         try {
@@ -254,7 +254,7 @@ public class BeanEvento implements Serializable {
      *
      * @param codigo;
      * @return String.
-     * @throws EventoInexistenteException;
+     * @throws EventoInexistenteException
      */
     public String apagarEvento(long codigo) throws EventoInexistenteException {
         try {
@@ -284,7 +284,7 @@ public class BeanEvento implements Serializable {
      *
      * @param codigo;
      * @return String.
-     * @throws EventoInexistenteException;
+     * @throws EventoInexistenteException
      */
     public String EventoSelect(long codigo) throws EventoInexistenteException {
         try {

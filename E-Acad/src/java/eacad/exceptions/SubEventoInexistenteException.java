@@ -1,21 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Classe de exceção da entidade SubEvento, exceção de SubEvento inexistente.
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.exceptions;
 
-/**
- *
- * @author Matheus
- */
-public class SubEventoInexistenteException extends Exception{
-    
-    public SubEventoInexistenteException(){
+
+public class SubEventoInexistenteException extends Exception {
+
+    public SubEventoInexistenteException() {
         super("SubEvento não encontrado!");
     }
+
+    /**
+     * Exceção de SubEventos que não existem.
+     *
+     * @param e;
+     */
     public SubEventoInexistenteException(Exception e) {
         super("SubEvento não encontrado!");
     }
-    
+
 }
