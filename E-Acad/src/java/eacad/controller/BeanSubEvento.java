@@ -150,11 +150,8 @@ public class BeanSubEvento implements Serializable {
 
             return subEventos;
 
-        } catch (SubEventoInexistenteException ez) {
+        } catch (SubEventoInexistenteException | ErroInternoException ez) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ez.getMessage()));
-            return null;
-        } catch (ErroInternoException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return null;
         }
 
@@ -201,6 +198,9 @@ public class BeanSubEvento implements Serializable {
         } catch (ParticipanteInexistenteException ex2) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Participante inexistente!" + ex2.getMessage()));
+        } catch ( EventoInexistenteException ex3) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Evento inexistente!" + ex3.getMessage()));
         }
 
         return null;

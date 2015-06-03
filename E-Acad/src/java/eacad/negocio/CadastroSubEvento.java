@@ -112,8 +112,9 @@ public class CadastroSubEvento implements Serializable {
      * @throws SubEventoInexistenteException;
      */
     public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException {
-
-        this.repSubEvento.atualizar(e);
+            
+             this.repSubEvento.atualizar(e);
+             
     }
 
     /**
@@ -177,6 +178,7 @@ public class CadastroSubEvento implements Serializable {
      * Método remover, SubEvento.
      *
      * @throws eacad.exceptions.ParticipanteInexistenteException
+     * @throws eacad.exceptions.EventoInexistenteException
      * @see eacad.persistencia.RepositorioSubEvento.remover;
      * @param codigo;
      * @throws ErroInternoException;

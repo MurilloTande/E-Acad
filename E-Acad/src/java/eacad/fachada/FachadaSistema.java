@@ -329,8 +329,9 @@ public class FachadaSistema {
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
      * @throws ParticipanteInexistenteException
+     * @throws EventoInexistenteException
      */
-    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException {
+    public void removerSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException, EventoInexistenteException {
         this.subEvento.remover(codigo);
     }
 
@@ -400,8 +401,10 @@ public class FachadaSistema {
      * @param codigo;
      * @throws ErroInternoException;
      * @throws ParticipanteInexistenteException;
+     * @throws SubEventoInexistenteException
+     * @throws EventoInexistenteException
      */
-    public void removerParticipante(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
+    public void removerParticipante(long codigo) throws ErroInternoException, ParticipanteInexistenteException, SubEventoInexistenteException, EventoInexistenteException {
         this.participante.remover(codigo);
     }
 

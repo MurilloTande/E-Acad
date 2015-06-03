@@ -377,6 +377,12 @@ public class BeanParticipante implements Serializable {
         } catch (ParticipanteInexistenteException e1) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Participante inexistente!" + e1.getMessage()));
+        } catch (SubEventoInexistenteException e2) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("SubEvento inexistente!" + e2.getMessage()));
+        } catch (EventoInexistenteException e3) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Evento inexistente!" + e3.getMessage()));
         }
 
         return null;
