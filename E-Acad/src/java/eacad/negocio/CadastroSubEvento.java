@@ -17,6 +17,7 @@ import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
+import eacad.exceptions.VagasIncorretasException;
 import eacad.persistencia.RepositorioEvento;
 import eacad.persistencia.RepositorioParticipante;
 import eacad.persistencia.RepositorioSubEvento;
@@ -111,9 +112,35 @@ public class CadastroSubEvento implements Serializable {
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
      */
-    public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException {
-            
-             this.repSubEvento.atualizar(e);
+    public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException, EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException  {
+        SubEvento subevento = this.repSubEvento.buscarCodigo(e.getCodigo());
+        int antigo = subevento.getTotal_vagas();         
+        int novo = e.getTotal_vagas();
+        int aumenta;
+        int diminui;
+        
+        if(antigo>novo){
+        aumenta=antigo-novo;
+        if(e.getEventoPai().getContVagasEvento()>=aumenta){
+        this.repEvento.atualizarVagasEvento(e.getEventoPai().getContVagasEvento()+aumenta, e.getEventoPai());
+        }else{
+         throw new VagasIncorretasException();
+        }
+        }else if(novo>antigo){
+        diminui=novo-antigo;
+        
+        if(e.getEventoPai().getContVagasEvento()>=diminui && this.repParticipante.listarTudoSubEventoParticipante(e).size()<=e.getTotal_vagas()){
+        this.repEvento.atualizarVagasEvento(e.getEventoPai().getContVagasEvento()-diminui, e.getEventoPai());
+        }else{
+         throw new VagasIncorretasException();
+        }
+        }else{
+        }
+        
+       
+        this.repSubEvento.atualizar(e);
+        
+             
              
     }
 

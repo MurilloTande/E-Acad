@@ -19,6 +19,7 @@ import eacad.exceptions.ParticipanteExistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
+import eacad.exceptions.VagasIncorretasException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -211,7 +212,7 @@ public class BeanSubEvento implements Serializable {
      *
      * @return String.
      */
-    public String atualizarSubEvento() {
+    public String atualizarSubEvento() throws EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException {
         try {
             this.fachada.atualizarSubEvento(subEventoSelecionado);
 
@@ -219,8 +220,16 @@ public class BeanSubEvento implements Serializable {
             aviso.addMessage(null, new FacesMessage("SubEvento Atualizado!"));
         } catch (ErroInternoException | SubEventoInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        
+       
+        } catch (VagasIncorretasException fd) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Vagas Incorretas: "+fd.getMessage()));
+            return "editarSubEvento.xhtml";
+            
         }
-
+        
+        
         return "meusSubEventos.xhtml";
     }
 

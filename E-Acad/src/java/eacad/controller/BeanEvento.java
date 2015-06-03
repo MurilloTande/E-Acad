@@ -18,6 +18,7 @@ import eacad.exceptions.EventoExistenteException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteInexistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
+import eacad.exceptions.VagasIncorretasException;
 import eacad.fachada.FachadaSistema;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -204,6 +205,11 @@ public class BeanEvento implements Serializable {
             aviso.addMessage(null, new FacesMessage("Evento Atualizado!"));
         } catch (ErroInternoException | EventoInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
+        }
+         catch (VagasIncorretasException fd) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage("Vagas Incorretas: "+fd.getMessage()));
+            return "editarEvento.xhtml";
         }
 
         return "meusEventos.xhtml";

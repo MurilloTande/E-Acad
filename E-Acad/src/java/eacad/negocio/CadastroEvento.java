@@ -13,6 +13,7 @@ import eacad.entidades.Evento;
 import eacad.entidades.Participante;
 import eacad.entidades.SubEvento;
 import eacad.exceptions.DatasIncorretas;
+import eacad.exceptions.VagasIncorretasException;
 import eacad.exceptions.ErroInternoException;
 import eacad.exceptions.EventoInexistenteException;
 import eacad.exceptions.ParticipanteExistenteException;
@@ -128,8 +129,27 @@ public class CadastroEvento implements Serializable {
      * @throws ErroInternoException;
      * @throws EventoInexistenteException;
      */
-    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException {
-
+    public void atualizar(Evento e) throws ErroInternoException, EventoInexistenteException, VagasIncorretasException {
+        
+        Evento s = this.repEvento.buscarCodigo(e.getCodigo());
+        int antigo=s.getTotal_vagas();
+        int novo = e.getTotal_vagas();
+        int aumenta;
+        int diminui;
+        
+        if(novo>antigo){
+        aumenta=novo - antigo;
+        this.atualizarVagasEvento(e.getContVagasEvento()+aumenta, e);
+        
+        }else if(antigo>novo){
+        diminui = antigo-novo;
+        if(e.getContVagasEvento()>=diminui){
+        this.repEvento.atualizarVagasEvento(e.getContVagasEvento()-diminui, e);
+        }else{
+        throw new VagasIncorretasException();
+        }
+        }
+        
         this.repEvento.atualizar(e);
 
     }

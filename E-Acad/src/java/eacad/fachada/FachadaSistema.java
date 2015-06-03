@@ -23,6 +23,7 @@ import eacad.exceptions.SubEventoExistenteException;
 import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
+import eacad.exceptions.VagasIncorretasException;
 import eacad.negocio.CadastroEvento;
 import eacad.negocio.CadastroParticipante;
 import eacad.negocio.CadastroSubEvento;
@@ -159,7 +160,7 @@ public class FachadaSistema {
      * @throws eacad.exceptions.ErroInternoException;
      * @throws eacad.exceptions.EventoInexistenteException;
      */
-    public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException {
+    public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException, VagasIncorretasException {
         this.evento.atualizar(e);
     }
 
@@ -282,7 +283,7 @@ public class FachadaSistema {
      * @throws ErroInternoException;
      * @throws SubEventoInexistenteException;
      */
-    public void atualizarSubEvento(SubEvento e) throws ErroInternoException, SubEventoInexistenteException {
+    public void atualizarSubEvento(SubEvento e) throws ErroInternoException, SubEventoInexistenteException, EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException {
         this.subEvento.atualizar(e);
     }
 
