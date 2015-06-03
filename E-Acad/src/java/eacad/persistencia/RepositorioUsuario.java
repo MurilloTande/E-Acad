@@ -27,7 +27,7 @@ public interface RepositorioUsuario extends Serializable {
      * Assinatura do método adicionar evento.
      *
      * @param usuario - Adciona um usuário a base de dados.
-     * @throws eacad.exceptions.ErroInternoException;
+     * @throws ErroInternoException
      */
     public void adicionar(Usuario usuario) throws ErroInternoException;
 
@@ -35,7 +35,7 @@ public interface RepositorioUsuario extends Serializable {
      * Assinatura do método listarTudoEvento.
      *
      * @return List - Retorna uma lista de usuarios.
-     * @throws eacad.exceptions.ErroInternoException;
+     * @throws ErroInternoException
      */
     public List<Usuario> listar() throws ErroInternoException;
 
@@ -43,8 +43,8 @@ public interface RepositorioUsuario extends Serializable {
      * Assinatura do método de listar evento através do nome.
      *
      * @param usuario - Atualiza um usuário da base de dados.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException;
 
@@ -53,8 +53,8 @@ public interface RepositorioUsuario extends Serializable {
      *
      * @param nome - Lista Usuários através de um nome;
      * @return List - Retorna uma lista de usuario através do nome.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public List<Usuario> buscarNome(String nome) throws ErroInternoException, UsuarioInexistenteException;
 
@@ -63,8 +63,8 @@ public interface RepositorioUsuario extends Serializable {
      *
      * @param cpf - Busca um Usuário através de um CPF.
      * @return Usuario - retorna Usuario.
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException;
 
@@ -73,8 +73,8 @@ public interface RepositorioUsuario extends Serializable {
      *
      * @param email - Busca um Usuário através do e-mail.
      * @return Usuario - retorna Usuario;
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException;
 
@@ -82,8 +82,8 @@ public interface RepositorioUsuario extends Serializable {
      * Assinatura do método para remover usuário.
      *
      * @param cpf - Remove um Usuário da base de dados.
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException;
 }

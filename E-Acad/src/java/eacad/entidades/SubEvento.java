@@ -19,9 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * "@Entity" é usada para informar que a classe subEvento é uma entidade no JPA.
- */
 @Entity
 public class SubEvento implements Serializable {
 
@@ -61,13 +58,11 @@ public class SubEvento implements Serializable {
         this.data_inicio = data_inicio;
         this.data_final = data_final;
         this.total_vagas = total_vagas;
-        
+
     }
 
     /**
-     * @return long - Retorna codigo do subEvento. "@Id" e "@GeneratedValue"
-     * indicam respectivamente que o atributo é a chave principal do subEvento e
-     * nele o valor é gerado automaticamente.
+     * @return long.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -82,18 +77,22 @@ public class SubEvento implements Serializable {
         this.codigo = codigo;
     }
 
+    /**
+     * @return int.
+     */
     public int getContVagasSubEvento() {
         return contVagasSubEvento;
     }
 
+    /**
+     * @param contVagasSubEvento.
+     */
     public void setContVagasSubEvento(int contVagasSubEvento) {
         this.contVagasSubEvento = contVagasSubEvento;
     }
 
-    
-    
     /**
-     * @return Stirng - Retorna o nome
+     * @return Stirng.
      */
     public String getNome() {
         return nome;
@@ -107,7 +106,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return String - Retorna a descrição
+     * @return String.
      */
     public String getDescricao() {
         return descricao;
@@ -121,7 +120,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return String - Retorna o apresentador
+     * @return String.
      */
     public String getApresentador() {
         return apresentador;
@@ -135,7 +134,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return String - Retorna o tipo de subEvento.
+     * @return String.
      */
     public String getTipo() {
         return tipo;
@@ -149,7 +148,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return Date - Retorna a data de inicio do subEvento
+     * @return Date.
      */
     @Temporal(TemporalType.DATE)
     public Date getData_inicio() {
@@ -164,7 +163,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return Date - Retorna a data em que o subEvento termina.
+     * @return Date.
      */
     @Temporal(TemporalType.DATE)
     public Date getData_final() {
@@ -179,7 +178,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return int - Retorna o total de vagas para inscrição.
+     * @return int.
      */
     public int getTotal_vagas() {
         return total_vagas;
@@ -193,7 +192,7 @@ public class SubEvento implements Serializable {
     }
 
     /**
-     * @return Evento - Retorna o eventoPai
+     * @return Evento.
      */
     @ManyToOne
     public Evento getEventoPai() {

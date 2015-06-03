@@ -31,8 +31,9 @@ public class RepositorioEventoJPA implements RepositorioEvento {
     /**
      * Método para adicionar um Evento a base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.DatasIncorretas;
+     * @param e;
+     * @throws ErroInternoException
+     * @throws DatasIncorretas
      */
     @Override
     public void adicionar(Evento e) throws ErroInternoException, DatasIncorretas {
@@ -48,8 +49,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
      *
      * @param e;
      * @param p;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteExistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteExistenteException
      */
     @Override
     public Evento buscarValidarPartipante(Evento e, Participante p) throws ErroInternoException, ParticipanteExistenteException {
@@ -61,8 +62,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
     /**
      * Método para listar o(s) Eventos da base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException
-     * @throws eacad.exceptions.EventoInexistenteException
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException {
@@ -77,8 +78,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
     /**
      * Método para listar os Eventos de um Usuário a base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException
-     * @throws eacad.exceptions.EventoInexistenteException
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException {
@@ -95,8 +96,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
      * Método para atulizar um Evento a base de dados.
      *
      * @param ev;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public void atualizar(Evento ev) throws ErroInternoException, EventoInexistenteException {
@@ -124,8 +125,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
      *
      * @param vagas;
      * @param ev;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException {
@@ -144,8 +145,9 @@ public class RepositorioEventoJPA implements RepositorioEvento {
     /**
      * Método para buscar Eventos apartir de um nome.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @param nome;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException {
@@ -165,8 +167,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
     /**
      * Método para buscar um Eventos a partir de um código
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public Evento buscarCodigo(long codigo) throws ErroInternoException, EventoInexistenteException {
@@ -190,8 +192,8 @@ public class RepositorioEventoJPA implements RepositorioEvento {
      *
      * Método para buscar um Evento a partir do nome.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException {
@@ -211,8 +213,9 @@ public class RepositorioEventoJPA implements RepositorioEvento {
     /**
      * Método para remover um Evento a base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @param codigo;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     @Override
     public void remover(long codigo) throws ErroInternoException, EventoInexistenteException {

@@ -16,9 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-/**
- * "@Entity" é usada para informar que a classe Usuario é uma entidade no JPA.
- */
 @Entity
 public class Usuario implements Serializable {
 
@@ -49,9 +46,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * @return long - Retorna codigo do Usuario. "@Id" e "@GeneratedValue"
-     * indicam respectivamente que o atributo é a chave principal do usuario e
-     * nele o valor é gerado automaticamente.
+     * @return long.
      */
     @Id
     @Column(unique = true, nullable = false)
@@ -67,7 +62,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * @return String - Retorna o nome do usuário.
+     * @return String.
      */
     public String getNome() {
         return nome;
@@ -81,7 +76,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * @return String - Retorna o E-mail do usuário.
+     * @return String.
      */
     @Column(unique = true, nullable = false)
     public String getEmail() {
@@ -96,7 +91,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * @return String - Retorna a senha do usuário.
+     * @return String.
      */
     public String getSenha() {
         return senha;
@@ -110,8 +105,7 @@ public class Usuario implements Serializable {
     }
 
     /**
-     * @return List - Retorna uma lista de eventos do usuário.<p/>
-     * "@OneToMany" indica o mapeamento de um para muitos no JPA
+     * @return List.
      */
     @OneToMany(mappedBy = "criador")
     public List<Evento> getEventosDoUsuario() {

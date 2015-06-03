@@ -31,7 +31,7 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para adicionar um Participante a base de dados
      *
      * @param e;
-     * @throws eacad.exceptions.ErroInternoException;
+     * @throws ErroInternoException
      */
     @Override
     public void adicionar(Participante e) throws ErroInternoException {
@@ -46,8 +46,8 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para Listar Participantes de um Evento.
      *
      * @param e;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     @Override
     public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException {
@@ -67,8 +67,8 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para listar Participantes de um SubEvento.
      *
      * @param e;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     @Override
     public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException {
@@ -88,8 +88,8 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para buscar um Participante.
      *
      * @param cpf;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     @Override
     public Participante buscar(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
@@ -109,8 +109,8 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para buscar um participante através do código.
      *
      * @param codigo;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     @Override
     public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
@@ -135,8 +135,8 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para remover um Participante.
      *
      * @param codigo;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     @Override
     public void remover(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
@@ -152,8 +152,8 @@ public class RepositorioParticipanteJPA implements RepositorioParticipante {
      * Método para atualizar Participante.
      *
      * @param participante;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     @Override
     public void atualizar(Participante participante) throws ErroInternoException, ParticipanteInexistenteException {

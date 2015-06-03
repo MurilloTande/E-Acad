@@ -50,7 +50,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return long.
+     * @return long - Código do Participante.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -66,7 +66,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return String - Retorna CPF do participante
+     * @return String - CPF do Participante.
      */
     public String getCpf() {
         return cpf;
@@ -80,7 +80,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return String - retorna o primeiro nome do participante.
+     * @return String - Primeiro nome do Participante.
      */
     public String getPrimeiroNome() {
         return primeiroNome;
@@ -94,7 +94,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return String - Retorna o sobrenome do participante.
+     * @return String - Sobrenome do Participante..
      */
     public String getSobreNome() {
         return sobreNome;
@@ -108,7 +108,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return String - Retorna o email do participante.
+     * @return String - E-mail do Participante.
      */
     public String getEmail() {
         return email;
@@ -122,7 +122,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return List - Retorna o evento.
+     * @return List - Lista de Eventos em que esse participante está..
      */
     @ManyToMany
     public List<Evento> getEvento() {
@@ -137,7 +137,7 @@ public class Participante implements Serializable {
     }
 
     /**
-     * @return String - Retorna os subEventos.
+     * @return String - Lista de SubEventos em que esse participante está.
      */
     @ManyToMany
     public List<SubEvento> getSubEvento() {

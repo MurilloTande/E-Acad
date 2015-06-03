@@ -1,5 +1,11 @@
 /**
- * @author Tande
+ * Classe de controlador, Usuário, onde serão contidos os métodos da camada
+ * de controller para conexão com a view.<p/>
+ *
+ * @author Murillo Tande
+ * @author Matheus Barbosa
+ * @author Hugo Calado
+ * @author Felipe Xavier
  */
 package eacad.controller;
 
@@ -37,58 +43,104 @@ public class BeanUsuario implements Serializable {
         this.usuario = new Usuario();
     }
 
+    /**
+     * @return Usuário.
+     */
     public static Usuario getInstancia() {
         return BeanUsuario.usuarioLogado;
     }
 
+    /**
+     * @return Usuário.
+     */
     public Usuario getUsuario() {
         return this.usuario;
     }
 
+    /**
+     * @param usuario;
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     * @return Usuário.
+     */
     public Usuario getEsqueciSenhaUsuario() {
         return esqueciSenhaUsuario;
     }
 
+    /**
+     * @param esqueciSenhaUsuario;
+     */
     public void setEsqueciSenhaUsuario(Usuario esqueciSenhaUsuario) {
         this.esqueciSenhaUsuario = esqueciSenhaUsuario;
     }
    
+    /**
+     * @return String.
+     */
     public String getLogin() {
         return this.login;
     }
 
+    /**
+     * @param login;
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
+    /**
+     * @return String.
+     */
     public String getSenha() {
         return this.senha;
     }
 
+    /**
+     * @param senha;
+     */
     public void setSenha(String senha) {
         this.senha = senha;
     }
 
+    /**
+     * @return String.
+     */
     public String getNovaSenha() {
         return this.novaSenha;
     }
 
+    /**
+     * @param novaSenha;
+     */
     public void setNovaSenha(String novaSenha) {
         this.novaSenha = novaSenha;
     }
 
+    /**
+     * @return Usuário.
+     */
     public Usuario getUsuarioLogado() {
         return usuarioLogado;
     }
 
+    /**
+     * @param usuarioLogado;
+     */
     public void setUsuarioLogado(Usuario usuarioLogado) {
         BeanUsuario.usuarioLogado = usuarioLogado;
     }
     
+    /**
+     * Método para cadastrar Usuário no sistema.
+     * @return Strign.
+     * @throws ErroInternoException
+     * @throws UsuarioExistenteException
+     * @throws UsuarioInexistenteException
+     */
     public String cadastrarUsuario() throws ErroInternoException, UsuarioExistenteException, UsuarioInexistenteException {
         try {
             this.fachada.adicionarUsuario(usuario);
@@ -108,6 +160,10 @@ public class BeanUsuario implements Serializable {
 
     }
 
+    /**
+     * Método para logar no sistema.
+     * @return String.
+     */
     public String logar() {
         
         
@@ -135,6 +191,10 @@ public class BeanUsuario implements Serializable {
 
     }
     
+    /**
+     * Método de "Esqueci minha senha"
+     * @return String.
+     */
     public String esqueciSenha1() {  
         try {
             Usuario u = this.fachada.buscarEmail(this.login);  
@@ -153,6 +213,10 @@ public class BeanUsuario implements Serializable {
         }
     }
     
+    /**
+     * Método de "Esqueci minha senha".
+     * @return String.
+     */
      public String esqueciSenha2() {
             try {
                 esqueciSenhaUsuario.setSenha(novaSenha);
@@ -169,15 +233,29 @@ public class BeanUsuario implements Serializable {
            return "PaginaInicial.xhtml";
     }
 
+     /**
+      * Método para permanecer logado no sistema.
+     * @return boolean;
+     */
     public boolean isLogado() {
         return usuarioLogado != null;
     }
 
+    /**
+     * Método para Deslogar.
+     * @return String.
+     */
     public String dislog() {
         usuarioLogado = null;
         return "PaginaInicial.xhtml";
     }
 
+    /**
+     * Método para atualizar Usuário no sistema.
+     * @return String
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
+     */
     public String atualizarUsuario() throws ErroInternoException, UsuarioInexistenteException {
         try {
             this.fachada.atualizar(usuarioLogado);
@@ -197,6 +275,9 @@ public class BeanUsuario implements Serializable {
 
     }
 
+    /**
+     * Método para alterar senha de Usuário no sistema.
+     */
     public void alterarSenha() {
         if (usuarioLogado.getSenha().equals(senha)) {
             usuarioLogado.setSenha(novaSenha);
@@ -214,6 +295,10 @@ public class BeanUsuario implements Serializable {
 
     }
 
+    /**
+     * Método para remover Usuário do sistema.
+     * @return String.
+     */
     public String removerUsuario() {
 
         try {

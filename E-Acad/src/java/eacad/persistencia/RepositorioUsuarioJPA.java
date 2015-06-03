@@ -28,7 +28,7 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para adicionar um Usuário na base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
+     * @throws ErroInternoException
      */
     @Override
     public void adicionar(Usuario usuario) throws ErroInternoException {
@@ -42,7 +42,7 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para listar Usuários.
      *
-     * @throws eacad.exceptions.ErroInternoException;
+     * @throws ErroInternoException
      */
     @Override
     public List<Usuario> listar() throws ErroInternoException {
@@ -58,8 +58,8 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para atualizar um Usuário na base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     @Override
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException {
@@ -78,8 +78,8 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para Listar um Usuário a partir de um nome.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     @Override
     public List<Usuario> buscarNome(String nome) throws ErroInternoException, UsuarioInexistenteException {
@@ -98,8 +98,8 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para buscar um Usuário através do CPF.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     @Override
     public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
@@ -119,8 +119,8 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para buscar um Usuário através do e-mail.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     @Override
     public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
@@ -140,8 +140,8 @@ public class RepositorioUsuarioJPA implements RepositorioUsuario {
     /**
      * Método para remover Usuário de base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     @Override
     public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException {

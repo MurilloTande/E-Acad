@@ -26,9 +26,9 @@ public interface RepositorioSubEvento extends Serializable {
     /**
      * Assinatura do método adicionar subEvento.
      *
-     * @param e - Adiciona um SubEvento a base de dados;
-     * @throws eacad.exceptions.ErroInternoException
-     * @throws eacad.exceptions.DatasIncorretas
+     * @param e;
+     * @throws ErroInternoException
+     * @throws DatasIncorretas
      */
     public void adicionar(SubEvento e) throws ErroInternoException, DatasIncorretas;
 
@@ -37,8 +37,8 @@ public interface RepositorioSubEvento extends Serializable {
      *
      * @param vagas;
      * @param ev;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException;
     
@@ -46,56 +46,56 @@ public interface RepositorioSubEvento extends Serializable {
      * Assinatura do método para listar SubEvento.
      *
      * @return List - Retorna uma lista de eventos.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException;
 
     /**
      * Assinatura do método atualizar subEvento.
      *
-     * @param e - Atualiza um evento na base de dados;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param e;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException;
 
     /**
      * Assinatura do método de listar subEvento através do nome.
      *
-     * @param evento - busca Eventos atraves do nome;
-     * @return List- uma lista de eventos.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param evento;
+     * @return List.
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException;
 
     /**
      * Assinatura do metodo buscarCodigo.
      *
-     * @param codigo - busca um subEvento através do código;
-     * @return Evento - Retorna um subEvento.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param codigo;
+     * @return Evento.
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public SubEvento buscarCodigo(long codigo) throws ErroInternoException, SubEventoInexistenteException;
 
     /**
      * Assinatura do método para buscar um SubEvento pelo nome.
      *
-     * @param nome - busca um subEvento através no nome;
-     * @return SubEvento - Retorna um subEvento.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param nome;
+     * @return SubEvento.
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException;
 
     /**
      * Assinatura do método remover subEvento.
      *
-     * @param codigo - remove um subEvento da base de dados.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param codigo;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException;
 

@@ -24,9 +24,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * "@Entity" é usada para informar que a classe Evento é uma entidade no JPA.
- */
 @Entity
 public class Evento implements Serializable {
 
@@ -80,9 +77,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return long - codigo do evento. "@Id" e "@GeneratedValue" indicam
-     * respectivamente que o atributo é a chave principal do Evento e nele o
-     * valor é gerado automaticamente.
+     * @return long - codigo do evento.
      */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,27 +93,27 @@ public class Evento implements Serializable {
     }
 
     /**
-     * "@Column" define que a coluna será única e não poderá receber um atributo
-     * null
-     *
      * @return String - Nome do Evento;
-     *
      */
     @Column(unique = true, nullable = false)
     public String getNome() {
         return nome;
     }
 
+    /**
+     * @return int - Contador de vagas.
+     */
     public int getContVagasEvento() {
         return contVagasEvento;
     }
 
+    /**
+     * @param contVagasEvento;
+     */
     public void setContVagasEvento(int contVagasEvento) {
         this.contVagasEvento = contVagasEvento;
     }
 
-    
-    
     /**
      * @param nome;
      */
@@ -141,8 +136,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return Date - Data em que o evento será iniciado. "@Temporal" é usado
-     * para definir o tipo Date no JPA.
+     * @return Date - Data de início do Evento.
      */
     @Temporal(TemporalType.DATE)
     public Date getData_inicio() {
@@ -157,8 +151,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return Date - Data em que o evento terá fim. "@Temporal" é usado para
-     * definir o tipo Date no JPA.
+     * @return Date - Data de termino do evento..
      */
     @Temporal(TemporalType.DATE)
     public Date getData_final() {
@@ -243,8 +236,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return Usuario - Indica o criador do evento. "@ManyToOne" anotação
-     * utilizada para informar uma relação Muitos para um.
+     * @return Usuario - Criador do Evento.
      */
     @ManyToOne
     public Usuario getCriador() {
@@ -259,10 +251,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return List - retorna todos os subeventos do Evento principal<p/>
-     * @see java.util.List<p/>
-     * "@OneToMany" indica o mapeamento de um para muitos no JPA, e o mappedBy
-     * indica onde está mapeado.
+     * @return List - Lista de SubEventos de determinado Evento.
      */
     @OneToMany(mappedBy = "eventoPai")
     public List<SubEvento> getSubEventos() {
@@ -277,8 +266,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return List - retorna lista de participantes registrados no evento.
-     * @see java.util.List; "@ManyToMany" indica muitos para muitos no JPA.
+     * @return List - Lista de Participantes de determinado Evento..
      */
     @ManyToMany(mappedBy = "evento")
     public List<Participante> getParticipantes() {
@@ -293,7 +281,7 @@ public class Evento implements Serializable {
     }
 
     /**
-     * @return Participante.
+     * @return Participante - Participante do Evento.
      */
     @ManyToOne
     public Participante getParticipante_evento() {

@@ -49,9 +49,9 @@ public class FachadaSistema {
      * Assinatura in line do método adicionar.
      *
      * @param usuario;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioExistenteException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.UsuarioExistenteException
+     * @throws eacad.exceptions.UsuarioInexistenteException
      */
     public void adicionarUsuario(Usuario usuario) throws ErroInternoException, UsuarioExistenteException, UsuarioInexistenteException {
         this.usuarios.adicionarUsuario(usuario);
@@ -61,8 +61,8 @@ public class FachadaSistema {
      * Assinatura in line do método listar Usuário.
      *
      * @return List;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.UsuarioInexistenteException
      */
     public List<Usuario> listar() throws ErroInternoException, UsuarioInexistenteException {
         return this.usuarios.listar();
@@ -72,8 +72,8 @@ public class FachadaSistema {
      * Assinatura in line do método atualizar Usuário.
      *
      * @param usuario;
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public void atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException {
         this.usuarios.Atualizar(usuario);
@@ -84,8 +84,8 @@ public class FachadaSistema {
      *
      * @param cpf;
      * @return Usuario.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.UsuarioInexistenteException
      */
     public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
         return this.usuarios.buscar(cpf);
@@ -96,8 +96,8 @@ public class FachadaSistema {
      *
      * @param email;
      * @return Usuário.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.UsuarioInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.UsuarioInexistenteException
      */
     public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
         return this.usuarios.buscarEmail(email);
@@ -107,10 +107,10 @@ public class FachadaSistema {
      * Assinatura in line do método remover Usuário.
      *
      * @param cpf;
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
-     * @throws EventoInexistenteException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
+     * @throws EventoInexistenteException 
+     * @throws SubEventoInexistenteException
      * @throws ParticipanteInexistenteException
      */
     public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
@@ -122,9 +122,9 @@ public class FachadaSistema {
      * Assinatura in line do método adicionar Evento.
      *
      * @param e;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoExistenteException;
-     * @throws eacad.exceptions.DatasIncorretas;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoExistenteException
+     * @throws eacad.exceptions.DatasIncorretas
      */
     public void adicionarEvento(Evento e) throws ErroInternoException, EventoExistenteException, DatasIncorretas {
         this.evento.adicionar(e);
@@ -134,8 +134,8 @@ public class FachadaSistema {
      * Assinatura in line do método listar Evento.
      *
      * @return List.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoInexistenteException
      */
     public List<Evento> listarTudoEvento() throws ErroInternoException, EventoInexistenteException {
         return this.evento.listarTudoEvento();
@@ -146,8 +146,8 @@ public class FachadaSistema {
      *
      * @param cpf;
      * @return List.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoInexistenteException
      */
     public List<Evento> EventosUsuario(String cpf) throws ErroInternoException, EventoInexistenteException {
         return this.evento.EventosUsuario(cpf);
@@ -157,8 +157,8 @@ public class FachadaSistema {
      * Assinatura in line do método atualizar Evento.
      *
      * @param e;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoInexistenteException
      */
     public void atualizarEvento(Evento e) throws ErroInternoException, EventoInexistenteException, VagasIncorretasException {
         this.evento.atualizar(e);
@@ -169,8 +169,8 @@ public class FachadaSistema {
      *
      * @param vagas;
      * @param ev;
-     * @throws ErroInternoException;
-     * @throws EventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
      */
     public void atualizarVagasEvento(int vagas, Evento ev) throws ErroInternoException, EventoInexistenteException {
         this.evento.atualizarVagasEvento(vagas, ev);
@@ -181,8 +181,8 @@ public class FachadaSistema {
      *
      * @param nome;
      * @return List.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoInexistenteException
      */
     public List<Evento> buscarNomeListEvento(String nome) throws ErroInternoException, EventoInexistenteException {
         return this.evento.buscarNomeListEvento(nome);
@@ -194,8 +194,8 @@ public class FachadaSistema {
      * @param f;
      * @param p;
      * @return Evento.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteExistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.ParticipanteExistenteException
      */
     public Evento buscarValidarPartipante(Evento f, Participante p) throws ErroInternoException, ParticipanteExistenteException {
         return this.evento.buscarValidarPartipante(f, p);
@@ -206,8 +206,8 @@ public class FachadaSistema {
      *
      * @param codigo
      * @return Evento.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoInexistenteException
      */
     public Evento buscarCodigoEvento(long codigo) throws ErroInternoException, EventoInexistenteException {
         return this.evento.buscarCodigo(codigo);
@@ -218,8 +218,8 @@ public class FachadaSistema {
      *
      * @param nome;
      * @return Evento.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.EventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.EventoInexistenteException
      */
     public Evento buscarNomeEvento(String nome) throws ErroInternoException, EventoInexistenteException {
         return this.evento.buscarNomeEvento(nome);
@@ -229,9 +229,9 @@ public class FachadaSistema {
      * Assinatura in line do método remover Evento.
      *
      * @param codigo;
-     * @throws ErroInternoException;
-     * @throws EventoInexistenteException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws EventoInexistenteException
+     * @throws SubEventoInexistenteException
      * @throws ParticipanteInexistenteException
      */
     public void removerEvento(long codigo) throws ErroInternoException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
@@ -243,9 +243,9 @@ public class FachadaSistema {
      * Assinatura in line do método adicionar SubEvento.
      *
      * @param e;
-     * @throws ErroInternoException;
-     * @throws SubEventoExistenteException;
-     * @throws DatasIncorretas;
+     * @throws ErroInternoException
+     * @throws SubEventoExistenteException
+     * @throws DatasIncorretas
      */
     public void adicionarSubEvento(SubEvento e) throws ErroInternoException, SubEventoExistenteException, DatasIncorretas {
         this.subEvento.adicionar(e);
@@ -256,8 +256,8 @@ public class FachadaSistema {
      *
      * @param vagas;
      * @param ev;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public void atualizarVagasSubEvento(int vagas, SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
 
@@ -269,8 +269,8 @@ public class FachadaSistema {
      * Assinatura in line do método listar SubEvento.
      *
      * @return List;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException {
         return this.subEvento.listarTudoSubEvento();
@@ -280,8 +280,8 @@ public class FachadaSistema {
      * Assinatura in line do método atualizar SubEvento.
      *
      * @param e;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public void atualizarSubEvento(SubEvento e) throws ErroInternoException, SubEventoInexistenteException, EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException {
         this.subEvento.atualizar(e);
@@ -292,8 +292,8 @@ public class FachadaSistema {
      *
      * @param evento;
      * @return List.
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException {
         return this.subEvento.buscarListSubEvento(evento);
@@ -304,8 +304,8 @@ public class FachadaSistema {
      *
      * @param codigo;
      * @return SubEvento.
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.SubEventoInexistenteException
      */
     public SubEvento buscarCodigoSubEvento(long codigo) throws ErroInternoException, SubEventoInexistenteException {
         return this.subEvento.buscarCodigo(codigo);
@@ -316,8 +316,8 @@ public class FachadaSistema {
      *
      * @param nome;
      * @return SubEvento.
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException {
         return this.subEvento.buscarNomeSubEvento(nome);
@@ -327,8 +327,8 @@ public class FachadaSistema {
      * Assinatura in line do método remover SubEvento.
      *
      * @param codigo;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      * @throws ParticipanteInexistenteException
      * @throws EventoInexistenteException
      */
@@ -341,9 +341,9 @@ public class FachadaSistema {
      * Assinatura in line do método buscar adicionar Participante.
      *
      * @param e;
-     * @throws ErroInternoException;
-     * @throws ParticipanteExistenteException;
-     * @throws ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteExistenteException
+     * @throws ParticipanteInexistenteException
      */
     public void adicionarParticipante(Participante e) throws ErroInternoException, ParticipanteExistenteException, ParticipanteInexistenteException {
         this.participante.adicionar(e);
@@ -354,8 +354,8 @@ public class FachadaSistema {
      *
      * @param cpf;
      * @return Participante.
-     * @throws ErroInternoException;
-     * @throws ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     public Participante buscarParticipante(String cpf) throws ErroInternoException, ParticipanteInexistenteException {
         return this.participante.buscar(cpf);
@@ -366,8 +366,8 @@ public class FachadaSistema {
      *
      * @param e;
      * @return List;
-     * @throws ErroInternoException;
-     * @throws ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     public List<Participante> listarTudoEventoParticipante(Evento e) throws ErroInternoException, ParticipanteInexistenteException {
         return this.participante.listarTudoEventoParticipante(e);
@@ -378,8 +378,8 @@ public class FachadaSistema {
      *
      * @param e;
      * @return List.
-     * @throws ErroInternoException;
-     * @throws ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     public List<Participante> listarTudoSubEventoParticipante(SubEvento e) throws ErroInternoException, ParticipanteInexistenteException {
         return this.participante.listarTudoSubEventoParticipante(e);
@@ -389,8 +389,8 @@ public class FachadaSistema {
      * Assinatura in line do método atualizar Participante.
      *
      * @param participante;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.ParticipanteInexistenteException;
+     * @throws eacad.exceptions.ErroInternoException
+     * @throws eacad.exceptions.ParticipanteInexistenteException
      */
     public void atualizarParticipante(Participante participante) throws ErroInternoException, ParticipanteInexistenteException {
         this.participante.atualizar(participante);
@@ -400,8 +400,8 @@ public class FachadaSistema {
      * Assinatura in line para remover Participante.
      *
      * @param codigo;
-     * @throws ErroInternoException;
-     * @throws ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      * @throws SubEventoInexistenteException
      * @throws EventoInexistenteException
      */
@@ -414,8 +414,8 @@ public class FachadaSistema {
      *
      * @param codigo;
      * @return Participante.
-     * @throws ErroInternoException;
-     * @throws ParticipanteInexistenteException;
+     * @throws ErroInternoException
+     * @throws ParticipanteInexistenteException
      */
     public Participante buscarCodigo(long codigo) throws ErroInternoException, ParticipanteInexistenteException {
 

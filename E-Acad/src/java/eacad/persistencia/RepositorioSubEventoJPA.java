@@ -29,7 +29,7 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
     /**
      * Método para adicionar um SubEvento a base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
+     * @param e;
      */
     @Override
     public void adicionar(SubEvento e) throws ErroInternoException {
@@ -43,8 +43,8 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
     /**
      * Método para listar um SubEvento.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException {
@@ -62,8 +62,8 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
      * Método para atualizar SubEvento da base de dados.
      *
      * @param ev;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public void atualizar(SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
@@ -88,8 +88,8 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
      *
      * @param vagas;
      * @param ev;
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public void atualizarVagasSubEvento(int vagas,SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
@@ -109,8 +109,9 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
     /**
      * Método para listar os SubEventos de um Evento.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param evento;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException {
@@ -130,8 +131,9 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
     /**
      * Método para buscar um SubEvento a partir do código.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param codigo;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public SubEvento buscarCodigo(long codigo) throws ErroInternoException, SubEventoInexistenteException {
@@ -154,8 +156,9 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
     /**
      * Método para buscar um SubEvento a partir do Nome.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param nome;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException {
@@ -175,8 +178,9 @@ public class RepositorioSubEventoJPA implements RepositorioSubEvento {
     /**
      * Método para remover um SubEvento da base de dados.
      *
-     * @throws eacad.exceptions.ErroInternoException;
-     * @throws eacad.exceptions.SubEventoInexistenteException;
+     * @param codigo;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     @Override
     public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException {

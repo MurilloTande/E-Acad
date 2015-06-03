@@ -34,7 +34,7 @@ public class CadastroSubEvento implements Serializable {
     private RepositorioSubEvento repSubEvento;
     @EJB
     private RepositorioParticipante repParticipante;
-    
+
     @EJB
     private RepositorioEvento repEvento;
 
@@ -54,10 +54,9 @@ public class CadastroSubEvento implements Serializable {
     /**
      * Método adicionar, SubEvento.
      *
-     * @see eacad.persistencia.RepositorioSubEvento.adicionar;
      * @param e;
-     * @throws ErroInternoException;
-     * @throws DatasIncorretas;
+     * @throws ErroInternoException
+     * @throws DatasIncorretas
      */
     public void adicionar(SubEvento e) throws ErroInternoException, DatasIncorretas {
         if ((e.getData_final().after(e.getData_inicio()) || e.getData_final().equals(e.getData_inicio()))
@@ -79,8 +78,8 @@ public class CadastroSubEvento implements Serializable {
      *
      * @param vagas;
      * @param ev;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public void atualizarVagasSubEvento(int vagas, SubEvento ev) throws ErroInternoException, SubEventoInexistenteException {
         this.repSubEvento.atualizarVagasSubEvento(vagas, ev);
@@ -89,10 +88,9 @@ public class CadastroSubEvento implements Serializable {
     /**
      * Método listarTudoSubEvento.
      *
-     * @see eacad.persistencia.RepositorioSubEvento.listarTudoSubEvento;
      * @return List.
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> listarTudoSubEvento() throws ErroInternoException, SubEventoInexistenteException {
 
@@ -107,72 +105,66 @@ public class CadastroSubEvento implements Serializable {
     /**
      * Método atualizar SubEvento.
      *
-     * @see eacad.persistencia.RepositorioSubEvento.atualizar;
      * @param e;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
-    public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException, EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException  {
+    public void atualizar(SubEvento e) throws ErroInternoException, SubEventoInexistenteException, EventoInexistenteException, ParticipanteInexistenteException, VagasIncorretasException {
         SubEvento subevento = this.repSubEvento.buscarCodigo(e.getCodigo());
-        int antigo = subevento.getTotal_vagas();         
+        int antigo = subevento.getTotal_vagas();
         int novo = e.getTotal_vagas();
         int aumenta;
         int diminui;
-        
-        if(antigo>novo){
-        aumenta=antigo-novo;
-        if(e.getEventoPai().getContVagasEvento()>=aumenta){
-        this.repEvento.atualizarVagasEvento(e.getEventoPai().getContVagasEvento()+aumenta, e.getEventoPai());
-        }else{
-         throw new VagasIncorretasException();
+
+        if (antigo > novo) {
+            aumenta = antigo - novo;
+            if (e.getEventoPai().getContVagasEvento() >= aumenta) {
+                this.repEvento.atualizarVagasEvento(e.getEventoPai().getContVagasEvento() + aumenta, e.getEventoPai());
+            } else {
+                throw new VagasIncorretasException();
+            }
+        } else if (novo > antigo) {
+            diminui = novo - antigo;
+
+            if (e.getEventoPai().getContVagasEvento() >= diminui && this.repParticipante.listarTudoSubEventoParticipante(e).size() <= e.getTotal_vagas()) {
+                this.repEvento.atualizarVagasEvento(e.getEventoPai().getContVagasEvento() - diminui, e.getEventoPai());
+            } else {
+                throw new VagasIncorretasException();
+            }
+        } else {
         }
-        }else if(novo>antigo){
-        diminui=novo-antigo;
-        
-        if(e.getEventoPai().getContVagasEvento()>=diminui && this.repParticipante.listarTudoSubEventoParticipante(e).size()<=e.getTotal_vagas()){
-        this.repEvento.atualizarVagasEvento(e.getEventoPai().getContVagasEvento()-diminui, e.getEventoPai());
-        }else{
-         throw new VagasIncorretasException();
-        }
-        }else{
-        }
-        
-       
+
         this.repSubEvento.atualizar(e);
-        
-             
-             
+
     }
 
     /**
-     * @see eacad.persistencia.RepositorioSubEvento.buscarListSubEvento;
      * @param evento;
      * @return List.
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public List<SubEvento> buscarListSubEvento(Evento evento) throws ErroInternoException, SubEventoInexistenteException {
-       try{
-        List<SubEvento> e = this.repSubEvento.buscarListSubEvento(evento);
-         if (e != null) {
+        try {
+            List<SubEvento> e = this.repSubEvento.buscarListSubEvento(evento);
+            if (e != null) {
                 return e;
             }
-         } catch (SubEventoInexistenteException a) {
+        } catch (SubEventoInexistenteException a) {
             throw new SubEventoInexistenteException();
         } catch (ErroInternoException r) {
             throw new ErroInternoException(r);
         }
-       return buscarListSubEvento(evento);
+        return buscarListSubEvento(evento);
     }
 
     /**
      * Método buscarCodigo, subEvento.
      *
-     * @see eacad.persistencia.RepositorioSubEvento.buscarCodigo;
      * @param codigo;
      * @return SubEvento.
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public SubEvento buscarCodigo(long codigo) throws ErroInternoException, SubEventoInexistenteException {
         SubEvento e = this.repSubEvento.buscarCodigo(codigo);
@@ -186,11 +178,10 @@ public class CadastroSubEvento implements Serializable {
     /**
      * Método buscarNomeSubEvento;
      *
-     * @see eacad.persistencia.RepositorioSubEvento.buscarNomSubEvento;
      * @param nome;
      * @return SubEvento.
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      */
     public SubEvento buscarNomeSubEvento(String nome) throws ErroInternoException, SubEventoInexistenteException {
         SubEvento e = this.repSubEvento.buscarNomeSubEvento(nome);
@@ -204,12 +195,11 @@ public class CadastroSubEvento implements Serializable {
     /**
      * Método remover, SubEvento.
      *
+     * @param codigo;
+     * @throws ErroInternoException
+     * @throws SubEventoInexistenteException
      * @throws eacad.exceptions.ParticipanteInexistenteException
      * @throws eacad.exceptions.EventoInexistenteException
-     * @see eacad.persistencia.RepositorioSubEvento.remover;
-     * @param codigo;
-     * @throws ErroInternoException;
-     * @throws SubEventoInexistenteException;
      */
     public void remover(long codigo) throws ErroInternoException, SubEventoInexistenteException, ParticipanteInexistenteException, EventoInexistenteException {
         SubEvento temp = this.repSubEvento.buscarCodigo(codigo);
@@ -235,8 +225,8 @@ public class CadastroSubEvento implements Serializable {
 
                 }
             }
-            
-            this.repEvento.atualizarVagasEvento(temp.getEventoPai().getContVagasEvento()+temp.getTotal_vagas(),temp.getEventoPai());
+
+            this.repEvento.atualizarVagasEvento(temp.getEventoPai().getContVagasEvento() + temp.getTotal_vagas(), temp.getEventoPai());
             this.repSubEvento.remover(codigo);
 
         } catch (ErroInternoException e) {

@@ -57,11 +57,10 @@ public class CadastroUsuario implements Serializable {
     /**
      * Método para atualizar Usuário.
      *
-     * @see eacad.persistencia.RepositorioUsuario.adicionar;
      * @param usuario;
-     * @throws ErroInternoException;
-     * @throws UsuarioExistenteException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioExistenteException
+     * @throws UsuarioInexistenteException
      */
     public void adicionarUsuario(Usuario usuario) throws ErroInternoException, UsuarioExistenteException, UsuarioInexistenteException {
         try {
@@ -78,10 +77,9 @@ public class CadastroUsuario implements Serializable {
     /**
      * Método listar, Usuário.
      *
-     * @see eacad.persistencia.RepositorioUsuario.listar;
      * @return List.
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public List<Usuario> listar() throws ErroInternoException, UsuarioInexistenteException {
         List<Usuario> u = this.repUsuario.listar();
@@ -95,10 +93,9 @@ public class CadastroUsuario implements Serializable {
     /**
      * Métodos Atualizar, Usuário.
      *
-     * @see eacad.persistencia.RepositorioUsuario.atualizar;
      * @param usuario;
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public void Atualizar(Usuario usuario) throws ErroInternoException, UsuarioInexistenteException {
         this.repUsuario.atualizar(usuario);
@@ -107,11 +104,10 @@ public class CadastroUsuario implements Serializable {
     /**
      * Método buscarNome, Usuário.
      *
-     * @see eacad.persistencia.RepositorioUsuario.buscarNome;
      * @param nome;
      * @return Usuário.
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public List<Usuario> buscarNome(String nome) throws ErroInternoException, UsuarioInexistenteException {
 
@@ -125,11 +121,10 @@ public class CadastroUsuario implements Serializable {
     /**
      * Método buscar, Usuário.
      *
-     * @see eacad.persistencia.RepositorioUsuario.buscar;
      * @param cpf;
      * @return Usuário.
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public Usuario buscar(String cpf) throws ErroInternoException, UsuarioInexistenteException {
 
@@ -144,11 +139,10 @@ public class CadastroUsuario implements Serializable {
     /**
      * Método buscarEmail, Usuario.
      *
-     * @see eacad.persistencia.RepositorioUsuario.buscarEmail;
      * @param email;
      * @return Usuário.
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
      */
     public Usuario buscarEmail(String email) throws ErroInternoException, UsuarioInexistenteException {
 
@@ -163,12 +157,11 @@ public class CadastroUsuario implements Serializable {
     /**
      * Método remover, Usuário.
      *
-     * @see eacad.persistencia.RepositorioUsuario.remover;
      * @param cpf;
-     * @throws ErroInternoException;
-     * @throws UsuarioInexistenteException;
-     * @throws EventoInexistenteException;
-     * @throws SubEventoInexistenteException;
+     * @throws ErroInternoException
+     * @throws UsuarioInexistenteException
+     * @throws EventoInexistenteException
+     * @throws SubEventoInexistenteException
      */
     public void remover(String cpf) throws ErroInternoException, UsuarioInexistenteException, EventoInexistenteException, SubEventoInexistenteException, ParticipanteInexistenteException {
         Usuario temp = this.repUsuario.buscar(cpf);
