@@ -67,8 +67,12 @@ and open the template in the editor.
                                                actionListener="#{beanEvento.EventoSelect(p.codigo)}"
                                                  action="editarEvento.xhtml" ajax="false" />
                                 <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
-                                                 actionListener="#{beanEvento.apagarEvento(p.codigo)}"
+                                                 action="#{beanEvento.apagarEvento(p.codigo)}" actionListener="#{beanEvento.confirmarExcluir()}"
                                                   update="@form" ajax="false" />
+                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
                                    <p:commandButton value="SubEventos" icon="ui-icon-pencil" title="SubEventos"
                                                   actionListener="#{beanSubEvento.EventoSelect(p.codigo)}"
                                                  action="meusSubEventos.xhtml" ajax="false" />
@@ -93,5 +97,5 @@ and open the template in the editor.
         </h:form>
         
         
-    </h:body>/body>
+    </h:body>
 </html>

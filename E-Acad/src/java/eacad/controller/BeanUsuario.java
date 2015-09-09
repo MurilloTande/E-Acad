@@ -17,12 +17,15 @@ import eacad.exceptions.SubEventoInexistenteException;
 import eacad.exceptions.UsuarioExistenteException;
 import eacad.exceptions.UsuarioInexistenteException;
 import eacad.fachada.FachadaSistema;
+import java.io.IOException;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
@@ -260,7 +263,7 @@ public class BeanUsuario implements Serializable {
         try {
             this.fachada.atualizar(usuarioLogado);
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage("Cadastro Atualizado com sucesso!"));
+                    new FacesMessage( "Aviso", "Cadastro Realizado com sucesso."));
         } catch (UsuarioInexistenteException ex) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage("Usuario Inexistente no sistema."));
@@ -327,4 +330,10 @@ public class BeanUsuario implements Serializable {
         return "PaginaInicial";
     }
 
+    public void mostrarMensagemExcluir() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Confirmado.", "Sub-Evento adicionado.");
+         
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+    }
+     
 }

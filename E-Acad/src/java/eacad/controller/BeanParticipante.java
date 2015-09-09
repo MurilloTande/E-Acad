@@ -368,7 +368,7 @@ public class BeanParticipante implements Serializable {
             this.fachada.removerParticipante(codigo);
             
             FacesContext aviso = FacesContext.getCurrentInstance();
-            aviso.addMessage(null, new FacesMessage("Participante Excluido!"));
+            aviso.addMessage(null, new FacesMessage("Aviso","Participante Excluido!"));
         } catch (ErroInternoException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
         } catch (ParticipanteInexistenteException e1) {

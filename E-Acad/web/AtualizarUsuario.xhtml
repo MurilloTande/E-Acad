@@ -50,8 +50,15 @@ and open the template in the editor.
                         <h:outputText value = "Email" /><br />
                         <p:inputText value = "#{beanUsuario.usuarioLogado.email}" id = "email" /><br /><br />
                                 
-                        
-                        <p:commandButton value = "Alterar" action = "#{beanUsuario.atualizarUsuario()}" ajax = "false" />
+                        <p:growl id="message" showDetail="true" />
+                        <p:commandButton value="Alterar" action = "#{beanUsuario.atualizarUsuario()}" update="message">
+                            <p:confirm header="Confirmation" message="Os dados atualizados estão corretos?" icon="ui-icon-alert" />
+                        </p:commandButton>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
 
                         <p:messages />
                     </p:panel>

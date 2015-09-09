@@ -28,6 +28,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 @ManagedBean
 @SessionScoped
@@ -296,4 +297,9 @@ public class BeanEvento implements Serializable {
         return "meusEventos.xhtml";
     }
 
+    public void confirmarExcluir() {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Evento", "Evento excluido com sucesso");
+         
+        RequestContext.getCurrentInstance().showMessageInDialog(message);
+    }
 }

@@ -39,10 +39,6 @@
                     <p:commandButton value="Logout" icon="ui-icon-wrench" action="#{beanUsuario.dislog()}" rendered="#{beanUsuario.logado}" ajax="false" />
 
                 </p:layoutUnit>
-              
-                   
-           
-     
                 <p:layoutUnit position="center">
 
                     <h:outputText value="Bem vindo!" rendered="#{not beanUsuario.logado}"></h:outputText>
@@ -51,10 +47,10 @@
                 
                 
                 <p:layoutUnit position="center">                                     
-                    
+
                     <br></br>
                     <br></br>
-                    
+
                     <p:panel header="Eventos encontrados">
                         <p:dataTable value="#{beanEvento.eventosPesquisa}" var="p" paginator="true" rows="5">
                             <p:column headerText="Código">
@@ -72,26 +68,17 @@
                                 <p:commandButton value="+Info" icon="ui-icon-pencil" title="+Info"
                                                  actionListener="#{beanEvento.EventoSelect(p.codigo)}"
                                                  action="InfoEvento.xhtml" ajax="false" />
-                                 <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
-                                                  actionListener="#{beanParticipante.EventoSelect(p.codigo)}"
+                                <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
+                                                 actionListener="#{beanParticipante.EventoSelect(p.codigo)}"
                                                  action="inscricaoEventoP1.xhtml" ajax="false" />
-                                
                             </p:column>
                         </p:dataTable>
-                        <p:commandButton value="Voltar" icon="ui-icon-pencil" title="Voltar"
-                                                  
-                                                 action="PaginaInicial.xhtml" ajax="false" />
+                        <p:commandButton value="Voltar" icon="ui-icon-pencil" title="Voltar" action="PaginaInicial.xhtml" ajax="false" />
                     </p:panel>
-                         </p:layoutUnit>
-                
-                
-                
-                
-                
-             
+                </p:layoutUnit>
             </p:layout>
         </h:form>
-        
+
         
         <h:form rendered="#{not beanUsuario.logado}">
             Vá para <h:commandLink value="login" action="paginaPrincipal.hxtml"/>

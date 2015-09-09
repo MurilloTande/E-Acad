@@ -52,37 +52,37 @@
                 
                 
              <p:layoutUnit position="center">
-                    <p:panel header="Informações de SubEvento">
-                        <p:panelGrid columns="2">
-                            <h:outputText value="Nome:" />
-                            <h:outputText value="#{beanSubEvento.subEventoSelecionado.nome}" />
-                            
-                            <h:outputText value="Evento Principal:" />
-                            <h:outputText value="#{beanSubEvento.subEventoSelecionado.eventoPai.nome}" />
-                            
-                            
-                            <h:outputText value="Descrição:" />
-                            <h:outputText value="#{beanSubEvento.subEventoSelecionado.descricao}" />
-                            
-                            <h:outputText value="Tipo:" />
-                            <h:outputText value="#{beanSubEvento.subEventoSelecionado.tipo}" />
-                            
-                            <h:outputText value="Apresentador:" />
-                            <h:outputText value="#{beanSubEvento.subEventoSelecionado.apresentador}" />
-                            
-                            <h:outputText value="Total de Vagas:" />
-                            <h:outputText value="#{beanSubEvento.subEventoSelecionado.total_vagas}" />
-                            
-                            
-        <h:outputText value="Data de Inicio" />
-        <h:outputText value="#{beanSubEvento.subEventoSelecionado.data_inicio.date}/#{beanSubEvento.subEventoSelecionado.data_inicio.month}/#{beanSubEvento.subEventoSelecionado.data_inicio.year}"/>
-        <h:outputText value="Data de Inicio" />
-        <h:outputText value="#{beanSubEvento.subEventoSelecionado.data_final.date}/#{beanSubEvento.subEventoSelecionado.data_final.month}/#{beanSubEvento.subEventoSelecionado.data_final.year}"/>
-        </p:panelGrid>
-                       <p:commandButton value="Voltar" icon="ui-icon-pencil" title="Voltar"
-                                                  
-                                                 action="inscricaoEventoP2.xhtml" ajax="false" />
-                    </p:panel>
+                 <p:panel header="Informações de SubEvento">
+                     <p:panelGrid columns="2">
+                         <h:outputText value="Nome:" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.nome}" />
+
+                         <h:outputText value="Evento Principal:" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.eventoPai.nome}" />
+
+
+                         <h:outputText value="Descrição:" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.descricao}" />
+
+                         <h:outputText value="Tipo:" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.tipo}" />
+
+                         <h:outputText value="Apresentador:" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.apresentador}" />
+
+                         <h:outputText value="Total de Vagas:" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.total_vagas}" />
+
+
+                         <h:outputText value="Data de Inicio" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.data_inicio.date}/#{beanSubEvento.subEventoSelecionado.data_inicio.month}/#{beanSubEvento.subEventoSelecionado.data_inicio.year}"/>
+                         <h:outputText value="Data de Inicio" />
+                         <h:outputText value="#{beanSubEvento.subEventoSelecionado.data_final.date}/#{beanSubEvento.subEventoSelecionado.data_final.month}/#{beanSubEvento.subEventoSelecionado.data_final.year}"/>
+                     </p:panelGrid>
+                     <p:commandButton value="Voltar" icon="ui-icon-pencil" title="Voltar"
+
+                                      action="inscricaoEventoP2.xhtml" ajax="false" />
+                 </p:panel>
                 </p:layoutUnit>
             </p:layout>
         </h:form>

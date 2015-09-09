@@ -68,8 +68,12 @@ and open the template in the editor.
                                                  actionListener="#{beanSubEvento.SubEventoSelect(p.codigo)}"
                                                  action="editarSubEvento.xhtml" ajax="false" />
                             <p:commandButton value="Excluir" icon="ui-icon-circle-close" title="Excluir"
-                                                 actionListener="#{beanSubEvento.apagarSubEvento(p.codigo)}"
-                                                 update="@form" ajax="false"/>
+                                             action="#{beanSubEvento.apagarSubEvento(p.codigo)}" actionListener="#{beanSubEvento.confirmarExcluir()}"
+                                             update="@form" ajax="false"/>
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
                              <p:commandButton value="ParticipantesSubEvento" icon="ui-icon-pencil" title="ParticipantesSubEvento"
                                               actionListener="#{beanParticipante.SubEventoSelect(p.codigo)}"
                                                  action="ParticipantesSubEvento.xhtml" ajax="false" />

@@ -51,34 +51,34 @@
                 
                 
                 
-             <p:layoutUnit position="center">
+                <p:layoutUnit position="center">
                     <p:panel header="Informações de Evento">
                         <p:panelGrid columns="2">
                             <h:outputText value="Nome:" />
-                <h:outputText value="#{beanEvento.eventoSelecionado.nome}" />
- 
-                <h:outputText value="Local" />
-                <h:outputText value="#{beanEvento.eventoSelecionado.localidade}" />
- 
-                <h:outputText value="Cidade" />
-                <h:outputText value="#{beanEvento.eventoSelecionado.cidade}"/>
-                
-                 <h:outputText value="Descrição" />
-                 <h:outputText value="#{beanEvento.eventoSelecionado.descricao}"/>
-  <h:outputText value="Endereço" />
-  <h:outputText value="#{beanEvento.eventoSelecionado.endereco}"/>
-    <h:outputText value="Estado" />
-    <h:outputText value="#{beanEvento.eventoSelecionado.estado}"/>
-      <h:outputText value="Total de Vagas" />
-      <h:outputText value="#{beanEvento.eventoSelecionado.total_vagas}"/>
-        <h:outputText value="Data de Inicio" />
-        <h:outputText value="#{beanEvento.eventoSelecionado.data_inicio.date}/#{beanEvento.eventoSelecionado.data_inicio.month}/#{beanEvento.eventoSelecionado.data_inicio.year}"/>
-        <h:outputText value="Data de Inicio" />
-        <h:outputText value="#{beanEvento.eventoSelecionado.data_final.date}/#{beanEvento.eventoSelecionado.data_final.month}/#{beanEvento.eventoSelecionado.data_final.year}"/>
-        </p:panelGrid>
-                       <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
-                                        actionListener="#{beanParticipante.EventoSelect(beanEvento.eventoSelecionado.codigo)}"
-                                                 action="inscricaoEventoP1.xhtml" ajax="false" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.nome}" />
+
+                            <h:outputText value="Local" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.localidade}" />
+
+                            <h:outputText value="Cidade" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.cidade}"/>
+
+                            <h:outputText value="Descrição" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.descricao}"/>
+                            <h:outputText value="Endereço" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.endereco}"/>
+                            <h:outputText value="Estado" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.estado}"/>
+                            <h:outputText value="Total de Vagas" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.total_vagas}"/>
+                            <h:outputText value="Data de Inicio" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.data_inicio.date}/#{beanEvento.eventoSelecionado.data_inicio.month}/#{beanEvento.eventoSelecionado.data_inicio.year}"/>
+                            <h:outputText value="Data de Inicio" />
+                            <h:outputText value="#{beanEvento.eventoSelecionado.data_final.date}/#{beanEvento.eventoSelecionado.data_final.month}/#{beanEvento.eventoSelecionado.data_final.year}"/>
+                        </p:panelGrid>
+                        <p:commandButton value="Fazer Inscrição" icon="ui-icon-pencil" title="Fazer Inscrição"
+                                         actionListener="#{beanParticipante.EventoSelect(beanEvento.eventoSelecionado.codigo)}"
+                                         action="inscricaoEventoP1.xhtml" ajax="false" />
                     </p:panel>
                 </p:layoutUnit>
             </p:layout>
